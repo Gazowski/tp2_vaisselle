@@ -1,5 +1,5 @@
 <?php
-	class Controleur_Restaurants extends BaseControleur
+	class Controleur_Boutique extends BaseControleur
 	{
 	
 		//la fonction qui sera appelée par le routeur
@@ -16,18 +16,10 @@
 				//ce switch détermine la vue $vue et obtient le modèle $data
 				switch($params["action"])
 				{
-					case "RechercheType":						
-						$modeleRestaurants = new Modele_Restaurants();
-						$data = $modeleRestaurants->obtenirTypeRestaurant();
-						$vue = "RechercheType";
-						$this->afficheVue($vue, $data);
-						break;
-					
-	
 					default:
-						$modeleRestaurants = new Modele_Restaurants();
-						$data = $modeleRestaurants->obtenirTous();
-						$vue = "ListeRestaurants";
+						$modeleBoutique = new Modele_Boutique();
+						$data = $modeleBoutique->obtenirTous();
+						$vue = "ListeBoutique";
 						$this->afficheVue($vue, $data);
 						break;
 				}			
@@ -35,8 +27,8 @@
 			else
 			{
 				//action par défaut
-				$modeleRestaurants = new Modele_Restaurants();							
-				$vue = "Acceuil";		
+				$modeleBoutique = new Modele_Boutique();							
+				$vue = "Accueil";		
 				$this->afficheVue($vue);
 			}
 			$this->afficheVue("Footer");
