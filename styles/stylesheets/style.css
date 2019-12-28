@@ -1,0 +1,18 @@
+@charset "UTF-8";
+/**
+* Javascript TP2
+* feuille de style principale
+*/
+/* variables et mixin */
+/* variables couleurs */
+/* variables fontes */
+/* variables taille écran (basées sur les grilles bootstrap) */
+/* variables icone */
+/* mixin */
+/* line 8, ../sass/style.scss */
+body {
+  padding: 1em;
+  width: 100vw;
+  background-color: #000807;
+  color: #eaf2ef;
+}

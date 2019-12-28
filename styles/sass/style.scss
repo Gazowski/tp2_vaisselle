@@ -1,0 +1,13 @@
+/**
+* Javascript TP2
+* feuille de style principale
+*/
+
+@import "_mixin_variables.scss";
+
+body{
+    padding:1em;
+    width:100vw;
+
+    @include couleur($c_sombre,$c_clair);
+}
