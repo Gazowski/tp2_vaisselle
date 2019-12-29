@@ -20,13 +20,13 @@
 			else
 			{	
 				//controleur par défaut
-				$classe = "Controleur_Restaurants";
+				$classe = "Controleur_Boutique";
 			}
 			
 			//vérifier que la classe existe
 			if(class_exists($classe))
 			{
-				//dans $classe se trouve le nom de la classe ex : "Controleur_Restaurants"
+				//dans $classe se trouve le nom de la classe ex : "Controleur_Boutique"
 				$objetControleur = new $classe;
 				$objetControleur->traite($_REQUEST);
 			}

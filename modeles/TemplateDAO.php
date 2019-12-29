@@ -14,6 +14,7 @@
 		public function __construct()
 		{
 			$this->connexion = new PDO("mysql:host=localhost;dbname=boutique", "root", "");
+			$this->connexion->exec("SET NAMES'UTF8'"); // affichage des caractères UTF8
 		}
 	}
 ?>
