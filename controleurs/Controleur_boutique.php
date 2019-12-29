@@ -6,6 +6,7 @@
 		public function traite(array $params)
 		{
 			$this->afficheVue("Head");
+			$this->afficheVue('Header');
 			
 			if(isset($params["action"]))
 			{
@@ -17,19 +18,20 @@
 				switch($params["action"])
 				{
 					default:
-						$modeleBoutique = new Modele_Boutique();
-						$data = $modeleBoutique->obtenirTous();
-						$vue = "ListeBoutique";
-						$this->afficheVue($vue, $data);
-						break;
+						// $modeleBoutique = new Modele_Boutique();
+						// $data = $modeleBoutique->obtenirTous();
+						// $vue = "ListeBoutique";
+						// $this->afficheVue($vue, $data);
+					break;
 				}			
 			}
 			else
 			{
 				//action par défaut
 				$modeleBoutique = new Modele_Boutique();							
-				$vue = "Accueil";		
-				$this->afficheVue($vue);
+				$data = $modeleBoutique->obtenirTous();
+				$vue = "ListeProduits";		
+				$this->afficheVue($vue,$data);
 			}
 			$this->afficheVue("Footer");
 		}
