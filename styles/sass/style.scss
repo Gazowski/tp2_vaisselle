@@ -6,8 +6,23 @@
 @import "_mixin_variables.scss";
 
 body{
+    font-family: $f_texte;
     padding:1em;
     width:100vw;
 
-    @include couleur($c_sombre,$c_clair);
+    @include couleur($c_sombre,$c_sombre_moyen);
+}
+
+/* Classe */
+.logo{
+    div{
+        border-radius: 50%;
+        height:20px;
+        text-align: center;
+        width:20px;
+        @include couleur($c_theme,$c_clair);
+    }
+    img{
+        height:50px;
+    }
 }
