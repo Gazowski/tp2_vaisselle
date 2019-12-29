@@ -15,10 +15,10 @@
         <link href="https://fonts.googleapis.com/css?family=Oswald:600&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Oswald:600|Raleway:300&display=swap" rel="stylesheet">
         <!-- Feuilles de style -->
-        <link rel="stylesheet" href="stylesheets/normalize.css">
-        <link rel="stylesheet" href="stylesheets/style.css">
+        <link rel="stylesheet" href="./styles/stylesheets/normalize.css">
+        <link rel="stylesheet" href="./styles/stylesheets/style.css">
 
         <!-- integration du script -->
-		<script type="text/javascript" src="./scripts/main.js"></script>
+		<script type="module" src="./scripts/main.js"></script>
 	</head>
 <body>
