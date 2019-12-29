@@ -1,10 +1,10 @@
+import { Header } from "./Header.js"
+
 document.addEventListener("DOMContentLoaded", function() {
 
-    let elRestaurantList = document.querySelector('[data-js-restaurant-list]');
-    if (elRestaurantList) new RestaurantList(elRestaurantList);
+    let elHeader = document.querySelector('header')
+    if (elHeader)
+        new Header(elHeader)
     
-
-    let elRestaurantTypes = document.querySelector('[data-js-restaurant-types]');
-    if (elRestaurantTypes) new RestaurantType(elRestaurantTypes);
     
 });
