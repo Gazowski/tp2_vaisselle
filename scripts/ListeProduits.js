@@ -4,6 +4,7 @@ export class ListeProduits{
     constructor(elt){
         this.elt = elt
         this.wrapper_liste = elt.querySelector('[data-js-wrapper-liste]')
+        this.btn_precedent = elt.querySelector('[data-js-btn-precedent]')
         this.btn_suivant = elt.querySelector('[data-js-btn-suivant]')
         this.pagination = 0
         this.produits_par_page = 12
@@ -14,7 +15,10 @@ export class ListeProduits{
     
     init = () =>{
         this.obtenir_total_produits()
-        this.btn_suivant.addEventListener('click',()=>{this.afficher_produits_suivants()})
+        this.btn_suivant.addEventListener('click',()=>{
+            this.afficher_produits_suivants()
+            this.activer_boutons()
+        })
     }
     
     obtenir_total_produits = () =>{
@@ -23,7 +27,8 @@ export class ListeProduits{
         this.paramAjax['parent'] = this.elt
         requeteAjax(this.paramAjax) 
     }
-
+    
+    
     afficher_produits_suivants = () =>{
         this.pagination += 1
         let offsetPagination = this.pagination * this.produits_par_page
@@ -32,4 +37,15 @@ export class ListeProduits{
         this.paramAjax['parent'] = this.wrapper_liste
         requeteAjax(this.paramAjax)
     }
+
+    activer_boutons = () =>{
+        // calcul du nombre de page max (page 1 = 0)
+        // dataset.totalProduit est défini dans le fichier requeteAjax
+        let pagination_max = Math.floor(this.elt.dataset.totalProduit/this.produits_par_page)
+
+        this.btn_precedent.disabled = this.pagination > 0 ? false : true
+        this.btn_suivant.disabled = this.pagination < pagination_max ? false : true       
+        
+    }
+    
 }
