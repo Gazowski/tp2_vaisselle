@@ -1,1 +1,2 @@
-<h2><?= $data ?></h2>
+<section <?= $data["data-js"] ?>>
+    <h2><?= $data["titre"] ?></h2>

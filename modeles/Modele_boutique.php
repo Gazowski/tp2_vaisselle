@@ -6,13 +6,13 @@
 			return "boutique";
 		}	
 		
-		public function obtenirTous($offset_page = 0)
+		public function obtenirTous($offset_page = 0, $filtre = "nom ASC")
 		{
 			try
 			{
 				$stmt = $this->connexion->prepare("SELECT * 
 													FROM produits
-													ORDER BY prix ASC
+													ORDER BY " . $filtre . "
 													LIMIT " . $offset_page . " , 12 ");
 				$stmt->execute();
 				return $stmt->fetchAll();

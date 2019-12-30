@@ -3,9 +3,11 @@ import { requeteAjax } from './ajax.js'
 export class ListeProduits{
     constructor(elt){
         this.elt = elt
+        this.champ_filtre = elt.querySelector('[data-js-filtre]') 
         this.wrapper_liste = elt.querySelector('[data-js-wrapper-liste]')
         this.btn_precedent = elt.querySelector('[data-js-btn-precedent]')
         this.btn_suivant = elt.querySelector('[data-js-btn-suivant]')
+        
         this.pagination = 0
         this.produits_par_page = 12
         this.paramAjax = []
@@ -25,6 +27,10 @@ export class ListeProduits{
             this.afficher_produits()
             this.activer_boutons()
         })
+        this.champ_filtre.addEventListener('change',()=>{
+            this.afficher_produits()
+            this.activer_boutons()
+        })
     }
     
     obtenir_total_produits = () =>{
@@ -37,8 +43,9 @@ export class ListeProduits{
     
     afficher_produits = () =>{
         let offsetPagination = this.pagination * this.produits_par_page
+        let filtre = this.champ_filtre.value
         this.paramAjax['methode'] = "GET"
-        this.paramAjax['action'] = `index.php?Ajax&action=afficheListeSuivante&offsetPagination=${offsetPagination}`
+        this.paramAjax['action'] = `index.php?Ajax&action=afficheListeSuivante&offsetPagination=${offsetPagination}&filtre=${filtre}`
         this.paramAjax['parent'] = this.wrapper_liste
         requeteAjax(this.paramAjax)
     }

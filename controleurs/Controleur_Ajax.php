@@ -16,10 +16,10 @@
 				switch($params["action"])
 				{
 					case "afficheListeSuivante":
-						if(isset($params["offsetPagination"]))
+						if(isset($params["offsetPagination"]) && $params["filtre"])
 						{
 							$modeleBoutique = new Modele_Boutique();
-							$data = $modeleBoutique->obtenirTous($params["offsetPagination"]);
+							$data = $modeleBoutique->obtenirTous($params["offsetPagination"],$params["filtre"]);
 							$vue = "ListeProduits";
 							$this->afficheVue($vue, $data);
 						}

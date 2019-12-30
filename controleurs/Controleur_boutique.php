@@ -32,8 +32,10 @@
 				//action par défaut
 				$modeleBoutique = new Modele_Boutique();							
 				$data = $modeleBoutique->obtenirTous();
-				$titre = "Liste des produits";
-				$this->afficheVue("TitreSection",$titre);		
+				$titre["titre"] = "Liste des produits";
+				$titre["data-js"] = "data-js-liste-produits";
+				$this->afficheVue("TitreSection",$titre);
+				$this->afficheVue("Filtre",$titre);
 				$this->afficheVue("ListeProduits",$data);
 				$this->afficheVue("BoutonsListe");
 			}
