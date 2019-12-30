@@ -12,7 +12,7 @@
 			{
 				$stmt = $this->connexion->prepare("SELECT * 
 													FROM produits
-													ORDER BY id ASC
+													ORDER BY prix ASC
 													LIMIT " . $offset_page . " , 12 ");
 				$stmt->execute();
 				return $stmt->fetchAll();
@@ -22,6 +22,22 @@
 				trigger_error("Erreur lors de la requête : " . $exc->getMessage());
 				return 0;
 			}
+		}
+
+		public function obtenirTotalProduits()
+		{
+			try
+			{
+				$stmt = $this->connexion->prepare("SELECT COUNT(*) AS total FROM produits");
+				$stmt->execute();
+				return $stmt->fetch(PDO::FETCH_ASSOC);
+			}
+			catch(PDOException $exc)
+			{
+				trigger_error("Erreur lors de la requête : " . $exc->getMessage());
+				return 0;
+			}
+
 		}
 		
 	}
