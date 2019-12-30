@@ -2,7 +2,6 @@ export class Header{
     constructor(elt){
         this.titre = elt.querySelector('h1')
         this.compteur_panier = elt.querySelector('[data-js-compteur-panier]')
-        console.log(this.compteur_panier)
         this.quantite_item = this.compteur_panier.dataset.compteurPanier
         this.quantite_item = 0
 

@@ -18,7 +18,6 @@ export let requeteAjax = (data) => {
                     if(data['action'].includes('afficheListeSuivante')){
                         data['parent'].innerHTML = xhr.responseText}
                     else if(data['action'].includes('obtenirTotalProduits')){
-                        console.log(data['parent'])
                         data['parent'].dataset.totalProduit = xhr.responseText
                     }
 
