@@ -5,8 +5,8 @@
 		//la fonction qui sera appelée par le routeur
 		public function traite(array $params)
 		{
-			$this->afficheVue("Head");
-			$this->afficheVue('Header');
+			$this->afficheVue("common/Head");
+			$this->afficheVue('common/Header');
 			
 			if(isset($params["action"]))
 			{
@@ -17,6 +17,8 @@
 				//ce switch détermine la vue $vue et obtient le modèle $data
 				switch($params["action"])
 				{
+
+
 					default:
 						// $modeleBoutique = new Modele_Boutique();
 						// $data = $modeleBoutique->obtenirTous();
@@ -30,10 +32,12 @@
 				//action par défaut
 				$modeleBoutique = new Modele_Boutique();							
 				$data = $modeleBoutique->obtenirTous();
-				$vue = "ListeProduits";		
-				$this->afficheVue($vue,$data);
+				$titre = "Liste des produits";
+				$this->afficheVue("TitreSection",$titre);		
+				$this->afficheVue("ListeProduits",$data);
+				$this->afficheVue("BoutonsListe");
 			}
-			$this->afficheVue("Footer");
+			$this->afficheVue("common/Footer");
 		}
 	}
 ?>
