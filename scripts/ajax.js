@@ -1,48 +1,34 @@
-class RestaurantList {
-    constructor(el) {
-        this._el = el;
-        this._elSubmit = this._el.querySelector('[data-js-btn]');
-        this._elResults = this._el.querySelector('[data-js-results]');
+export let requeteAjax = (data) => {
 
-        this.init();
-    }
+    // déclaration de l'objet XMLHttpRequest
+    var xhr;
+    xhr = new XMLHttpRequest();
+    // initialisation de la requête
 
-    init = (e) => {
+    if(xhr) {	
 
-        this._elSubmit.addEventListener('click', (e) => {
-            e.preventDefault();
-            this.showRestaurantList();
-        });
+        xhr.open(data['methode'], data['action']);
 
-    }
+        //2ème étape - spécifier la fonction de callback
+        xhr.addEventListener("readystatechange", () => {
 
-    showRestaurantList = () => {
-
-        // déclaration de l'objet XMLHttpRequest
-        var xhr;
-        xhr = new XMLHttpRequest();
-        // initialisation de la requête
-
-        if(xhr) {	
-
-            xhr.open("GET", "index.php?Restaurants_Liste&action=liste");
-
-            //2ème étape - spécifier la fonction de callback
-            xhr.addEventListener("readystatechange", () => {
-
-                if(xhr.readyState === 4) {							
-                    if(xhr.status === 200) {
-
-                        //les données ont été reçues
-                        this._elResults.innerHTML = xhr.responseText;
-
-                    } else if (xhr.status === 404) {
-                        //la page demandée n'existe pas
+            if(xhr.readyState === 4) {							
+                if(xhr.status === 200) {
+                    //les données ont été reçues
+                    if(data['action'].includes('afficheListeSuivante')){
+                        data['parent'].innerHTML = xhr.responseText}
+                    else if(data['action'].includes('obtenirTotalProduits')){
+                        console.log(data['parent'])
+                        data['parent'].dataset.totalProduit = xhr.responseText
                     }
+
+                } else if (xhr.status === 404) {
+                    //la page demandée n'existe pas
+                    console.log('erreur')
                 }
-            });
-            //3ème étape - envoi de la requête
-            xhr.send();
-        }
+            }
+        });
+        //3ème étape - envoi de la requête
+        xhr.send();
     }
 }
