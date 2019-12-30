@@ -16,7 +16,13 @@ export class ListeProduits{
     init = () =>{
         this.obtenir_total_produits()
         this.btn_suivant.addEventListener('click',()=>{
-            this.afficher_produits_suivants()
+            this.pagination += 1
+            this.afficher_produits()
+            this.activer_boutons()
+        })
+        this.btn_precedent.addEventListener('click',()=>{
+            this.pagination -= 1
+            this.afficher_produits()
             this.activer_boutons()
         })
     }
@@ -29,8 +35,7 @@ export class ListeProduits{
     }
     
     
-    afficher_produits_suivants = () =>{
-        this.pagination += 1
+    afficher_produits = () =>{
         let offsetPagination = this.pagination * this.produits_par_page
         this.paramAjax['methode'] = "GET"
         this.paramAjax['action'] = `index.php?Ajax&action=afficheListeSuivante&offsetPagination=${offsetPagination}`
