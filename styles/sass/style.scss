@@ -10,12 +10,17 @@
 }
 
 body{
-    font-family: $f_texte;
+    font-family: var(--f_texte);
     max-width: 100%;
     padding:2em;
     width:100vw;
 
-    @include couleur($c_sombre,$c_sombre_moyen);
+    @include couleur(var(--c_sombre),var(--c_sombre_moyen));
+}
+
+select,button{
+    margin-top: 1em;
+    margin-bottom :1em;
 }
 
 /* Classe */
@@ -25,9 +30,15 @@ body{
         height:20px;
         text-align: center;
         width:20px;
-        @include couleur($c_theme,$c_clair);
+        @include couleur(var(--c_theme),var(--c_clair));
     }
     img{
         height:50px;
     }
+}
+
+.tuile{
+    padding:1em;
+    border-radius:10px;
+    border:1px solid var(--c_sombre_moyen);
 }

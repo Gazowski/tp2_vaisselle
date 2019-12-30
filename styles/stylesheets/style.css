@@ -1,13 +1,22 @@
-@charset "UTF-8";
 /**
 * Javascript TP2
 * feuille de style principale
 */
 /* variables et mixin */
-/* variables couleurs */
-/* variables fontes */
-/* variables taille écran (basées sur les grilles bootstrap) */
-/* variables icone */
+/* line 3, ../sass/_mixin_variables.scss */
+body {
+  --c_sombre: #000807;
+  --c_sombre_transparent: rgba(0, 8, 7, 0.9);
+  --c_sombre_moyen: #6b717e;
+  --c_clair: #eaf2ef;
+  --c_theme: #657ed4;
+  --c_theme_clair: #ffb86f;
+  --f_titre: 'Oswald', sans-serif;
+  --f_texte: 'Raleway', sans-serif;
+  --ecran_moyen: 768px;
+  --ecran_grand: 992px;
+}
+
 /* mixin */
 /* line 8, ../sass/style.scss */
 * {
@@ -16,25 +25,38 @@
 
 /* line 12, ../sass/style.scss */
 body {
-  font-family: "Raleway", sans-serif;
+  font-family: var(--f_texte);
   max-width: 100%;
   padding: 2em;
   width: 100vw;
-  background-color: #000807;
-  color: #6b717e;
+  background-color: var(--c_sombre);
+  color: var(--c_sombre_moyen);
+}
+
+/* line 21, ../sass/style.scss */
+select, button {
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 /* Classe */
-/* line 23, ../sass/style.scss */
+/* line 28, ../sass/style.scss */
 .logo div {
   border-radius: 50%;
   height: 20px;
   text-align: center;
   width: 20px;
-  background-color: #657ed4;
-  color: #eaf2ef;
+  background-color: var(--c_theme);
+  color: var(--c_clair);
 }
-/* line 30, ../sass/style.scss */
+/* line 35, ../sass/style.scss */
 .logo img {
   height: 50px;
+}
+
+/* line 40, ../sass/style.scss */
+.tuile {
+  padding: 1em;
+  border-radius: 10px;
+  border: 1px solid var(--c_sombre_moyen);
 }
