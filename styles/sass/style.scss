@@ -5,9 +5,14 @@
 
 @import "_mixin_variables.scss";
 
+*{
+    box-sizing: border-box;
+}
+
 body{
     font-family: $f_texte;
-    padding:1em;
+    max-width: 100%;
+    padding:2em;
     width:100vw;
 
     @include couleur($c_sombre,$c_sombre_moyen);

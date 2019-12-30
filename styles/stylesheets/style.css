@@ -10,16 +10,22 @@
 /* variables icone */
 /* mixin */
 /* line 8, ../sass/style.scss */
+* {
+  box-sizing: border-box;
+}
+
+/* line 12, ../sass/style.scss */
 body {
   font-family: "Raleway", sans-serif;
-  padding: 1em;
+  max-width: 100%;
+  padding: 2em;
   width: 100vw;
   background-color: #000807;
   color: #6b717e;
 }
 
 /* Classe */
-/* line 18, ../sass/style.scss */
+/* line 23, ../sass/style.scss */
 .logo div {
   border-radius: 50%;
   height: 20px;
@@ -28,7 +34,7 @@ body {
   background-color: #657ed4;
   color: #eaf2ef;
 }
-/* line 25, ../sass/style.scss */
+/* line 30, ../sass/style.scss */
 .logo img {
   height: 50px;
 }
