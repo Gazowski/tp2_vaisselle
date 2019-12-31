@@ -48,3 +48,12 @@ select,button{
     pointer-events: none;
     opacity: .5;
 }
+
+.disparait{
+    display: none;
+}
+
+.panier_actif{
+    background-color: lightgreen;
+    cursor: pointer;
+}

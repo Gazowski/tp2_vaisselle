@@ -67,3 +67,14 @@ select, button {
   pointer-events: none;
   opacity: .5;
 }
+
+/* line 52, ../sass/style.scss */
+.disparait {
+  display: none;
+}
+
+/* line 56, ../sass/style.scss */
+.panier_actif {
+  background-color: lightgreen;
+  cursor: pointer;
+}

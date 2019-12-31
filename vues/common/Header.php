@@ -9,5 +9,10 @@ nombre de produits sélectionnés s’il y en a au moins 1. -->
 			src="./assets/images/svg/panier.svg"
 			alt="logo panier"
 			data-js-panier />
+		<button 
+			class="disparait"
+			data-js-btn-commander>
+			Commander
+		</button>
 	</div>
 </header>
