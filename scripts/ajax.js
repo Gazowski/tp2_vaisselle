@@ -1,4 +1,10 @@
-export let requeteAjax = (data) => {
+/**
+ * 
+ * @param {array} data : contient les différents éléments de la requête ajax 
+ * @param {function} callback : fonction(s) à éxécuter si la requete ajax est exécutée. lors de l'appel la fonction est passé dans une fonction anomyme
+ */
+
+export let requeteAjax = (data,callback) => {
 
     // déclaration de l'objet XMLHttpRequest
     var xhr;
@@ -16,7 +22,9 @@ export let requeteAjax = (data) => {
                 if(xhr.status === 200) {
                     //les données ont été reçues
                     if(data['action'].includes('afficheListeSuivante')){
-                        data['parent'].innerHTML = xhr.responseText}
+                        data['parent'].innerHTML = xhr.responseText
+                        callback()
+                    }
                     else if(data['action'].includes('obtenirTotalProduits')){
                         data['parent'].dataset.totalProduit = xhr.responseText
                     }
