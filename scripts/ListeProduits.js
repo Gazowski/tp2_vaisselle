@@ -30,14 +30,18 @@ export class ListeProduits{
             this.afficher_liste_produits()
         })
 
-        this.ajouter_evt_tuile()
+        this.traitement_liste()
                 
     }
     
     afficher_liste_produits = () =>{
         this.afficher_produits()
         this.activer_boutons()
+    }
+    
+    traitement_liste = () =>{
         this.ajouter_evt_tuile()
+        this.verifier_inventaire_item()
     }
     
     obtenir_total_produits = () =>{
@@ -53,7 +57,7 @@ export class ListeProduits{
         this.paramAjax['methode'] = "GET"
         this.paramAjax['action'] = `index.php?Ajax&action=afficheListeSuivante&offsetPagination=${offsetPagination}&filtre=${filtre}`
         this.paramAjax['parent'] = this.wrapper_liste
-        requeteAjax(this.paramAjax,()=>{ this.ajouter_evt_tuile() }) 
+        requeteAjax(this.paramAjax,()=>{ this.traitement_liste() }) 
         // pour effectuer la fonction uniquement quand la requete ajax est terminer
         // la fonction est passé en paramêtre par l'intermédiare d'une fonction anonyme
 
@@ -80,7 +84,7 @@ export class ListeProduits{
                  * 
                  */
 
-                 
+
                 let compteur_panier = document.querySelector('[data-js-compteur-panier]'),
                     total_panier = parseInt(compteur_panier.innerHTML)
                 compteur_panier.innerHTML = total_panier + 1
@@ -90,7 +94,25 @@ export class ListeProduits{
 
             })
         }
-
     }
+
+    verifier_inventaire_item = () =>{
+        let items = this.elt.querySelectorAll('[data-item-inventaire]')
+        for(let item of items){
+            this.changer_etat_tuile(item)
+        }
+    }
+
+    changer_etat_tuile = (item) =>{
+        if(item.dataset.itemInventaire == "0"){
+            if(!item.classList.contains('inventaire_nul'))
+                item.classList.add('inventaire_nul')
+        }
+        else{
+            if(item.classList.contains('inventaire_nul'))
+                item.classList.remove('inventaire_nul')
+        }
+    }
+
     
 }

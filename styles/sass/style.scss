@@ -38,7 +38,13 @@ select,button{
 }
 
 .tuile{
+    cursor:pointer ;
     padding:1em;
     border-radius:10px;
     border:1px solid var(--c_sombre_moyen);
+}
+
+.inventaire_nul{
+    pointer-events: none;
+    opacity: .5;
 }

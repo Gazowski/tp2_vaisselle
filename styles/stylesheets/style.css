@@ -56,7 +56,14 @@ select, button {
 
 /* line 40, ../sass/style.scss */
 .tuile {
+  cursor: pointer;
   padding: 1em;
   border-radius: 10px;
   border: 1px solid var(--c_sombre_moyen);
+}
+
+/* line 47, ../sass/style.scss */
+.inventaire_nul {
+  pointer-events: none;
+  opacity: .5;
 }
