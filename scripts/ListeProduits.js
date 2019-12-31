@@ -1,8 +1,9 @@
 import { requeteAjax } from './ajax.js'
 
 export class ListeProduits{
-    constructor(elt){
+    constructor(elt,header){
         this.elt = elt
+        this.header = header //objet header
         this.champ_filtre = elt.querySelector('[data-js-filtre]') 
         this.wrapper_liste = elt.querySelector('[data-js-wrapper-liste]')
         this.btn_precedent = elt.querySelector('[data-js-btn-precedent]')
@@ -11,7 +12,6 @@ export class ListeProduits{
         this.pagination = 0
         this.produits_par_page = 12
         this.paramAjax = []
-        this.produitsPanier = []
         
         this.init()
     }
@@ -29,9 +29,7 @@ export class ListeProduits{
         this.champ_filtre.addEventListener('change',()=>{
             this.afficher_liste_produits()
         })
-
-        this.traitement_liste()
-                
+        this.traitement_liste()            
     }
     
     afficher_liste_produits = () =>{
@@ -77,27 +75,11 @@ export class ListeProduits{
         let items = this.elt.querySelectorAll('[data-js-item]')
         for(let item of items){
             item.addEventListener('click', () => {
-                this.incrementer_compteur_panier()
-                this.enregistrer_id_item(item)             
+                this.header.incrementer_compteur_panier()
+                this.header.enregistrer_id_item(item)             
 
             })
         }
-    }
-
-    incrementer_compteur_panier = () =>{
-        let compteur_panier = document.querySelector('[data-js-compteur-panier]'),
-        total_panier = parseInt(compteur_panier.innerHTML)
-        compteur_panier.innerHTML = total_panier + 1
-    }
-    
-    enregistrer_id_item = (item) =>{
-        //session storage ne prend que les strings
-        //création d'un tableau intérmédiaire qui est transformé en Json avant d'être enregistré en session storage
-        if(sessionStorage.produitsPanier)
-            this.produitsPanier = JSON.parse(sessionStorage.produitsPanier)
-        console.log(this.produitsPanier)
-        this.produitsPanier.push(item.dataset.itemId)
-        sessionStorage.produitsPanier = JSON.stringify(this.produitsPanier) 
     }
 
     verifier_inventaire_item = () =>{
@@ -117,6 +99,5 @@ export class ListeProduits{
                 item.classList.remove('inventaire_nul')
         }
     }
-
     
 }
