@@ -77,23 +77,22 @@ export class ListeProduits{
         let items = this.elt.querySelectorAll('[data-js-item]')
         for(let item of items){
             item.addEventListener('click', () => {
-
-                /**
-                 * 
-                 * mettre en fonction !!!
-                 * 
-                 */
-
-
-                let compteur_panier = document.querySelector('[data-js-compteur-panier]'),
-                    total_panier = parseInt(compteur_panier.innerHTML)
-                compteur_panier.innerHTML = total_panier + 1
-
-                this.produitsPanier.push(item.dataset.itemId)
-                sessionStorage.produitsPanier = JSON.stringify(this.produitsPanier) //session storage ne prends que les strings
+                this.incrementer_compteur_panier()
+                this.enregistrer_id_item(item)             
 
             })
         }
+    }
+
+    incrementer_compteur_panier = () =>{
+        let compteur_panier = document.querySelector('[data-js-compteur-panier]'),
+        total_panier = parseInt(compteur_panier.innerHTML)
+        compteur_panier.innerHTML = total_panier + 1
+    }
+
+    enregistrer_id_item = (item) =>{
+        this.produitsPanier.push(item.dataset.itemId)
+        sessionStorage.produitsPanier = JSON.stringify(this.produitsPanier) //session storage ne prend que les strings
     }
 
     verifier_inventaire_item = () =>{
