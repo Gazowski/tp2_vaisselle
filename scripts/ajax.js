@@ -14,6 +14,13 @@ export let requeteAjax = (data,callback) => {
     if(xhr) {	
 
         xhr.open(data['methode'], data['action']);
+        if(data['methode'] == "POST"){
+            if(data['json'])
+                xhr.setRequestHeader("Content-Type", "application/json")
+            else
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        }
+
 
         //2ème étape - spécifier la fonction de callback
         xhr.addEventListener("readystatechange", () => {
@@ -21,13 +28,7 @@ export let requeteAjax = (data,callback) => {
             if(xhr.readyState === 4) {							
                 if(xhr.status === 200) {
                     //les données ont été reçues
-                    if(data['action'].includes('afficheListeSuivante')){
-                        data['parent'].innerHTML = xhr.responseText
-                        callback()
-                    }
-                    else if(data['action'].includes('obtenirTotalProduits')){
-                        data['parent'].dataset.totalProduit = xhr.responseText
-                    }
+                    callback(xhr.responseText)
 
                 } else if (xhr.status === 404) {
                     //la page demandée n'existe pas

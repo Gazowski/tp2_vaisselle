@@ -45,8 +45,9 @@ export class ListeProduits{
     obtenir_total_produits = () =>{
         this.paramAjax['methode'] = "GET"
         this.paramAjax['action'] = `index.php?Ajax&action=obtenirTotalProduits`
-        this.paramAjax['parent'] = this.elt
-        requeteAjax(this.paramAjax) 
+        requeteAjax(this.paramAjax, (reponse) => {
+            this.elt.dataset.totalProduit = reponse
+        }) 
     }
     
     afficher_produits = () =>{
@@ -55,10 +56,17 @@ export class ListeProduits{
         this.paramAjax['methode'] = "GET"
         this.paramAjax['action'] = `index.php?Ajax&action=afficheListeSuivante&offsetPagination=${offsetPagination}&filtre=${filtre}`
         this.paramAjax['parent'] = this.wrapper_liste
-        requeteAjax(this.paramAjax,()=>{ this.traitement_liste() }) 
+        requeteAjax(this.paramAjax, (reponse_ajax) =>{ 
+            this.afficher_liste(reponse_ajax) 
+            this.traitement_liste()
+        }) 
         // pour effectuer la fonction uniquement quand la requete ajax est terminer
         // la fonction est passé en paramêtre par l'intermédiare d'une fonction anonyme
 
+    }
+
+    afficher_liste = (items) =>{
+        this.wrapper_liste.innerHTML = items
     }
 
     activer_boutons = () =>{
