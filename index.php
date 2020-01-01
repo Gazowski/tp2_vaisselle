@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	define("RACINE", $_SERVER["DOCUMENT_ROOT"] . "/tp2_vaisselle/");
 	define("RACINEWEB", "http://" . $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . "/tp2_vaisselle/");
 	

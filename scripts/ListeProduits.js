@@ -76,7 +76,9 @@ export class ListeProduits{
         for(let item of items){
             item.addEventListener('click', () => {
                 this.header.incrementer_compteur_panier()
-                this.header.enregistrer_id_item(item)             
+                this.header.enregistrer_id_item(item)
+                if(this.header.compteur_panier.innerHTML == "1")
+                    this.header.afficher_btn_commande()            
 
             })
         }

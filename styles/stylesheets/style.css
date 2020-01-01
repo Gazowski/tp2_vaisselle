@@ -75,6 +75,7 @@ select, button {
 
 /* line 56, ../sass/style.scss */
 .panier_actif {
+  display: block;
   background-color: lightgreen;
   cursor: pointer;
 }

@@ -54,6 +54,7 @@ select,button{
 }
 
 .panier_actif{
+    display: block;
     background-color: lightgreen;
-    cursor: pointer;
+    cursor:pointer ;
 }
