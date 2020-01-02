@@ -17,11 +17,18 @@
 				//ce switch détermine la vue $vue et obtient le modèle $data
 				switch($params["action"])
 				{
-                    case "afficheProduitsPanier":                                               
+                    case "afficheProduitsPanier":
+                        $modeleBoutique = new Modele_Boutique();
+                        $liste_id_items_par_quantite = array_count_values($_SESSION["idItemsPanier"]);
+                        foreach($liste_id_items_par_quantite as $id => $quantite){
+                            $data[$id] = $modeleBoutique->obtenirItemParId($id);
+                            $data[$id]['quantite'] = $quantite;
+                        }
+                        //var_dump($data);
                         $titre["titre"] = "Panier";
-                        $titre["data-js"] = "data-js-panier";
+                        $titre["data-js"] = "data-js-page-panier";
                         $this->afficheVue("TitreSection",$titre);
-                        $this->afficheVue("Panier");
+                        $this->afficheVue("Panier",$data);
                     break;
 
                     default:
@@ -33,6 +40,6 @@
 				//action par défaut
 			}
 			$this->afficheVue("common/Footer");
-		}
+        }
 	}
 ?>

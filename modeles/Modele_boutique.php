@@ -39,6 +39,20 @@
 			}
 
 		}
-		
+
+		public function obtenirItemParId($id)
+		{
+			try{
+				$requete = "SELECT * FROM produits WHERE id = ?";
+				$stmt = $this->connexion->prepare($requete);
+				$stmt->execute(array($id));
+				$resultats = $stmt->fetch(PDO::FETCH_ASSOC);
+				return $resultats;
+			}
+			catch(PDOException $e)
+			{
+				trigger_error("Erreur lors de la requête : " . $e->getMessage());
+			}  
+		}
 	}
 ?>
