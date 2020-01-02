@@ -3,8 +3,7 @@ nombre de produits sélectionnés s’il y en a au moins 1. -->
 
 <header>
 	<h1>Boutique de vaissellerie</h1>
-	<a 
-		href="index.php?Panier&action=afficheProduitsPanier"
+	<div 
 		class="logo"
 		data-js-panier>
 		<div data-js-compteur-panier></div>
@@ -17,5 +16,5 @@ nombre de produits sélectionnés s’il y en a au moins 1. -->
 			data-js-btn-commander>
 			Commander
 		</button>
-	</a>
+	</div>
 </header>

@@ -17,10 +17,7 @@
 				//ce switch détermine la vue $vue et obtient le modèle $data
 				switch($params["action"])
 				{
-                    case "afficheProduitsPanier":
-                        //$modelePanier = new Modele_Panier();
-                                    
-                        //$data = $modelePanier->obtenirProduitParId($id);
+                    case "afficheProduitsPanier":                                               
                         $titre["titre"] = "Panier";
                         $titre["data-js"] = "data-js-panier";
                         $this->afficheVue("TitreSection",$titre);

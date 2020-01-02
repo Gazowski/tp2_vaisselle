@@ -31,7 +31,13 @@
                         $modeleBoutique = new Modele_Boutique();
                         $data = $modeleBoutique->obtenirTotalProduits();
                         echo ($data['total']);
-                    break;
+					break;
+					
+					case "enregistrerIdItemsPanier":
+						$request_payload = file_get_contents("php://input");
+						$_SESSION['idItemsPanier'] = json_decode($request_payload, true);
+						var_dump($_SESSION['idItemsPanier']);
+					break;
                 
                     default:
                         echo 'error';

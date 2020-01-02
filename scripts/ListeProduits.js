@@ -45,8 +45,8 @@ export class ListeProduits{
     obtenir_total_produits = () =>{
         this.paramAjax['methode'] = "GET"
         this.paramAjax['action'] = `index.php?Ajax&action=obtenirTotalProduits`
-        requeteAjax(this.paramAjax, (reponse) => {
-            this.elt.dataset.totalProduit = reponse
+        requeteAjax(this.paramAjax, (reponse_ajax) => {
+            this.elt.dataset.totalProduit = reponse_ajax
         }) 
     }
     
@@ -71,7 +71,6 @@ export class ListeProduits{
 
     activer_boutons = () =>{
         // calcul du nombre de page max (page 1 = 0)
-        // dataset.totalProduit est défini dans le fichier requeteAjax
         let pagination_max = Math.floor(this.elt.dataset.totalProduit/this.produits_par_page)
 
         this.btn_precedent.disabled = this.pagination > 0 ? false : true
@@ -85,6 +84,7 @@ export class ListeProduits{
             item.addEventListener('click', () => {
                 this.header.incrementer_compteur_panier()
                 this.header.enregistrer_id_item(item)
+                //this.header.envoyer_id_items_au_serveur()
                 if(this.header.compteur_panier.innerHTML == "1")
                     this.header.afficher_btn_commande()            
 
