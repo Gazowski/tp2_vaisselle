@@ -10,7 +10,7 @@ export let enregistrer_id_item = (item) => {
     }
     else{
         produits_panier[id_item] = {}
-        produits_panier[id_item]["quantite"] = 1
+        produits_panier[id_item]["quantite"] = 0
     }
     sessionStorage.produitsPanier = JSON.stringify(produits_panier) 
 }
@@ -20,8 +20,10 @@ export let ajuster_quantite_item_enregistre = (item) =>{
         inventaire = item.querySelector('[data-item-inventaire'),
         champ_selection_quantite = item.querySelector('[data-js-choix-quantite]'),
         id_item = item.dataset.itemId
+    // si la quantite est modifiée depuis le panier
     if(champ_selection_quantite)
         produitsPanier[id_item]["quantite"] = parseInt(champ_selection_quantite.value)
+    // sinon la quantite est modifiée depuis la boutique
     else if(produitsPanier[id_item]["quantite"] < inventaire.dataset.itemInventaire)
         produitsPanier[id_item]["quantite"] += 1
     sessionStorage.produitsPanier = JSON.stringify(produitsPanier)
