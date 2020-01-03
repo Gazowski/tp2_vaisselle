@@ -16,7 +16,6 @@ export let requeteAjax = (data,callback) => {
         xhr.open(data['methode'], data['action']);
         if(data['methode'] == "POST"){
             if(data['json']){
-                console.log('je suis dans la condition json')
                 xhr.setRequestHeader("Content-Type", "application/json")
             }
             else
@@ -41,7 +40,6 @@ export let requeteAjax = (data,callback) => {
         let donnees = ""
         if(data['donnees_a_envoyer'])
             donnees = JSON.stringify(data['donnees_a_envoyer'])
-        console.log(donnees)
         xhr.send(donnees)
     }
 }
