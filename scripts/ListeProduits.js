@@ -1,4 +1,5 @@
 import { requeteAjax } from './ajax.js'
+import { ItemBoutique } from './ItemBoutique.js'
 
 export class ListeProduits{
     constructor(elt,header){
@@ -29,19 +30,23 @@ export class ListeProduits{
         this.champ_filtre.addEventListener('change',()=>{
             this.afficher_liste_produits()
         })
-        this.traitement_liste()            
+        this.instancier_item()           
     }
     
     afficher_liste_produits = () =>{
         this.afficher_produits()
         this.activer_boutons()
     }
-    
-    traitement_liste = () =>{
-        this.ajouter_evt_tuile()
-        this.verifier_inventaire_item()
+
+    instancier_item = () =>{
+        // NOTE : items est déclaré ici car la liste est rechargé par les requetes ajax.
+        // la liste des items doit être verifier a chaque rechargement de la liste
+        let items = this.elt.querySelectorAll('[data-js-item]')
+        for(let item of items){
+            new ItemBoutique(item,this.header)
+        }
     }
-    
+
     obtenir_total_produits = () =>{
         this.paramAjax['methode'] = "GET"
         this.paramAjax['action'] = `index.php?Ajax&action=obtenirTotalProduits`
@@ -57,7 +62,7 @@ export class ListeProduits{
         this.paramAjax['action'] = `index.php?Ajax&action=afficheListeSuivante&offsetPagination=${offsetPagination}&filtre=${filtre}`
         requeteAjax(this.paramAjax, (reponse_ajax) =>{ 
             this.afficher_liste(reponse_ajax) 
-            this.traitement_liste()
+            this.instancier_item() 
         }) 
         // NOTE : pour effectuer une fonction quand la requete ajax est terminée
         // la fonction est passée en paramêtre par l'intermédiare d'une fonction anonyme
@@ -74,33 +79,13 @@ export class ListeProduits{
         this.btn_suivant.disabled = this.pagination < pagination_max ? false : true       
     }
 
-    ajouter_evt_tuile = () =>{
-        let items = this.elt.querySelectorAll('[data-js-item]')
-        for(let item of items){
-            item.addEventListener('click', () => {
-                this.header.incrementer_compteur_panier()
-                this.header.enregistrer_id_item(item)
-                if(this.header.compteur_panier.innerHTML == "1")
-                    this.header.afficher_btn_commande()            
-            })
-        }
-    }
-
-    verifier_inventaire_item = () =>{
-        let items = this.elt.querySelectorAll('[data-item-inventaire]')
-        for(let item of items){
-            this.changer_etat_tuile(item)
-        }
-    }
-
-    changer_etat_tuile = (item) =>{
-        if(item.dataset.itemInventaire == "0"){
-            if(!item.classList.contains('inventaire_nul'))
-                item.classList.add('inventaire_nul')
-        }
-        else{
-            if(item.classList.contains('inventaire_nul'))
-                item.classList.remove('inventaire_nul')
-        }
+    // a faire lors de la commande
+    decrementer_inventaire_item = (item) => {
+        this.paramAjax['methode'] = "POST"
+        this.paramAjax['action'] = `index.php?Ajax&action=decrementerInventaireItem`
+        this.paramAjax['donnees_a_envoyer'] = `id=${item.dataset.itemId}`
+        requeteAjax(this.paramAjax, (reponse_ajax) => {
+            item.dataset.itemInventaire = reponse_ajax
+        })
     }
 }

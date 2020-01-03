@@ -3,8 +3,9 @@ import { requeteAjax } from './ajax.js'
 
 
 export class Panier{
-    constructor(elt){
+    constructor(elt,header){
         this.elt = elt
+        this.header = header
         this.items = this.elt.querySelectorAll('[data-js-item]')
         this.montants_par_item = this.elt.querySelectorAll('[data-js-montant-item]')
         this.montant_panier = this.elt.querySelector('[data-js-montant-panier]')
@@ -32,10 +33,10 @@ export class Panier{
     }
 
     ajouter_evt_choix_quantite = () => {
-        console.log(this.champs_selection_quantite)
         for(let champ of this.champs_selection_quantite){
             champ.addEventListener('change', () => {
                 this.calculer_et_afficher_montant_total_panier()
+                this.header.calculer_et_afficher_compteur_panier()
             })
         }
     }

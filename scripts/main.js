@@ -13,6 +13,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (elHeader) header = new Header(elHeader)
     if (elListeProduits) liste_produits = new ListeProduits(elListeProduits,header)
-    if (elPanier) panier = new Panier(elPanier)
+    if (elPanier) panier = new Panier(elPanier,header)
 
 });

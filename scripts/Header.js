@@ -6,7 +6,6 @@ export class Header{
         this.div_panier = elt.querySelector('[data-js-panier]')
         this.compteur_panier = elt.querySelector('[data-js-compteur-panier]')
         this.btn_commande = elt.querySelector('[data-js-btn-commander]')
-        this.produitsPanier = []
 
         this.init()
 
@@ -22,11 +21,19 @@ export class Header{
 
     initialiser_compteur_panier = () =>{
         if(!sessionStorage.produitsPanier)
-            this.compteur_panier.innerHTML = 0
+        this.compteur_panier.innerHTML = 0
         else{
-            let produitsPanier = JSON.parse(sessionStorage.produitsPanier)
-            this.compteur_panier.innerHTML = produitsPanier.length
+            this.calculer_et_afficher_compteur_panier()
         }
+    }
+    
+    calculer_et_afficher_compteur_panier = () =>{
+        let produitsPanier = JSON.parse(sessionStorage.produitsPanier),
+            total_panier = 0
+        for(let item in produitsPanier){
+            total_panier += produitsPanier[item]["quantite"]
+        }
+        this.compteur_panier.innerHTML = total_panier        
     }
 
     incrementer_compteur_panier = () => {
@@ -34,15 +41,6 @@ export class Header{
         this.compteur_panier.innerHTML = total_panier + 1
     }
         
-    enregistrer_id_item = (item) => {
-        //session storage ne prend que les strings
-        //création d'un tableau intermédiaire qui est transformé en Json avant d'être enregistré en session storage
-        if(sessionStorage.produitsPanier)
-            this.produitsPanier = JSON.parse(sessionStorage.produitsPanier)
-        this.produitsPanier.push(item.dataset.itemId)
-        sessionStorage.produitsPanier = JSON.stringify(this.produitsPanier) 
-    }
-
     preparer_et_ouvrir_page_panier = () => {
         let paramAjax = []
         paramAjax['methode'] = "POST"
