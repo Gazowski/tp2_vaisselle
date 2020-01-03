@@ -37,6 +37,14 @@
 						$request_payload = file_get_contents("php://input");
 						$_SESSION['idItemsPanier'] = json_decode($request_payload, true);
 					break;
+
+					case "decrementerInventaireItem":
+						if(isset($param["id"]))
+						{
+							$modeleBoutique= new Modele_Boutique();
+							$data = $modeleBoutique->decrementerInventaireProduit($param["id"]);
+							echo ($data['inventaire']);
+						}
                 
                     default:
                         echo 'error';
