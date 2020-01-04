@@ -79,3 +79,13 @@ select, button {
   background-color: lightgreen;
   cursor: pointer;
 }
+
+/* line 62, ../sass/style.scss */
+.saisie_rouge {
+  background-color: lightpink;
+}
+
+/* line 66, ../sass/style.scss */
+.saisie_vert {
+  background-color: lightgreen;
+}

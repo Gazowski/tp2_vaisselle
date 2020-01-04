@@ -10,7 +10,8 @@ export class Panier{
         this.montants_par_item = this.elt.querySelectorAll('[data-js-montant-item]')
         this.montant_panier = this.elt.querySelector('[data-js-montant-panier]')
         this.champs_selection_quantite = this.elt.querySelectorAll('[data-js-choix-quantite]')
-        
+        this.btn_passer_commande = this.elt.querySelector('[data-js-passer-commande')
+
         this.init()
     }
 
@@ -36,8 +37,13 @@ export class Panier{
         for(let champ of this.champs_selection_quantite){
             champ.addEventListener('change', () => {
                 this.calculer_et_afficher_montant_total_panier()
+                this.activer_btn_passer_commande()
                 this.header.calculer_et_afficher_compteur_panier()
             })
         }
+    }
+
+    activer_btn_passer_commande = () => {
+        this.btn_passer_commande.disabled = this.montant_panier.innerHTML == "0" ? true : false
     }
 }

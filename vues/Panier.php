@@ -21,3 +21,4 @@
     <?php } ?>
     <article>Total Panier = <span data-js-montant-panier></span>$</article>
 </div>
+<button data-js-passer-commande>Passer la commande</button>

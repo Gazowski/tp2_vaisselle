@@ -29,6 +29,7 @@
                         $titre["data-js"] = "data-js-page-panier";
                         $this->afficheVue("TitreSection",$titre);
                         $this->afficheVue("Panier",$data);
+                        $this->afficheVue("FormulaireCommande");
                     break;
 
                     default:
