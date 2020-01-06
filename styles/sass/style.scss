@@ -59,10 +59,13 @@ select,button{
     cursor:pointer ;
 }
 
-.saisie_rouge{
-    background-color: lightpink;
-}
+input{
+    &:invalid{
+        background-color: lightpink;
+    }
+    
+    &:valid{
+        background-color: lightgreen;
+    }
 
-.saisie_vert{
-    background-color: lightgreen;
 }

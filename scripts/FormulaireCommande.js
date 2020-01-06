@@ -3,46 +3,24 @@ import { requeteAjax } from './ajax.js'
 export class FormulaireCommande{
     constructor(elt){
         this.elt = elt
-        this.champ_nom = this.elt.querySelector('[data-js-champ-nom]') 
-        this.champ_prenom = this.elt.querySelector('[data-js-champ-prenom]') 
-        this.champ_courriel = this.elt.querySelector('[data-js-champ-courriel]') 
-        this.champ_adresse = this.elt.querySelector('[data-js-champ-adresse]') 
-        this.champ_code_postal = this.elt.querySelector('[data-js-champ-CP]') 
-        this.champs_CB = this.elt.querySelectorAll('[data-js-champ-CB]') 
-        this.champ_expiration = this.elt.querySelector('[data-js-champ-expiration]') 
-        this.champ_code_securite = this.elt.querySelector('[data-js-champ-code-securite]') 
-        this.champ_infolettre = this.elt.querySelector('[data-js-champ-infolettre]')
-        this.champs_requis = this.elt.querySelectorAll('[required]') 
-        this.btn_soumettre = this.elt.querySelector('[data-js-submit]') 
+
+        this.champs_avec_regex = this.elt.querySelectorAll('[pattern]')
+        this.champs_requis = this.elt.querySelectorAll('[required]')
+        this.champs_radio_button = this.elt.querySelectorAll('[data-js-radio-cb]')
+        this.info_radio_button = this.elt.querySelector('[data-js-erreur-radbutton]')
+        this.champ_CB = this.elt.querySelector('[data-js-champ-cb]')
+        this.btn_soumettre = this.elt.querySelector('[data-js-submit]')
         this.btn_retour_panier = this.elt.querySelector('[data-js-retour-panier]')
-        
-        this.nom = this.champ_nom.value
-        this.prenom = this.champ_prenom.value
-        this.adresse = this.champ_adresse.value
-        this.CB = this.champs_CB.value
-        this.expiration = this.champ_expiration.value
-        this.formulaire_valide
-        
-        this.courriel = []
-        this.courriel['champ'] = this.champ_courriel
-        this.courriel['regex'] = /(.+)@(.+){1,}\.(.+){1,}/
-        this.code_postal = []
-        this.code_postal['champ'] = this.champ_code_postal
-        this.code_postal['regex'] = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/
-        this.expiration = []
-        this.expiration['champ'] = this.champ_expiration
-        this.expiration['regex'] = /[\d]{2}\/[\d]{2}/
-        this.code_securite = []
-        this.code_securite['champ'] = this.champ_code_securite
-        this.code_securite['regex'] = /[0-9]\d\d/
+
+        this.formulaire_valide = true
         
         this.init()
     }
 
     init = () => {
         this.verifier_champs_avec_regex()
+        this.ecouter_radbutton()
         this.btn_soumettre.addEventListener('click', (e) => {
-            e.preventDefault()
             this.valider_formulaire()
         })
     }
@@ -51,65 +29,91 @@ export class FormulaireCommande{
         this.formulaire_valide = true
         this.verifier_champs_requis()
         this.verifier_champs_avec_regex()
+        this.afficher_erreur_radbutton()
     }
 
     verifier_champs_requis = () => {
-        for(let champ of this.champs_requis)
+        for(let champ of this.champs_requis){
             this.est_rempli(champ)
-    }
-
-    verifier_champs_avec_regex = () => {
-        this.verifier_regex(this.courriel)
-        this.verifier_regex(this.code_postal)
-        this.verifier_regex(this.expiration)
-        this.verifier_regex(this.code_securite)        
-    }
-
-
-    verifier_regex = (element) =>{
-        element['champ'].addEventListener('input', () => {
-            this.verifier_saisie(element)
-        })
-        element['champ'].addEventListener('blur', () => {
-            this.informer_erreur_saisie(element)
-        })
-    }
-
-    verifier_saisie = (element) => {
-        let zoneInformation = element['champ'].nextElementSibling
-        zoneInformation.innerHTML = ""
-        if(element['regex'].test(element['champ'].value) && !element['champ'].classList.contains('saisie_vert')){
-            element['champ'].classList.add('saisie_vert')
-            if(element['champ'].classList.contains('saisie_rouge'))
-                element['champ'].classList.remove('saisie_rouge')
-        }
-        else if(!element['regex'].test(element['champ'].value) && !element['champ'].classList.contains('saisie_rouge')){
-            element['champ'].classList.add('saisie_rouge')
-            if(element['champ'].classList.contains('saisie_vert'))
-                element['champ'].classList.remove('saisie_vert')
-        }
-            
-    }
-
-    informer_erreur_saisie = (element) => {
-        let zoneInformation = element['champ'].nextElementSibling
-        if(element['champ'].value.trim() == ""){
-            est_rempli(element['champ'])
-        }
-        else if(!element['regex'].test(element['champ'].value)){
-            zoneInformation.innerHTML = "Remplir le champ correctement"
-            this.formulaire_valide = false
+            //this.afficher_message_personnalise(champ)
         }
     }
-    
+
     est_rempli = (champ) => {
         let zoneInformation = champ.nextElementSibling
         if(champ.value.trim() == ""){
-            zoneInformation.innerHTML = "Le champ doit être rempli !"
+            zoneInformation.innerHTML = "Remplir le champ !"
             this.formulaire_valide = false
         }
-
     }
+
+    verifier_champs_avec_regex = () => {
+        for(let champ of this.champs_avec_regex){
+            champ.addEventListener('blur', () => {
+                this.informer_erreur_saisie(champ)
+                //this.afficher_message_personnalise(champ)
+            })
+        }    
+    }
+    
+    informer_erreur_saisie = (champ) => {
+        let zoneInformation = champ.nextElementSibling,
+            regex = RegExp(champ.pattern)
+        if(champ.value.trim() == ""){
+            this.est_rempli(champ)
+        }
+        else if(champ.pattern && !regex.test(champ.value)){
+            zoneInformation.innerHTML = champ.dataset.messageErreur
+            this.formulaire_valide = false
+        }
+        else
+            zoneInformation.innerHTML = ""
+    }
+
+
+    ecouter_radbutton = () =>{
+        this.radio_button_cocher = false
+        for(let bouton of this.champs_radio_button){
+            bouton.addEventListener('change', () => {
+                this.radio_button_cocher = true
+                this.parametrer_champ_CB(bouton)
+            })
+        }        
+    } 
+    
+    afficher_erreur_radbutton = () => {
+        if(!this.radio_button_cocher)
+            this.info_radio_button.innerHTML = "Choisir un type de carte !"
+        else
+            this.info_radio_button.innerHTML = ""
+    }
+
+    parametrer_champ_CB = (typeCB) => {
+        this.champ_CB.disabled = false
+        this.champ_CB.placeholder = typeCB.dataset.placeholder
+        this.champ_CB.pattern = typeCB.dataset.pattern
+        this.champ_CB.dataset.messageErreur = typeCB.dataset.messageErreur
+        console.log(this.champ_CB)
+    }
+
+
+    
+
+
+    /* NOTE: la personnalisation des messages dans les 'bulles natives'
+            avec element.setCustomValidity modifie le comportement de la validation des champs'
+            la pseudo-class :valid ne sera obtenu seulement au prochain appui sur submit,
+            ce qui perturbe la coloration des champs valide.
+    */
+    afficher_message_personnalise = (champ) =>{
+        if(champ.value.trim() == "")
+            champ.setCustomValidity("Remplir le champ !")
+        else if(champ.validity.patternMismatch)
+            champ.setCustomValidity(champ.dataset.messageErreur)
+        else
+            champ.setCustomValidity("")
+    }
+    
 
 }
 

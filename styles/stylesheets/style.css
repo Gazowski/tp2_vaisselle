@@ -80,12 +80,11 @@ select, button {
   cursor: pointer;
 }
 
-/* line 62, ../sass/style.scss */
-.saisie_rouge {
+/* line 63, ../sass/style.scss */
+input:invalid {
   background-color: lightpink;
 }
-
-/* line 66, ../sass/style.scss */
-.saisie_vert {
+/* line 67, ../sass/style.scss */
+input:valid {
   background-color: lightgreen;
 }
