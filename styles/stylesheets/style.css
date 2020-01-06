@@ -80,11 +80,20 @@ select, button {
   cursor: pointer;
 }
 
-/* line 63, ../sass/style.scss */
-input:invalid {
-  background-color: lightpink;
+/* line 64, ../sass/style.scss */
+fieldset ul li {
+  margin-bottom: 0.5em;
 }
 /* line 67, ../sass/style.scss */
-input:valid {
+fieldset ul li input:invalid {
+  background-color: lightpink;
+}
+/* line 71, ../sass/style.scss */
+fieldset ul li input:valid {
   background-color: lightgreen;
+}
+/* line 76, ../sass/style.scss */
+fieldset ul li p {
+  margin: 0.2em;
+  font-size: .8em;
 }

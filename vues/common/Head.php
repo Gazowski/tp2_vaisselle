@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="./styles/stylesheets/style.css">
 
         <!-- integration du script -->
-		<script type="module" src="./scripts/main.js"></script>
+        <script type="module" src="./scripts/main.js"></script>
+        <script src="https://unpkg.com/imask"></script>
 	</head>
 <body>

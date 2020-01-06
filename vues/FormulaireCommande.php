@@ -14,32 +14,35 @@
         <ul>
             <li>
                 <label for="nom_client">Nom* :</label>
-                <input id="nom_client" 
-                type="text" 
-                name="nom"
-                placeholder="votre nom"
-                required
-                data-js-champ-nom><span></span>
+                <div>
+                    <input id="nom_client" 
+                    type="text" 
+                    required
+                    data-js-champ-nom><span></span>
+                </div>
             </li>
             <li>
                 <label for="prenom_client">Prénom* :</label>
-                <input id="prenom_client" 
-                type="text" 
-                name="prenom"
-                placeholder="votre prénom"
-                required
-                data-js-champ-prenom><span></span>
+                <div>
+                    <input id="prenom_client" 
+                    type="text" 
+                    name="prenom"
+                    required
+                    data-js-champ-prenom><span></span>
+                </div>
             </li>
             <li>
                 <label for="courriel">Courriel* :</label>
-                <input id="courriel" 
-                type="text" 
-                name="courriel"
-                pattern="(.+)@(.+){1,}\.(.+){1,}"
-                placeholder="votrecourriel@xyz.ccc"
-                required
-                data-message-erreur = "Entrez un courriel valide !"
-                data-js-champ-courriel><span></span>
+                <div>
+                    <input id="courriel" 
+                    type="text" 
+                    name="courriel"
+                    pattern="(.+)@(.+){1,}\.(.+){1,}"
+                    required
+                    data-message-erreur = "Entrez un courriel valide !"
+                    data-js-champ-courriel><span></span>
+                    <p>votrecourriel@xyz.ccc</p>
+                </div>
             </li>
         </ul>
     </fieldset>
@@ -48,23 +51,28 @@
         <ul>
             <li>
                 <label for="adresse">Adresse* :</label>
-                <input id="adresse" 
-                        type="text" 
-                        name="adresse"
-                        placeholder="votre rue , votre ville"
-                        required
-                        data-js-champ-adresse><span></span>
+                <div>
+                    <input id="adresse" 
+                            type="text" 
+                            name="adresse"
+                            required
+                            data-js-champ-adresse><span></span>
+                            <p>votre rue , votre ville</p>
+                </div>
             </li>
             <li>
                 <label for="CP">Code Postal* :</label>
-                <input id="CP" 
-                type="text" 
-                name="CP"
-                pattern="[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d"
-                placeholder="A1B 2C3"
-                required
-                data-message-erreur = "Entrez un code de type A1B 2C3 !"
-                data-js-champ-CP><span></span>
+                <div>
+                    <input id="CP" 
+                    type="text" 
+                    name="CP"
+                    pattern="[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d"
+                    required
+                    data-message-erreur = "Entrez un code de type A1B 2C3 !"
+                    data-mask = "a0a-0a0"
+                    data-js-champ-CP><span></span>
+                    <p>format A0A-0A0</p>
+                </div>
             </li>
         </ul>
     </fieldset>
@@ -80,8 +88,8 @@
                                 name="type_de_carte" 
                                 type="radio"
                                 data-js-radio-cb = "visa"
-                                data-placeholder = "N° de carte visa"
-                                data-pattern = "4[0-9]{12}(?:[0-9]{3})?"
+                                data-placeholder = "4000-0000-0000-0000"
+                                data-pattern = "4[0-9]{3}-[0-9]{4}-[0-9]{4}-[0-9]{4}"
                                 data-message-erreur="Ne correspond pas au type VISA !">
                             <label for="visa">VISA</label>
                         </li>
@@ -90,8 +98,8 @@
                                 name="type_de_carte" 
                                 type="radio"
                                 data-js-radio-cb = "mastercard"
-                                data-placeholder = "N° de carte mastercard"
-                                data-pattern = "5[1-5][0-9]{14}"
+                                data-placeholder = "5000-0000-0000-0000"
+                                data-pattern = "5[1-5][0-9]{2}-[0-9]{4}-[0-9]{4}-[0-9]{4}"
                                 data-message-erreur="Ne correspond pas au type MASTERCARD !">
                             <label for="mastercard">Mastercard</label>
                         </li>
@@ -100,44 +108,55 @@
                                 name="type_de_carte" 
                                 type="radio"
                                 data-js-radio-cb = "essai"
-                                data-placeholder = "4 chiffres"
-                                data-pattern = "[0-9]{4}"
+                                data-placeholder = "0000-0000-0000-0000"
+                                data-pattern = "[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}"
                                 data-message-erreur="Ne correspond pas au type ESSAI !">
                             <label for="essai">essai (pattern permissif)</label>
                         </li>
                     </ul>
-                    <p data-js-erreur-radbutton></p>
                     <label for="CB">n° carte de crédit*:</label>
-                    <input id="CB" 
-                            type="text" 
-                            name="CB"
-                            pattern=""
-                            placeholder="choisir un type de carte"
-                            required
-                            disabled
-                            data-js-champ-cb><span></span>
+                    <div>
+                        <!-- le pattern a besoin d'être initialiser à une fausse valeur pour pouvoir afficher un message d'erreur si le champ n'a pas été rempli -->
+                        <input id="CB" 
+                                type="text" 
+                                name="CB"
+                                pattern="[123]"
+                                required
+                                disabled
+                                data-message-erreur="Choisir un type de carte ! "
+                                data-mask="0000-0000-0000-0000"
+                                data-js-champ-cb><span></span>
+                                <p data-js-indice-regex>choisir un type de carte</p>
+                    </div>
                 </fieldset>
                 </li>
             <li>
                 <label for="expiration">Expiration*:</label>
-                <input id="expiration" 
-                        type="text" 
-                        name="expiration"
-                        pattern="(0[1-9]|1[0-2])\/[0-9]{2}"
-                        placeholder="MM/AA"
-                        data-message-erreur = "Entrez une date de type MM/AA !"
-                        required
-                        data-js-champ-expiration><span></span>
+                <div>
+                    <input id="expiration" 
+                            type="text" 
+                            name="expiration"
+                            pattern="(0[1-9]|1[0-2])\/[0-9]{2}"
+                            required
+                            data-mask="00/00"
+                            data-message-erreur = "Entrez une date de type MM/AA !"
+                            data-js-champ-expiration><span></span>
+                            <p>format MM/AA</p>
+                </div>
             </li>
             <li>
                 <label for="code_securite">Code de sécurité* :</label>
-                <input id="code_securite" 
-                        type="password" 
-                        name="code_securite"
-                        pattern="[0-9]\d\d"
-                        placeholder="3 chiffres"
-                        required
-                        data-js-champ-code-securite><span></span>
+                <div>
+                    <input id="code_securite" 
+                            type="password" 
+                            name="code_securite"
+                            pattern="[0-9]\d\d"
+                            required
+                            data-mask="000"
+                            data-message-erreur="Code Incorrect"
+                            data-js-champ-code-securite><span></span>
+                            <p>3 chiffres</p>
+                </div>
             </li>
         </ul>
     </fieldset>

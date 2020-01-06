@@ -3,12 +3,13 @@ import { requeteAjax } from './ajax.js'
 export class FormulaireCommande{
     constructor(elt){
         this.elt = elt
-
+        
         this.champs_avec_regex = this.elt.querySelectorAll('[pattern]')
         this.champs_requis = this.elt.querySelectorAll('[required]')
+        this.champs_avec_masque = this.elt.querySelectorAll('[mask]')
         this.champs_radio_button = this.elt.querySelectorAll('[data-js-radio-cb]')
-        this.info_radio_button = this.elt.querySelector('[data-js-erreur-radbutton]')
         this.champ_CB = this.elt.querySelector('[data-js-champ-cb]')
+        this.indice_regex = document.querySelector('[data-js-indice-regex]')
         this.btn_soumettre = this.elt.querySelector('[data-js-submit]')
         this.btn_retour_panier = this.elt.querySelector('[data-js-retour-panier]')
 
@@ -20,6 +21,7 @@ export class FormulaireCommande{
     init = () => {
         this.verifier_champs_avec_regex()
         this.ecouter_radbutton()
+        this.afficher_masque()
         this.btn_soumettre.addEventListener('click', (e) => {
             this.valider_formulaire()
         })
@@ -28,8 +30,7 @@ export class FormulaireCommande{
     valider_formulaire = () => {
         this.formulaire_valide = true
         this.verifier_champs_requis()
-        this.verifier_champs_avec_regex()
-        this.afficher_erreur_radbutton()
+        this.informer_erreur_saisie()
     }
 
     verifier_champs_requis = () => {
@@ -56,18 +57,21 @@ export class FormulaireCommande{
         }    
     }
     
-    informer_erreur_saisie = (champ) => {
-        let zoneInformation = champ.nextElementSibling,
-            regex = RegExp(champ.pattern)
-        if(champ.value.trim() == ""){
-            this.est_rempli(champ)
+    informer_erreur_saisie = (champ = '') => {
+        let liste_champs = (champ == '') ? this.champs_avec_regex : [champ]
+        for(let chp of liste_champs){
+            let zoneInformation = chp.nextElementSibling,
+                regex = RegExp(chp.pattern)
+            if(chp.value.trim() == ""){ 
+                this.est_rempli(chp)
+            }
+            else if(chp.pattern && !regex.test(chp.value)){
+                zoneInformation.innerHTML = chp.dataset.messageErreur
+                this.formulaire_valide = false
+            }
+            else
+                zoneInformation.innerHTML = ""
         }
-        else if(champ.pattern && !regex.test(champ.value)){
-            zoneInformation.innerHTML = champ.dataset.messageErreur
-            this.formulaire_valide = false
-        }
-        else
-            zoneInformation.innerHTML = ""
     }
 
 
@@ -77,23 +81,29 @@ export class FormulaireCommande{
             bouton.addEventListener('change', () => {
                 this.radio_button_cocher = true
                 this.parametrer_champ_CB(bouton)
+                this.afficher_masque(this.champ_CB)
             })
         }        
     } 
-    
-    afficher_erreur_radbutton = () => {
-        if(!this.radio_button_cocher)
-            this.info_radio_button.innerHTML = "Choisir un type de carte !"
-        else
-            this.info_radio_button.innerHTML = ""
-    }
 
     parametrer_champ_CB = (typeCB) => {
         this.champ_CB.disabled = false
-        this.champ_CB.placeholder = typeCB.dataset.placeholder
+        this.indice_regex.innerHTML = typeCB.dataset.placeholder
         this.champ_CB.pattern = typeCB.dataset.pattern
         this.champ_CB.dataset.messageErreur = typeCB.dataset.messageErreur
-        console.log(this.champ_CB)
+    }
+
+    afficher_masque = (champ = '') => {
+        let liste_champs = (champ == '') ? this.champs_avec_masque : [champ]
+        for(let c of liste_champs){
+            /* fonction IMask est une fonction de la librairie IMask.js.
+                elle permet le formattage des entrées utilisateur et évite les erreurs.
+            */
+            IMask(c ,{
+                mask: c.dataset.mask,
+                lazy: false // affiche le masque
+            })
+        }
     }
 
 

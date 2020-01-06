@@ -59,13 +59,24 @@ select,button{
     cursor:pointer ;
 }
 
-input{
-    &:invalid{
-        background-color: lightpink;
-    }
-    
-    &:valid{
-        background-color: lightgreen;
-    }
+fieldset{
+    ul{
+        li{
+            margin-bottom: 0.5em;
+            input{
+                &:invalid{
+                    background-color: lightpink;
+                }
+                
+                &:valid{
+                    background-color: lightgreen;
+                }
+            }
 
+            p{
+                margin:0.2em;
+                font-size: .8em;
+            }
+        }
+    }
 }
