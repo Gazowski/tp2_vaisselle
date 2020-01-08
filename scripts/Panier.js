@@ -70,7 +70,7 @@ export class Panier{
         for(let item in produits_panier){
             let quantite = produits_panier[item]["quantite"],
                 nom = produits_panier[item]["nom"].replace(/_/g,' ')
-            if (produits_panier[item]["quantite"] != 0) 
+            if (produits_panier[item]["quantite"] > 0) 
                 liste_produits_panier.push(` ${quantite} ${nom}`)
         }
         liste_produits_panier = liste_produits_panier.toString()
@@ -97,6 +97,7 @@ export class Panier{
     mettre_a_jour_inventaire = () => {
         let produits_panier = JSON.parse(sessionStorage.produitsPanier)
         for(let item in produits_panier){
+            if(produits_panier[item]["quantite"] > 0)
             this.decrementer_inventaire_item(item,produits_panier[item]["quantite"])
         }
     }
