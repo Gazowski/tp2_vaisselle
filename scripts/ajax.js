@@ -13,9 +13,9 @@ export let requeteAjax = (data,callback) => {
 
     if(xhr) {	
 
-        xhr.open(data['methode'], data['action']);
-        if(data['methode'] == "POST"){
-            if(data['json']){
+        xhr.open(data.methode, data.action);
+        if(data.methode == "POST"){
+            if(data.json){
                 xhr.setRequestHeader("Content-Type", "application/json")
             }
             else
@@ -38,8 +38,8 @@ export let requeteAjax = (data,callback) => {
         });
         //3ème étape - envoi de la requête
         let donnees = ""
-        if(data['donnees_a_envoyer']){
-            donnees = JSON.stringify(data['donnees_a_envoyer'])
+        if(data.donnees_a_envoyer){
+            donnees = JSON.stringify(data.donnees_a_envoyer)
             donnees = encodeURIComponent(donnees)
             console.log(donnees)
         }

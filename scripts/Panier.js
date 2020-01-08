@@ -15,7 +15,6 @@ export class Panier{
 
         this.montant_total_panier = 0
         this.commande = {}
-        this.paramAjax = []
 
         this.init()
     }
@@ -71,20 +70,26 @@ export class Panier{
         for(let item in produits_panier){
             let quantite = produits_panier[item]["quantite"],
                 nom = produits_panier[item]["nom"].replace(/_/g,' ')
-            liste_produits_panier.push(` ${quantite} ${nom}`)
+            if (produits_panier[item]["quantite"] != 0) 
+                liste_produits_panier.push(` ${quantite} ${nom}`)
         }
         liste_produits_panier = liste_produits_panier.toString()
-        this.commande = {
+        this.commande = 
+        {
             detail : liste_produits_panier, 
             montant : this.montant_total_panier
         }
     }
     
     enregistrer_commande = () => {
-        this.paramAjax['methode'] = "POST"
-        this.paramAjax['action'] = "index.php?Ajax&action=enregistrerCommande"
-        this.paramAjax['donnees_a_envoyer'] = this.commande
-        requeteAjax(this.paramAjax, (reponse_ajax) => {
+        let paramAjax = 
+        {
+            methode : "POST",
+            json : true,
+            action : "index.php?Ajax&action=enregistrerCommande",
+            donnees_a_envoyer : this.commande
+        }
+        requeteAjax(paramAjax, (reponse_ajax) => {
             console.log('commande enregistre')
         })
     }
@@ -97,10 +102,14 @@ export class Panier{
     }
 
     decrementer_inventaire_item = (item,quantite) => {
-        this.paramAjax['methode'] = "POST"
-        this.paramAjax['action'] = `index.php?Ajax&action=decrementerInventaireItem`
-        this.paramAjax['donnees_a_envoyer'] = {id:item,quantite:quantite}
-        requeteAjax(this.paramAjax, (reponse_ajax) => {
+        let paramAjax = 
+        {
+            methode : "POST",
+            json : true,
+            action : `index.php?Ajax&action=decrementerInventaireItem`,
+            donnees_a_envoyer : {id:item,quantite:quantite}
+        }
+        requeteAjax(paramAjax, (reponse_ajax) => {
 
         })
     }

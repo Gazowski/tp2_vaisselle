@@ -13,10 +13,9 @@ export class FormulaireCommande{
         this.btn_soumettre = this.elt.querySelector('[data-js-submit]')
         this.btn_retour_panier = this.elt.querySelector('[data-js-retour-panier]')
 
-        this.formulaire_valide = false
+        this.formulaire_valide = true
         this.usager_dans_database = false
         this.champs = {}
-        this.paramAjax = []
         
         this.init()
     }
@@ -28,7 +27,7 @@ export class FormulaireCommande{
         this.afficher_masque()
         this.btn_soumettre.addEventListener('click', (e) => {
             e.preventDefault()
-            this.valider_formulaire()
+            //this.valider_formulaire()
             this.enregister_usager()
         })
         this.champs.courriel.addEventListener('blur', () => {
@@ -120,28 +119,38 @@ export class FormulaireCommande{
         }
 
     }
+
     est_dans_database = () => {
-        this.paramAjax['methode'] = "POST"
-        this.paramAjax['action'] = "index.php?Ajax&action=verifierPresenceUsager"
-        this.paramAjax['donnees_a_envoyer'] = this.champs.courriel.value
-        requeteAjax(this.paramAjax, (reponse_ajax) => {
+        let paramAjax = 
+        {
+            methode : "POST",
+            json : true,
+            action : "index.php?Ajax&action=verifierPresenceUsager",
+            donnees_a_envoyer : this.champs.courriel.value
+        }
+        requeteAjax(paramAjax, (reponse_ajax) => {
             this.usager_dans_database = (reponse_ajax.trim() != '')? true : false
         })
     }
 
     enregister_usager = () => {
         if(this.formulaire_valide && !this.usager_dans_database){
-            let info_usager = {
+            let info_usager = 
+            {
                 nom : this.champs.nom.value,
                 prenom : this.champs.prenom.value,
                 adresse : this.champs.adresse.value,
                 courriel : this.champs.courriel.value,
                 optin : (this.champs.infolettre.checked)? 1 : 0
             }
-            this.paramAjax['methode'] = "POST"
-            this.paramAjax['action'] = "index.php?Ajax&action=enregistrerUsager"
-            this.paramAjax['donnees_a_envoyer'] = info_usager
-            requeteAjax(this.paramAjax, (reponse_ajax) => {
+
+            let paramAjax = 
+            {
+                methode : "POST",
+                action : "index.php?Ajax&action=enregistrerUsager",
+                donnees_a_envoyer : info_usager
+            }
+            requeteAjax(paramAjax, (reponse_ajax) => {
                 console.log(reponse_ajax)
             })
         }

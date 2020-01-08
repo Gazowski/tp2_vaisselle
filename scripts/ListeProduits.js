@@ -1,4 +1,4 @@
-import { requeteAjax } from './ajax.js'
+import { requeteAjax } from './ajax.js/index.js'
 import { ItemBoutique } from './ItemBoutique.js'
 
 export class ListeProduits{
@@ -13,6 +13,7 @@ export class ListeProduits{
         this.pagination = 0
         this.produits_par_page = 12
         this.paramAjax = []
+        this.paramAjaxObjet = {}
         
         this.init()
     }
@@ -48,18 +49,24 @@ export class ListeProduits{
     }
 
     obtenir_total_produits = () =>{
-        this.paramAjax['methode'] = "GET"
-        this.paramAjax['action'] = `index.php?Ajax&action=obtenirTotalProduits`
+        this.paramAjax = 
+        {
+            methode : "GET",
+            action : `index.php?Ajax&action=obtenirTotalProduits`
+        }
         requeteAjax(this.paramAjax, (reponse_ajax) => {
             this.elt.dataset.totalProduit = reponse_ajax
         }) 
     }
     
     afficher_produits = () =>{
-        let offsetPagination = this.pagination * this.produits_par_page
-        let filtre = this.champ_filtre.value
-        this.paramAjax['methode'] = "GET"
-        this.paramAjax['action'] = `index.php?Ajax&action=afficheListeSuivante&offsetPagination=${offsetPagination}&filtre=${filtre}`
+        let offsetPagination = this.pagination * this.produits_par_page,
+            filtre = this.champ_filtre.value
+        this.paramAjax = 
+        {
+            methode : "GET",
+            action : `index.php?Ajax&action=afficheListeSuivante&offsetPagination=${offsetPagination}&filtre=${filtre}`
+        }
         requeteAjax(this.paramAjax, (reponse_ajax) =>{ 
             this.afficher_liste(reponse_ajax) 
             this.instancier_item() 

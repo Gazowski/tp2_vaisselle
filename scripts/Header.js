@@ -42,11 +42,13 @@ export class Header{
     }
         
     preparer_et_ouvrir_page_panier = () => {
-        let paramAjax = []
-        paramAjax['methode'] = "POST"
-        paramAjax['json'] = true
-        paramAjax['action'] = 'index.php?Ajax&action=enregistrerIdItemsPanier'
-        paramAjax['donnees_a_envoyer'] = JSON.parse(sessionStorage.produitsPanier)
+        let paramAjax = 
+        {
+            methode : "POST",
+            json : true,
+            action : 'index.php?Ajax&action=enregistrerIdItemsPanier',
+            donnees_a_envoyer : JSON.parse(sessionStorage.produitsPanier)
+        }
         requeteAjax(paramAjax,()=>{
             window.open("index.php?Panier&action=afficheProduitsPanier","_self")
         })
