@@ -34,17 +34,64 @@
 					break;
 					
 					case "enregistrerIdItemsPanier":
-						$request_payload = file_get_contents("php://input");
-						$_SESSION['idItemsPanier'] = json_decode($request_payload, true);
+						$_SESSION['idItemsPanier'] = $this->nettoyer_donnees(file_get_contents("php://input"));
 					break;
 
-					case "decrementerInventaireItem":
-						if(isset($param["id"]))
+					case "enregistrerCommande":
+						$commande = $this->nettoyer_donnees(file_get_contents("php://input"));
+						if(trim($commande != ""))
 						{
-							$modeleBoutique= new Modele_Boutique();
-							$data = $modeleBoutique->decrementerInventaireProduit($param["id"]);
-							echo ($data['inventaire']);
+							$modeleCommande = new Modele_Commande;
+							$data = $modeleCommande->enregistrerCommande($commande);
+							echo($data);
 						}
+						else
+						{
+							echo 'error';
+						}
+					break;
+					
+					case "verifierPresenceUsager":
+						$courriel = $this->nettoyer_donnees(file_get_contents("php://input"));
+						if(trim($courriel != ""))
+						{
+							$modeleUsager = new Modele_Usager;
+							$data = $modeleUsager->verifierPresenceCourriel($courriel);
+							echo($data['courriel']);
+						}
+						else
+						{
+							echo 'error';
+						}
+					break;
+					
+					case "enregistrerUsager":
+						$info_usager = $this->nettoyer_donnees(file_get_contents("php://input"));
+						if(trim($info_usager != ""))
+						{
+							$modeleUsager = new Modele_Usager;
+							$data = $modeleUsager->enregistrerUsager($info_usager);
+							echo($data);
+						}
+						else
+						{
+							echo 'error';
+						}
+					break;
+					
+					case "decrementerInventaireItem":
+						$quantite_item = $this->nettoyer_donnees(file_get_contents("php://input"));
+						if(trim($quantite_item != ""))
+						{
+							$modeleBoutique = new Modele_Boutique;
+							$data = $modeleBoutique->decrementerInventaireItem($quantite_item);
+							echo($data);
+						}
+						else
+						{
+							echo 'error';
+						}
+					break;
                 
                     default:
                         echo 'error';
@@ -52,6 +99,14 @@
 			}
 			else
                 echo 'error';
+		}
+
+		public function nettoyer_donnees($donnees)
+		{
+			$request_payload = $donnees;
+			$request_payload = urldecode($request_payload);
+			$request_payload  = htmlspecialchars($request_payload,ENT_NOQUOTES); // ENT_NOQUOTES permet d'ignorer les guillemets générés par JSON 
+			return json_decode($request_payload);
 		}
 	}
 ?>

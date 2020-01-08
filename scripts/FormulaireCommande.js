@@ -4,27 +4,42 @@ export class FormulaireCommande{
     constructor(elt){
         this.elt = elt
         
+        this.champs_formulaire = this.elt.querySelectorAll('input')
         this.champs_avec_regex = this.elt.querySelectorAll('[pattern]')
         this.champs_requis = this.elt.querySelectorAll('[required]')
-        this.champs_avec_masque = this.elt.querySelectorAll('[mask]')
+        this.champs_avec_masque = this.elt.querySelectorAll('[data-mask]')
         this.champs_radio_button = this.elt.querySelectorAll('[data-js-radio-cb]')
-        this.champ_CB = this.elt.querySelector('[data-js-champ-cb]')
         this.indice_regex = document.querySelector('[data-js-indice-regex]')
         this.btn_soumettre = this.elt.querySelector('[data-js-submit]')
         this.btn_retour_panier = this.elt.querySelector('[data-js-retour-panier]')
 
-        this.formulaire_valide = true
+        this.formulaire_valide = false
+        this.usager_dans_database = false
+        this.champs = {}
+        this.paramAjax = []
         
         this.init()
     }
 
     init = () => {
+        this.creer_variables_champ()
         this.verifier_champs_avec_regex()
         this.ecouter_radbutton()
         this.afficher_masque()
         this.btn_soumettre.addEventListener('click', (e) => {
+            e.preventDefault()
             this.valider_formulaire()
+            this.enregister_usager()
         })
+        this.champs.courriel.addEventListener('blur', () => {
+            this.est_dans_database()
+        })
+    }
+
+    creer_variables_champ = () => {
+        for(let champ of this.champs_formulaire){
+            this.champs[champ.name] = champ 
+        }
     }
     
     valider_formulaire = () => {
@@ -74,23 +89,22 @@ export class FormulaireCommande{
         }
     }
 
-
     ecouter_radbutton = () =>{
         this.radio_button_cocher = false
         for(let bouton of this.champs_radio_button){
             bouton.addEventListener('change', () => {
                 this.radio_button_cocher = true
                 this.parametrer_champ_CB(bouton)
-                this.afficher_masque(this.champ_CB)
+                this.afficher_masque(this.champs.CB)
             })
         }        
     } 
 
     parametrer_champ_CB = (typeCB) => {
-        this.champ_CB.disabled = false
+        this.champs.CB.disabled = false
         this.indice_regex.innerHTML = typeCB.dataset.placeholder
-        this.champ_CB.pattern = typeCB.dataset.pattern
-        this.champ_CB.dataset.messageErreur = typeCB.dataset.messageErreur
+        this.champs.CB.pattern = typeCB.dataset.pattern
+        this.champs.CB.dataset.messageErreur = typeCB.dataset.messageErreur
     }
 
     afficher_masque = (champ = '') => {
@@ -104,7 +118,37 @@ export class FormulaireCommande{
                 lazy: false // affiche le masque
             })
         }
+
     }
+    est_dans_database = () => {
+        this.paramAjax['methode'] = "POST"
+        this.paramAjax['action'] = "index.php?Ajax&action=verifierPresenceUsager"
+        this.paramAjax['donnees_a_envoyer'] = this.champs.courriel.value
+        requeteAjax(this.paramAjax, (reponse_ajax) => {
+            this.usager_dans_database = (reponse_ajax.trim() != '')? true : false
+        })
+    }
+
+    enregister_usager = () => {
+        if(this.formulaire_valide && !this.usager_dans_database){
+            let info_usager = {
+                nom : this.champs.nom.value,
+                prenom : this.champs.prenom.value,
+                adresse : this.champs.adresse.value,
+                courriel : this.champs.courriel.value,
+                optin : (this.champs.infolettre.checked)? 1 : 0
+            }
+            this.paramAjax['methode'] = "POST"
+            this.paramAjax['action'] = "index.php?Ajax&action=enregistrerUsager"
+            this.paramAjax['donnees_a_envoyer'] = info_usager
+            requeteAjax(this.paramAjax, (reponse_ajax) => {
+                console.log(reponse_ajax)
+            })
+        }
+    }
+
+
+
 
 
     

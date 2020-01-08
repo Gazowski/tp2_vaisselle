@@ -79,13 +79,4 @@ export class ListeProduits{
         this.btn_suivant.disabled = this.pagination < pagination_max ? false : true       
     }
 
-    // a faire lors de la commande
-    decrementer_inventaire_item = (item) => {
-        this.paramAjax['methode'] = "POST"
-        this.paramAjax['action'] = `index.php?Ajax&action=decrementerInventaireItem`
-        this.paramAjax['donnees_a_envoyer'] = `id=${item.dataset.itemId}`
-        requeteAjax(this.paramAjax, (reponse_ajax) => {
-            item.dataset.itemInventaire = reponse_ajax
-        })
-    }
 }

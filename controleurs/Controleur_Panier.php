@@ -21,8 +21,8 @@
                         $modeleBoutique = new Modele_Boutique();
                         $liste_id_items_par_quantite = $_SESSION["idItemsPanier"];
                         foreach($liste_id_items_par_quantite as $id => $produit){
-                            $data[$id] = $modeleBoutique->obtenirItemParId($id);
-                            $data[$id]['quantite'] = $produit["quantite"];
+							$data[$id] = $modeleBoutique->obtenirItemParId($id);
+                            $data[$id]['quantite'] = $produit->quantite;
                         }
                         //var_dump($data);
                         $titre["titre"] = "Panier";

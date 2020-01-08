@@ -10,6 +10,7 @@ export let enregistrer_id_item = (item) => {
     }
     else{
         produits_panier[id_item] = {}
+        produits_panier[id_item]['nom'] = item.dataset.itemNom
         produits_panier[id_item]["quantite"] = 0
     }
     sessionStorage.produitsPanier = JSON.stringify(produits_panier) 

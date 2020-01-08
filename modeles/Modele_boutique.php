@@ -54,5 +54,23 @@
 				trigger_error("Erreur lors de la requête : " . $e->getMessage());
 			}  
 		}
+		
+		public function decrementerInventaireItem($item)
+		{
+			try{
+				$requete = "UPDATE produits 
+							SET inventaire = inventaire - $item->quantite
+							WHERE id = ?";
+				$stmt = $this->connexion->prepare($requete);
+				$stmt->execute(array($item->id));
+				$resultats = $stmt->fetch(PDO::FETCH_ASSOC);
+				return 1;
+			}
+			catch(PDOException $e)
+			{
+				trigger_error("Erreur lors de la requête : " . $e->getMessage());
+				return 0;
+			}  
+		}
 	}
 ?>

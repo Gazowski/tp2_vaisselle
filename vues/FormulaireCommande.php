@@ -16,7 +16,8 @@
                 <label for="nom_client">Nom* :</label>
                 <div>
                     <input id="nom_client" 
-                    type="text" 
+                    type="text"
+                    name="nom"
                     required
                     data-js-champ-nom><span></span>
                 </div>

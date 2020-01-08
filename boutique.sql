@@ -15,7 +15,7 @@ CREATE TABLE produits (
 CREATE TABLE commandes (
 	id int NOT NULL AUTO_INCREMENT,
 	detail varchar(300) NOT NULL,
-	montant tinyint(4) NOT NULL,
+	montant int(4) NOT NULL,
 	PRIMARY KEY(id)
 );
 
