@@ -41,7 +41,6 @@
 						$commande = $this->nettoyer_donnees(file_get_contents("php://input"));
 						if(trim($commande != ""))
 						{
-							var_dump($commande);
 							$modeleCommande = new Modele_Commande;
 							$data = $modeleCommande->enregistrerCommande($commande);
 							echo($data);

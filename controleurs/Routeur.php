@@ -10,7 +10,6 @@
 			$chaineRequete = $_SERVER["QUERY_STRING"];
 			$posEperluette = strpos($chaineRequete, "&");
 			$controleur = substr($chaineRequete, 0, $posEperluette);
-			//var_dump($controleur);
 			
 			if($controleur != "")
 			{

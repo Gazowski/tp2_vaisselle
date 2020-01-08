@@ -13,7 +13,7 @@ export class FormulaireCommande{
         this.btn_soumettre = this.elt.querySelector('[data-js-submit]')
         this.btn_retour_panier = this.elt.querySelector('[data-js-retour-panier]')
 
-        this.formulaire_valide = true
+        this.formulaire_valide = false
         this.usager_dans_database = false
         this.champs = {}
         
@@ -27,7 +27,7 @@ export class FormulaireCommande{
         this.afficher_masque()
         this.btn_soumettre.addEventListener('click', (e) => {
             e.preventDefault()
-            //this.valider_formulaire()
+            this.valider_formulaire()
             this.enregister_usager()
         })
         this.champs.courriel.addEventListener('blur', () => {

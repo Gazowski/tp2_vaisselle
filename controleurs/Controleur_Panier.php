@@ -24,7 +24,6 @@
 							$data[$id] = $modeleBoutique->obtenirItemParId($id);
                             $data[$id]['quantite'] = $produit->quantite;
                         }
-                        //var_dump($data);
                         $titre["titre"] = "Panier";
                         $titre["data-js"] = "data-js-page-panier";
                         $this->afficheVue("TitreSection",$titre);

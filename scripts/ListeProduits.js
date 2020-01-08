@@ -1,4 +1,4 @@
-import { requeteAjax } from './ajax.js/index.js'
+import { requeteAjax } from './ajax.js'
 import { ItemBoutique } from './ItemBoutique.js'
 
 export class ListeProduits{
