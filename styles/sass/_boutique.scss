@@ -1,0 +1,18 @@
+.liste_produits{
+    display:grid;
+    grid-area: boutique;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 100px);
+    grid-gap: 1em;
+    padding:1em;
+}
+
+
+
+.tuile{
+    cursor:pointer ;
+    grid-area: produit;
+    padding:1em;
+    border-radius:10px;
+    border:1px solid var(--c_sombre_moyen);
+}

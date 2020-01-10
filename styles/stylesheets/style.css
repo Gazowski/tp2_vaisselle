@@ -5,94 +5,153 @@
 /* variables et mixin */
 /* line 3, ../sass/_mixin_variables.scss */
 body {
-  --c_sombre: #000807;
-  --c_sombre_transparent: rgba(0, 8, 7, 0.9);
-  --c_sombre_moyen: #6b717e;
-  --c_clair: #eaf2ef;
-  --c_theme: #657ed4;
-  --c_theme_clair: #ffb86f;
-  --f_titre: 'Oswald', sans-serif;
+  --c_sombre: #00140d;
+  --c_sombre_transparent: rgba(0, 20, 13, 0.5);
+  --c_sombre_moyen: #355f5a;
+  --c_clair: #e8ebf7;
+  --c_theme: #017f3c;
+  --c_theme_clair: #88fb5b;
+  --f_titre: 'Montserrat', sans-serif;
   --f_texte: 'Raleway', sans-serif;
-  --ecran_moyen: 768px;
+  --ecran_moyen: 576px;
   --ecran_grand: 992px;
 }
 
 /* mixin */
-/* line 8, ../sass/style.scss */
-* {
-  box-sizing: border-box;
+/* line 1, ../sass/_header.scss */
+header {
+  background-color: var(--c_clair);
+  color: var(--c_theme);
+  display: grid;
+  grid-area: hd;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+  grid-template-areas: "t_hd t_hd t_hd panier";
+  padding: 1em;
+}
+/* line 10, ../sass/_header.scss */
+header h1 {
+  font-family: var(--f_titre);
+  font-weight: 900;
+  font-size: 2em;
+  grid-area: t_hd;
+  letter-spacing: -.04em;
 }
 
-/* line 12, ../sass/style.scss */
-body {
-  font-family: var(--f_texte);
-  max-width: 100%;
-  padding: 2em;
-  width: 100vw;
-  background-color: var(--c_sombre);
-  color: var(--c_sombre_moyen);
+/* line 26, ../sass/_header.scss */
+.panier {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-area: panier;
+  position: relative;
 }
-
-/* line 21, ../sass/style.scss */
-select, button {
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-
-/* Classe */
-/* line 28, ../sass/style.scss */
-.logo div {
+/* line 30, ../sass/_header.scss */
+.panier div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 57%;
+  top: 21%;
   border-radius: 50%;
+  font-family: var(--f_titre);
+  font-size: .7em;
+  font-weight: 600;
   height: 20px;
   text-align: center;
   width: 20px;
   background-color: var(--c_theme);
   color: var(--c_clair);
 }
-/* line 35, ../sass/style.scss */
-.logo img {
+/* line 44, ../sass/_header.scss */
+.panier div.disparait {
+  display: none;
+}
+/* line 48, ../sass/_header.scss */
+.panier img {
   height: 50px;
 }
+/* line 52, ../sass/_header.scss */
+.panier button {
+  background-color: var(--c_theme);
+  color: var(--c_clair);
+  border: none;
+  border-radius: 3px;
+  border: solid 1px var(--c_theme);
+  font-family: var(--f_titre);
+  font-size: .6em;
+  font-weight: 600;
+  padding: 0.8em;
+  transition: all .3s ease-out;
+}
+/* line 62, ../sass/_header.scss */
+.panier button:hover {
+  background-color: var(--c_clair);
+  color: var(--c_theme);
+  border: solid 1px var(--c_theme);
+}
 
-/* line 40, ../sass/style.scss */
+/* line 1, ../sass/_boutique.scss */
+.liste_produits {
+  display: grid;
+  grid-area: boutique;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(6, 100px);
+  grid-gap: 1em;
+  padding: 1em;
+}
+
+/* line 12, ../sass/_boutique.scss */
 .tuile {
   cursor: pointer;
+  grid-area: produit;
   padding: 1em;
   border-radius: 10px;
   border: 1px solid var(--c_sombre_moyen);
 }
 
-/* line 47, ../sass/style.scss */
+/* line 10, ../sass/style.scss */
+* {
+  box-sizing: border-box;
+}
+
+/* line 14, ../sass/style.scss */
+body {
+  font-family: var(--f_texte);
+  max-width: 100%;
+  width: 100vw;
+  background-color: var(--c_sombre);
+  color: var(--c_sombre_moyen);
+}
+
+/* Classe */
+/* line 29, ../sass/style.scss */
 .inventaire_nul {
   pointer-events: none;
   opacity: .5;
 }
 
-/* line 52, ../sass/style.scss */
+/* line 34, ../sass/style.scss */
 .disparait {
   display: none;
 }
 
-/* line 56, ../sass/style.scss */
-.panier_actif {
-  display: block;
-  background-color: lightgreen;
-  cursor: pointer;
-}
-
-/* line 64, ../sass/style.scss */
+/* line 42, ../sass/style.scss */
 fieldset ul li {
   margin-bottom: 0.5em;
 }
-/* line 67, ../sass/style.scss */
+/* line 45, ../sass/style.scss */
 fieldset ul li input:invalid {
   background-color: lightpink;
 }
-/* line 71, ../sass/style.scss */
+/* line 49, ../sass/style.scss */
 fieldset ul li input:valid {
   background-color: lightgreen;
 }
-/* line 76, ../sass/style.scss */
+/* line 54, ../sass/style.scss */
 fieldset ul li p {
   margin: 0.2em;
   font-size: .8em;

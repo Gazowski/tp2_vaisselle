@@ -1,4 +1,4 @@
-<div data-js-wrapper-liste>
+<div class="liste_produits" data-js-wrapper-liste>
 	<?php foreach($data as $produit) { ?>
 		<article class="tuile" 
 				data-js-item
