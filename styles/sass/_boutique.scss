@@ -3,7 +3,6 @@
     display:grid;
     grid-area: boutique;
     grid-template-columns: 1fr;
-    grid-template-rows: 50vw;
     grid-gap: .1em;
 }
 
@@ -12,11 +11,9 @@
     border:1px solid var(--c_sombre_moyen);
     cursor:pointer ;
     display:grid;
-    grid-template-columns: repeat(2 , 50vw);
-    grid-template-rows: 50vw;
+    grid-template-columns: repeat(2 , 50%);
     img{
-        width: calc(50vw - .1em);
-        //height: calc(50vw - .1em);
+        width: calc(100% - .1em);
         object-fit: contain;
     }
     &>div{
@@ -42,34 +39,74 @@
     }
 }
 
+/*  effet hover */
+    .conteneur_cube{
+        perspective: 800px;
+        perspective-origin: center;
+
+        .cube{
+            transform-style: preserve-3d;
+            transform-origin:center;
+            position:relative;
+            transition: all 1s ease-out;
+            &:hover{
+                transform-origin:left;
+                transform:rotatey(-90deg) translatex(-100%);
+            }
+
+            .face{
+                button{
+                    visibility: hidden;
+                }
+            }
+
+            .cote_droit{
+                position:absolute;
+                left:calc(100% - .5em);
+                width:calc(100%);
+                transform-origin:left;
+                transform:translateY(-100%) rotatey(90deg);
+            }
+        }
+    }
+
 @media screen and (min-width: 576px){
     .liste_produits{
         width:100%;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: repeat(4, 1fr);
+        h3{
+            font-size:1.25em;
+        }
     }
 
     .tuile{
         grid-template-columns: 1fr;
         grid-template-rows: 2fr 1fr;
 
-        img{
-            width: calc(33vw - .1em);
-        }
     }
 }
 
 @media screen and (min-width: 992px){
     .liste_produits{
         width:100%;
-        grid-template-columns: repeat(6,calc(100% / 6));
-        grid-template-rows: 1fr 1fr;
+        grid-template-columns: repeat(6,calc((100% - 1em)/ 6));
+        grid-template-rows: repeat(2, 1fr);
     }
 
     .tuile{
-        grid-template-rows: 3fr 2fr;
+        grid-template-rows: 1fr 1fr;
+        
         img{
             width: calc(100% - .1em);
         }
+    }
+    
+    .conteneur_cube .cube .cote_droit{
+        // position:absolute;
+        // left:calc(100% - .5em);
+        // width:calc(100%);
+        // transform-origin:left;
+        //transform:translateY(-100%) rotatey(90deg);
     }
 }
