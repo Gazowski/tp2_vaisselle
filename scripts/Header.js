@@ -28,12 +28,26 @@ export class Header{
     }
     
     calculer_et_afficher_compteur_panier = () =>{
+        this.calculer_nombre_item()
+        this.afficher_compteur_panier()        
+    }
+
+    calculer_nombre_item = () =>{
         let produitsPanier = JSON.parse(sessionStorage.produitsPanier),
             total_panier = 0
         for(let item in produitsPanier){
             total_panier += produitsPanier[item]["quantite"]
         }
         this.compteur_panier.innerHTML = total_panier        
+    } 
+    
+    afficher_compteur_panier = () =>{
+        let total_panier = parseInt(this.compteur_panier.innerHTML)
+        if(total_panier > 0  && this.compteur_panier.matches('.disparait')){
+            this.compteur_panier.classList.remove('disparait')
+        } else if (total_panier <= 0 && !this.compteur_panier.matches('.disparait')){
+            this.compteur_panier.classList.add('disparait')
+        }
     }
 
     incrementer_compteur_panier = () => {
