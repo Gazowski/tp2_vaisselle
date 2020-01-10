@@ -2,8 +2,7 @@ import { requeteAjax } from './ajax.js'
 
 export class FormulaireCommande{
     constructor(elt){
-        this.elt = elt
-        
+        this.elt = elt        
         this.champs_formulaire = this.elt.querySelectorAll('input')
         this.champs_avec_regex = this.elt.querySelectorAll('[pattern]')
         this.champs_requis = this.elt.querySelectorAll('[required]')
@@ -20,7 +19,7 @@ export class FormulaireCommande{
         this.init()
     }
 
-    init = () => {
+    init(){
         this.creer_variables_champ()
         this.verifier_champs_avec_regex()
         this.ecouter_radbutton()
@@ -54,7 +53,11 @@ export class FormulaireCommande{
         }
     }
 
-    est_rempli = (champ) => {
+    /**
+     * 
+     * @param {*} champ 
+     */
+    est_rempli(champ){
         let zoneInformation = champ.nextElementSibling
         if(champ.value.trim() == ""){
             zoneInformation.innerHTML = "Remplir le champ !"
@@ -71,7 +74,11 @@ export class FormulaireCommande{
         }    
     }
     
-    informer_erreur_saisie = (champ = '') => {
+    /**
+     * 
+     * @param {*} champ 
+     */
+    informer_erreur_saisie(champ = ''){
         let liste_champs = (champ == '') ? this.champs_avec_regex : [champ]
         for(let chp of liste_champs){
             let zoneInformation = chp.nextElementSibling,
@@ -156,11 +163,6 @@ export class FormulaireCommande{
         }
     }
 
-
-
-
-
-    
 
 
     /* NOTE: la personnalisation des messages dans les 'bulles natives'

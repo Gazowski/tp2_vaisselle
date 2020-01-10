@@ -7311,14 +7311,76 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: 900;
   font-display: auto;
-  src: url("../webfonts/fa-solid-900.eot");
-  src: url("../webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("../webfonts/fa-solid-900.woff2") format("woff2"), url("../webfonts/fa-solid-900.woff") format("woff"), url("../webfonts/fa-solid-900.ttf") format("truetype"), url("../webfonts/fa-solid-900.svg#fontawesome") format("svg");
+  src: url("../../webfonts/fa-solid-900.eot");
+  src: url("../../webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("../../webfonts/fa-solid-900.woff2") format("woff2"), url("../../webfonts/fa-solid-900.woff") format("woff"), url("../../webfonts/fa-solid-900.ttf") format("truetype"), url("../../webfonts/fa-solid-900.svg#fontawesome") format("svg");
 }
 /* line 20, ../sass/fontawesome/solid.scss */
 .fa,
 .fas {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
+}
+
+/*!
+ * Font Awesome Free 5.12.0 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+@font-face {
+  font-family: 'Font Awesome 5 Free';
+  font-style: normal;
+  font-weight: 400;
+  font-display: auto;
+  src: url("../../webfonts/fa-regular-400.eot");
+  src: url("../../webfonts/fa-regular-400.eot?#iefix") format("embedded-opentype"), url("../../webfonts/fa-regular-400.woff2") format("woff2"), url("../../webfonts/fa-regular-400.woff") format("woff"), url("../../webfonts/fa-regular-400.ttf") format("truetype"), url("../../webfonts/fa-regular-400.svg#fontawesome") format("svg");
+}
+/* line 20, ../sass/fontawesome/regular.scss */
+.far {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 400;
+}
+
+/*!
+ * Font Awesome Free 5.12.0 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+@font-face {
+  font-family: 'Font Awesome 5 Brands';
+  font-style: normal;
+  font-weight: normal;
+  font-display: auto;
+  src: url("../../webfonts/fa-brands-400.eot");
+  src: url("../../webfonts/fa-brands-400.eot?#iefix") format("embedded-opentype"), url("../../webfonts/fa-brands-400.woff2") format("woff2"), url("../../webfonts/fa-brands-400.woff") format("woff"), url("../../webfonts/fa-brands-400.ttf") format("truetype"), url("../../webfonts/fa-brands-400.svg#fontawesome") format("svg");
+}
+/* line 20, ../sass/fontawesome/brands.scss */
+.fab {
+  font-family: 'Font Awesome 5 Brands';
+}
+
+/* line 1, ../sass/_bouton.scss */
+button {
+  background-color: var(--c_theme);
+  color: var(--c_clair);
+  border: none;
+  border-radius: 3px;
+  border: solid 1px var(--c_theme);
+  font-family: var(--f_titre);
+  font-size: .6em;
+  font-weight: 600;
+  padding: 0.8em;
+  transition: all .3s ease-out;
+}
+/* line 11, ../sass/_bouton.scss */
+button:hover {
+  background-color: var(--c_clair);
+  color: var(--c_theme);
+  border: solid 1px var(--c_theme);
+}
+
+/* line 17, ../sass/_bouton.scss */
+.btn-icon {
+  font-size: 1em;
+  padding: .2em;
+  width: 66%;
 }
 
 /* line 1, ../sass/_header.scss */
@@ -7386,34 +7448,14 @@ header h1 {
 .panier div img {
   height: 50px;
 }
-/* line 58, ../sass/_header.scss */
-.panier button {
-  background-color: var(--c_theme);
-  color: var(--c_clair);
-  border: none;
-  border-radius: 3px;
-  border: solid 1px var(--c_theme);
-  font-family: var(--f_titre);
-  font-size: .6em;
-  font-weight: 600;
-  padding: 0.8em;
-  transition: all .3s ease-out;
-}
-/* line 68, ../sass/_header.scss */
-.panier button:hover {
-  background-color: var(--c_clair);
-  color: var(--c_theme);
-  border: solid 1px var(--c_theme);
-}
 
 /* line 1, ../sass/_boutique.scss */
 .liste_produits {
   display: grid;
   grid-area: boutique;
   grid-template-columns: 1fr;
-  grid-template-rows: calc(50vw - 1em);
-  grid-gap: 1em;
-  padding: 1em;
+  grid-template-rows: 50vw;
+  grid-gap: .1em;
 }
 
 /* line 10, ../sass/_boutique.scss */
@@ -7423,67 +7465,116 @@ header h1 {
   border: 1px solid var(--c_sombre_moyen);
   cursor: pointer;
   display: grid;
-  grid-template-columns: repeat(2, calc(50vw - 1em));
-  grid-template-rows: calc(50vw - 1em);
+  grid-template-columns: repeat(2, 50vw);
+  grid-template-rows: 50vw;
 }
 /* line 17, ../sass/_boutique.scss */
 .tuile img {
-  width: calc(50vw - 1.1em);
-  height: calc(50vw - 1.1em);
+  width: calc(50vw - .1em);
   object-fit: contain;
 }
 /* line 22, ../sass/_boutique.scss */
-.tuile div {
-  padding: 1em;
+.tuile > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  padding: .5em;
+}
+/* line 28, ../sass/_boutique.scss */
+.tuile > div div {
+  grid-column: 1 / 2;
+  grid-row: 1 / 4;
   font-size: .8em;
 }
-/* line 27, ../sass/_boutique.scss */
-.tuile div .prix {
+/* line 32, ../sass/_boutique.scss */
+.tuile > div div .prix {
   color: var(--c_theme);
-  padding: .5em 0;
+  padding: .2em 0;
+}
+/* line 37, ../sass/_boutique.scss */
+.tuile > div button {
+  grid-column: 1 / 2;
+  grid-row: 4 / 5;
+  margin-left: 16.5%;
 }
 
-/* line 12, ../sass/style.scss */
+@media screen and (min-width: 576px) {
+  /* line 46, ../sass/_boutique.scss */
+  .liste_produits {
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  /* line 52, ../sass/_boutique.scss */
+  .tuile {
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 1fr;
+  }
+  /* line 56, ../sass/_boutique.scss */
+  .tuile img {
+    width: calc(33vw - .1em);
+  }
+}
+@media screen and (min-width: 992px) {
+  /* line 63, ../sass/_boutique.scss */
+  .liste_produits {
+    width: 100%;
+    grid-template-columns: repeat(6, calc(100% / 6));
+    grid-template-rows: 1fr 1fr;
+  }
+
+  /* line 69, ../sass/_boutique.scss */
+  .tuile {
+    grid-template-rows: 3fr 2fr;
+  }
+  /* line 71, ../sass/_boutique.scss */
+  .tuile img {
+    width: calc(100% - .1em);
+  }
+}
+/* line 15, ../sass/style.scss */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* line 18, ../sass/style.scss */
+/* line 21, ../sass/style.scss */
 body {
   font-family: var(--f_texte);
+  overflow-x: hidden;
   max-width: 100%;
   width: 100vw;
-  background-color: var(--c_sombre);
-  color: var(--c_sombre_moyen);
+  background-color: var(--c_sombre_moyen);
+  color: var(--c_clair);
 }
 
 /* Classe */
-/* line 33, ../sass/style.scss */
+/* line 37, ../sass/style.scss */
 .inventaire_nul {
   pointer-events: none;
   opacity: .5;
 }
 
-/* line 38, ../sass/style.scss */
+/* line 42, ../sass/style.scss */
 .disparait {
   display: none;
 }
 
-/* line 46, ../sass/style.scss */
+/* line 50, ../sass/style.scss */
 fieldset ul li {
   margin-bottom: 0.5em;
 }
-/* line 49, ../sass/style.scss */
+/* line 53, ../sass/style.scss */
 fieldset ul li input:invalid {
   background-color: lightpink;
 }
-/* line 53, ../sass/style.scss */
+/* line 57, ../sass/style.scss */
 fieldset ul li input:valid {
   background-color: lightgreen;
 }
-/* line 58, ../sass/style.scss */
+/* line 62, ../sass/style.scss */
 fieldset ul li p {
   margin: 0.2em;
   font-size: .8em;

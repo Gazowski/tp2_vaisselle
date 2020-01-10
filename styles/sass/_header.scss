@@ -26,43 +26,33 @@ header{
 .panier{
     @include flexbox(flex,column,center,center);
     grid-area: panier;
-    position:relative;
-    div{
-        @include flexbox(flex,column,center,center); // centrage du texte
-        position: absolute;
-        left: 57%; top: 21%;
-        border-radius: 50%;
-        font-family: var(--f_titre);
-        font-size: .7em;
-        font-weight: 600;
-        height:20px;
-        //line-height: 2em;
-        text-align: center;
-        width:20px;
-        @include couleur(var(--c_theme),var(--c_clair));
-
-        &.disparait{
-            display: none;
-        }
-    }
-    img{
-        height:50px;
-    }
     
-    button{
-        @include couleur(var(--c_theme),var(--c_clair));
-        border: none;
-        border-radius: 3px;
-        border:solid 1px var(--c_theme);
-        font-family: var(--f_titre);
-        font-size: .6em;
-        font-weight: 600;
-        padding: 0.8em;
-        transition: all .3s ease-out;
-        &:hover{
-            @include couleur(var(--c_clair),var(--c_theme));
-            border:solid 1px var(--c_theme);
+    div{
+        @include flexbox(flex,column,center,center);
+        position:relative;
+        height: 60px;
+        width: 60px;
+        div{
+            @include flexbox(flex,column,center,center); // centrage du texte
+            border-radius: 50%;    
+            position: absolute;
+            left: 62%; top: 21%;
+            font-family: var(--f_titre);
+            font-size: .7em;
+            font-weight: 600;
+            height:20px;
+            text-align: center;
+            width:20px;
+            @include couleur(var(--c_theme),var(--c_clair));
+    
+            &.disparait{
+                display: none;
+            }
         }
+        img{
+            height:50px;
+        }
+
     }
 
 }
