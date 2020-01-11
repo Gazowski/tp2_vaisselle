@@ -90,7 +90,7 @@
 @media screen and (min-width: 992px){
     .liste_produits{
         width:100%;
-        grid-template-columns: repeat(6,calc((100% - 1em)/ 6));
+        grid-template-columns: repeat(6,calc((100% - .5em)/ 6));
         grid-template-rows: repeat(2, 1fr);
     }
 
@@ -102,11 +102,4 @@
         }
     }
     
-    .conteneur_cube .cube .cote_droit{
-        // position:absolute;
-        // left:calc(100% - .5em);
-        // width:calc(100%);
-        // transform-origin:left;
-        //transform:translateY(-100%) rotatey(90deg);
-    }
 }
