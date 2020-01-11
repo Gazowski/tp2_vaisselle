@@ -7396,6 +7396,15 @@ button:hover {
   width: 66%;
 }
 
+/* line 23, ../sass/_bouton.scss */
+.btn-navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em 33vw;
+}
+
 /* line 1, ../sass/_header.scss */
 header {
   background-color: var(--c_clair);
