@@ -15,9 +15,11 @@ button{
 }
 
 .btn-icon{
-    font-size:1em;
-    padding:.2em;
-    width:66%;
+    font-size: 1.3em;
+    padding: .75em 3em;
+    border-radius: 0;
+    background: var(--c_sombre_transparent);
+    border:solid 1px var(--c_sombre_transparent);
 }
 
 .btn-navigation{

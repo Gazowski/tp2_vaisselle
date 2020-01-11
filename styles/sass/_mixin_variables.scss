@@ -31,3 +31,10 @@ body {
     background-color: $couleurBackground;
     color: $couleurTexte;
 }
+
+@mixin centrer{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -24,7 +24,7 @@
 
 body{
     font-family: var(--f_texte);
-    max-width: 100%;
+    //max-width: 100%;
     width:100vw;
 
     @include couleur(var(--c_clair),var(--c_sombre));
@@ -34,6 +34,7 @@ body{
     /*  positionnement relatif par rapport au header   */
     position: relative;
     top:150px;
+    width:100vw;
 }
 
 footer{

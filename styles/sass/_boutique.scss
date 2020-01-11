@@ -13,29 +13,33 @@
     display:grid;
     grid-template-columns: repeat(2 , 50%);
     img{
-        width: calc(100% - .1em);
+        width: calc(100%);
         object-fit: contain;
     }
-    &>div{
+    div{
         display:grid;
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(4, 1fr);
+        grid-template-rows: repeat(3, auto);
         padding:.5em;
-        
-        div{
-            grid-column: 1 / 2;
-            grid-row: 1 / 4;
-            font-size: .8em;
-            .prix{
-                color:var(--c_theme);
-                padding:.2em 0;
-            }
+        //font-size: .8em;
+        .prix{
+            color:var(--c_theme);
+            padding:.2em 0;
         }
-        button{
-            grid-column: 1 / 2;
-            grid-row: 4 / 5;
-            margin-left:16.5%;
-        }
+    }
+}
+
+.cote_droit{
+    grid-template-columns: 1fr;
+    grid-template-rows: 50vw;
+    overflow: hidden;
+    img{
+        object-fit: cover;
+        transform: translateY(-25%);
+        filter: brightness(.75) blur(1px);
+    }
+    button{
+        @include centrer;
     }
 }
 
@@ -82,8 +86,20 @@
 
     .tuile{
         grid-template-columns: 1fr;
-        grid-template-rows: 2fr 1fr;
+        grid-template-rows: 1fr .5fr;
+        div{
+            grid-template-rows: repeat(3, 2.8em);
+        }    
+    }
 
+    .cote_droit{
+        grid-template-rows: calc((100vw / 3) + 9.3em);
+        img{
+            transform: translateY(0%);
+            object-fit: cover;
+            width: initial;
+            height: 100%;
+        }
     }
 }
 
@@ -95,10 +111,20 @@
     }
 
     .tuile{
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: 1fr .5fr;
         
         img{
-            width: calc(100% - .1em);
+            width: calc(100% - .2em);
+        }
+    }
+
+    .cote_droit{
+        grid-template-rows: calc((100vw / 6) + 9em);
+        img{
+            transform: translateY(0%);
+            object-fit: cover;
+            width: initial;
+            height: 100%;
         }
     }
     

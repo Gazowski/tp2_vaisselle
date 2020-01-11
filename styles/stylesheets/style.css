@@ -7391,12 +7391,14 @@ button:hover {
 
 /* line 17, ../sass/_bouton.scss */
 .btn-icon {
-  font-size: 1em;
-  padding: .2em;
-  width: 66%;
+  font-size: 1.3em;
+  padding: .75em 3em;
+  border-radius: 0;
+  background: var(--c_sombre_transparent);
+  border: solid 1px var(--c_sombre_transparent);
 }
 
-/* line 23, ../sass/_bouton.scss */
+/* line 25, ../sass/_bouton.scss */
 .btn-navigation {
   display: flex;
   flex-direction: row;
@@ -7543,57 +7545,65 @@ header h1 {
 }
 /* line 15, ../sass/_boutique.scss */
 .tuile img {
-  width: calc(100% - .1em);
+  width: calc(100%);
   object-fit: contain;
 }
 /* line 19, ../sass/_boutique.scss */
-.tuile > div {
+.tuile div {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(3, auto);
   padding: .5em;
 }
 /* line 25, ../sass/_boutique.scss */
-.tuile > div div {
-  grid-column: 1 / 2;
-  grid-row: 1 / 4;
-  font-size: .8em;
-}
-/* line 29, ../sass/_boutique.scss */
-.tuile > div div .prix {
+.tuile div .prix {
   color: var(--c_theme);
   padding: .2em 0;
 }
-/* line 34, ../sass/_boutique.scss */
-.tuile > div button {
-  grid-column: 1 / 2;
-  grid-row: 4 / 5;
-  margin-left: 16.5%;
+
+/* line 32, ../sass/_boutique.scss */
+.cote_droit {
+  grid-template-columns: 1fr;
+  grid-template-rows: 50vw;
+  overflow: hidden;
+}
+/* line 36, ../sass/_boutique.scss */
+.cote_droit img {
+  object-fit: cover;
+  transform: translateY(-25%);
+  filter: brightness(0.75) blur(1px);
+}
+/* line 41, ../sass/_boutique.scss */
+.cote_droit button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /*  effet hover */
-/* line 43, ../sass/_boutique.scss */
+/* line 47, ../sass/_boutique.scss */
 .conteneur_cube {
   perspective: 800px;
   perspective-origin: center;
 }
-/* line 47, ../sass/_boutique.scss */
+/* line 51, ../sass/_boutique.scss */
 .conteneur_cube .cube {
   transform-style: preserve-3d;
   transform-origin: center;
   position: relative;
   transition: all 1s ease-out;
 }
-/* line 52, ../sass/_boutique.scss */
+/* line 56, ../sass/_boutique.scss */
 .conteneur_cube .cube:hover {
   transform-origin: left;
   transform: rotatey(-90deg) translatex(-100%);
 }
-/* line 58, ../sass/_boutique.scss */
+/* line 62, ../sass/_boutique.scss */
 .conteneur_cube .cube .face button {
   visibility: hidden;
 }
-/* line 63, ../sass/_boutique.scss */
+/* line 67, ../sass/_boutique.scss */
 .conteneur_cube .cube .cote_droit {
   position: absolute;
   left: calc(100% - .5em);
@@ -7603,38 +7613,66 @@ header h1 {
 }
 
 @media screen and (min-width: 576px) {
-  /* line 74, ../sass/_boutique.scss */
+  /* line 78, ../sass/_boutique.scss */
   .liste_produits {
     width: 100%;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: repeat(4, 1fr);
   }
-  /* line 78, ../sass/_boutique.scss */
+  /* line 82, ../sass/_boutique.scss */
   .liste_produits h3 {
     font-size: 1.25em;
   }
 
-  /* line 83, ../sass/_boutique.scss */
+  /* line 87, ../sass/_boutique.scss */
   .tuile {
     grid-template-columns: 1fr;
-    grid-template-rows: 2fr 1fr;
+    grid-template-rows: 1fr .5fr;
+  }
+  /* line 90, ../sass/_boutique.scss */
+  .tuile div {
+    grid-template-rows: repeat(3, 2.8em);
+  }
+
+  /* line 95, ../sass/_boutique.scss */
+  .cote_droit {
+    grid-template-rows: calc((100vw / 3) + 9.3em);
+  }
+  /* line 97, ../sass/_boutique.scss */
+  .cote_droit img {
+    transform: translateY(0%);
+    object-fit: cover;
+    width: initial;
+    height: 100%;
   }
 }
 @media screen and (min-width: 992px) {
-  /* line 91, ../sass/_boutique.scss */
+  /* line 107, ../sass/_boutique.scss */
   .liste_produits {
     width: 100%;
     grid-template-columns: repeat(6, calc((100% - 1em)/ 6));
     grid-template-rows: repeat(2, 1fr);
   }
 
-  /* line 97, ../sass/_boutique.scss */
+  /* line 113, ../sass/_boutique.scss */
   .tuile {
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr .5fr;
   }
-  /* line 100, ../sass/_boutique.scss */
+  /* line 116, ../sass/_boutique.scss */
   .tuile img {
-    width: calc(100% - .1em);
+    width: calc(100% - .2em);
+  }
+
+  /* line 121, ../sass/_boutique.scss */
+  .cote_droit {
+    grid-template-rows: calc((100vw / 6) + 9em);
+  }
+  /* line 123, ../sass/_boutique.scss */
+  .cote_droit img {
+    transform: translateY(0%);
+    object-fit: cover;
+    width: initial;
+    height: 100%;
   }
 }
 /* line 17, ../sass/style.scss */
@@ -7647,7 +7685,6 @@ header h1 {
 /* line 25, ../sass/style.scss */
 body {
   font-family: var(--f_texte);
-  max-width: 100%;
   width: 100vw;
   background-color: var(--c_clair);
   color: var(--c_sombre);
@@ -7658,9 +7695,10 @@ body {
   /*  positionnement relatif par rapport au header   */
   position: relative;
   top: 150px;
+  width: 100vw;
 }
 
-/* line 39, ../sass/style.scss */
+/* line 40, ../sass/style.scss */
 footer {
   background-color: var(--c_sombre_moyen);
   color: var(--c_clair);
@@ -7669,30 +7707,30 @@ footer {
 }
 
 /* Classe */
-/* line 51, ../sass/style.scss */
+/* line 52, ../sass/style.scss */
 .inventaire_nul {
   pointer-events: none;
   opacity: .5;
 }
 
-/* line 56, ../sass/style.scss */
+/* line 57, ../sass/style.scss */
 .disparait {
   display: none;
 }
 
-/* line 64, ../sass/style.scss */
+/* line 65, ../sass/style.scss */
 fieldset ul li {
   margin-bottom: 0.5em;
 }
-/* line 67, ../sass/style.scss */
+/* line 68, ../sass/style.scss */
 fieldset ul li input:invalid {
   background-color: lightpink;
 }
-/* line 71, ../sass/style.scss */
+/* line 72, ../sass/style.scss */
 fieldset ul li input:valid {
   background-color: lightgreen;
 }
-/* line 76, ../sass/style.scss */
+/* line 77, ../sass/style.scss */
 fieldset ul li p {
   margin: 0.2em;
   font-size: .8em;
