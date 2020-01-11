@@ -80,7 +80,6 @@ export class Header{
     }
 
     reduire_header_on_scroll(){
-        console.log(this.elt)
         if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
             this.elt.classList.add('header_fin')
         } else {
