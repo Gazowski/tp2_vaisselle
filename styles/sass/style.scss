@@ -20,21 +20,29 @@
     padding:0;
 }
 
+
+
 body{
     font-family: var(--f_texte);
-    // display: grid;
-    // grid-template-columns: 1fr;
-    // grid-template-rows: minmax(100px, auto);
     max-width: 100%;
     width:100vw;
 
     @include couleur(var(--c_clair),var(--c_sombre));
 }
 
-section{
-    position:absolute;
+.wrapper-page{
+    /*  positionnement relatif par rapport au header   */
+    position: relative;
     top:150px;
 }
+
+footer{
+    @include couleur(var(--c_sombre_moyen),var(--c_clair));
+    padding:5em;
+    text-align: center;
+}
+
+
 
 /* Classe */
 

@@ -17,3 +17,4 @@ nombre de produits sélectionnés s’il y en a au moins 1. -->
 		</button>
 	</div>
 </header>
+<div class="wrapper-page">

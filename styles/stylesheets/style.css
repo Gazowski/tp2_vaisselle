@@ -7402,7 +7402,7 @@ button:hover {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 2em 33vw;
+  padding: 3em 33vw;
 }
 
 /* line 1, ../sass/_header.scss */
@@ -7410,10 +7410,6 @@ header {
   background-color: var(--c_clair);
   color: var(--c_theme);
   box-shadow: 0 0 10px var(--c_sombre_moyen);
-  display: grid;
-  grid-area: hd;
-  grid-auto-rows: minmax(50px, auto);
-  grid-template-areas: "t_hd t_hd t_hd panier";
   height: 150px;
   padding: 1em;
   position: fixed;
@@ -7421,6 +7417,10 @@ header {
   transition: .2s;
   width: 100%;
   z-index: 2;
+  /* positionnement interne   */
+  display: grid;
+  grid-auto-rows: minmax(50px, auto);
+  grid-template-areas: "t_hd t_hd t_hd panier";
 }
 /* line 17, ../sass/_header.scss */
 header h1 {
@@ -7624,7 +7624,7 @@ header h1 {
   /* line 91, ../sass/_boutique.scss */
   .liste_produits {
     width: 100%;
-    grid-template-columns: repeat(6, calc((100% - .5em)/ 6));
+    grid-template-columns: repeat(6, calc((100% - 1em)/ 6));
     grid-template-rows: repeat(2, 1fr);
   }
 
@@ -7644,7 +7644,7 @@ header h1 {
   padding: 0;
 }
 
-/* line 23, ../sass/style.scss */
+/* line 25, ../sass/style.scss */
 body {
   font-family: var(--f_texte);
   max-width: 100%;
@@ -7653,37 +7653,46 @@ body {
   color: var(--c_sombre);
 }
 
-/* line 34, ../sass/style.scss */
-section {
-  position: absolute;
+/* line 33, ../sass/style.scss */
+.wrapper-page {
+  /*  positionnement relatif par rapport au header   */
+  position: relative;
   top: 150px;
 }
 
+/* line 39, ../sass/style.scss */
+footer {
+  background-color: var(--c_sombre_moyen);
+  color: var(--c_clair);
+  padding: 5em;
+  text-align: center;
+}
+
 /* Classe */
-/* line 43, ../sass/style.scss */
+/* line 51, ../sass/style.scss */
 .inventaire_nul {
   pointer-events: none;
   opacity: .5;
 }
 
-/* line 48, ../sass/style.scss */
+/* line 56, ../sass/style.scss */
 .disparait {
   display: none;
 }
 
-/* line 56, ../sass/style.scss */
+/* line 64, ../sass/style.scss */
 fieldset ul li {
   margin-bottom: 0.5em;
 }
-/* line 59, ../sass/style.scss */
+/* line 67, ../sass/style.scss */
 fieldset ul li input:invalid {
   background-color: lightpink;
 }
-/* line 63, ../sass/style.scss */
+/* line 71, ../sass/style.scss */
 fieldset ul li input:valid {
   background-color: lightgreen;
 }
-/* line 68, ../sass/style.scss */
+/* line 76, ../sass/style.scss */
 fieldset ul li p {
   margin: 0.2em;
   font-size: .8em;
