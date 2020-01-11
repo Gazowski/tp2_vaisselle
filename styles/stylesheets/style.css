@@ -7356,6 +7356,13 @@ readers do not read off random characters that represent icons */
   font-family: 'Font Awesome 5 Brands';
 }
 
+/* line 1, ../sass/_titre_section.scss */
+h2 {
+  font-family: var(--f_titre);
+  color: var(--c_theme);
+  padding: 2em 1rem;
+}
+
 /* line 1, ../sass/_bouton.scss */
 button {
   background-color: var(--c_theme);
@@ -7387,15 +7394,25 @@ button:hover {
 header {
   background-color: var(--c_clair);
   color: var(--c_theme);
+  box-shadow: 0 0 10px var(--c_sombre_moyen);
   display: grid;
   grid-area: hd;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(100px, auto);
+  grid-auto-rows: minmax(50px, auto);
   grid-template-areas: "t_hd t_hd t_hd panier";
+  height: 150px;
   padding: 1em;
+  position: fixed;
+  top: 0;
+  transition: .2s;
+  width: 100%;
+  z-index: 2;
 }
-/* line 10, ../sass/_header.scss */
+/* line 17, ../sass/_header.scss */
 header h1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   font-family: var(--f_titre);
   font-weight: 900;
   font-size: 2em;
@@ -7403,7 +7420,32 @@ header h1 {
   letter-spacing: -.04em;
 }
 
-/* line 26, ../sass/_header.scss */
+/* line 34, ../sass/_header.scss */
+.header_fin {
+  height: 100px;
+  padding: .5em;
+}
+/* line 37, ../sass/_header.scss */
+.header_fin h1 {
+  font-size: 1.5em;
+  margin: 0;
+}
+/* line 43, ../sass/_header.scss */
+.header_fin .panier:panier {
+  height: 40px;
+}
+/* line 46, ../sass/_header.scss */
+.header_fin .panier > div {
+  justify-content: flex-start;
+  height: 40px;
+}
+/* line 50, ../sass/_header.scss */
+.header_fin .panier img {
+  z-index: 0;
+  height: 40px;
+}
+
+/* line 58, ../sass/_header.scss */
 .panier {
   display: flex;
   flex-direction: column;
@@ -7411,7 +7453,7 @@ header h1 {
   align-items: center;
   grid-area: panier;
 }
-/* line 30, ../sass/_header.scss */
+/* line 62, ../sass/_header.scss */
 .panier div {
   display: flex;
   flex-direction: column;
@@ -7421,7 +7463,7 @@ header h1 {
   height: 60px;
   width: 60px;
 }
-/* line 35, ../sass/_header.scss */
+/* line 67, ../sass/_header.scss */
 .panier div div {
   display: flex;
   flex-direction: column;
@@ -7440,15 +7482,33 @@ header h1 {
   background-color: var(--c_theme);
   color: var(--c_clair);
 }
-/* line 48, ../sass/_header.scss */
+/* line 80, ../sass/_header.scss */
 .panier div div.disparait {
   display: none;
 }
-/* line 52, ../sass/_header.scss */
+/* line 84, ../sass/_header.scss */
 .panier div img {
   height: 50px;
 }
 
+@media screen and (min-width: 576px) {
+  /* line 93, ../sass/_header.scss */
+  header h1 {
+    font-size: 3em;
+    margin: .3em 0;
+  }
+}
+@media screen and (min-width: 992px) {
+  /* line 100, ../sass/_header.scss */
+  header {
+    grid-template-areas: "t_hd t_hd t_hd t_hd t_hd panier";
+  }
+  /* line 102, ../sass/_header.scss */
+  header h1 {
+    font-size: 3em;
+    margin: .3em 0;
+  }
+}
 /* line 1, ../sass/_boutique.scss */
 .liste_produits {
   display: grid;
@@ -7549,7 +7609,7 @@ header h1 {
   /* line 91, ../sass/_boutique.scss */
   .liste_produits {
     width: 100%;
-    grid-template-columns: repeat(6, calc((100% - 1em)/ 6));
+    grid-template-columns: repeat(6, calc((100% - .5em)/ 6));
     grid-template-rows: repeat(2, 1fr);
   }
 
@@ -7562,47 +7622,53 @@ header h1 {
     width: calc(100% - .1em);
   }
 }
-/* line 15, ../sass/style.scss */
+/* line 16, ../sass/style.scss */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* line 21, ../sass/style.scss */
+/* line 22, ../sass/style.scss */
 body {
   font-family: var(--f_texte);
   max-width: 100%;
   width: 100vw;
-  background-color: var(--c_sombre_moyen);
-  color: var(--c_clair);
+  background-color: var(--c_clair);
+  color: var(--c_sombre);
+}
+
+/* line 33, ../sass/style.scss */
+section {
+  position: absolute;
+  top: 150px;
 }
 
 /* Classe */
-/* line 37, ../sass/style.scss */
+/* line 42, ../sass/style.scss */
 .inventaire_nul {
   pointer-events: none;
   opacity: .5;
 }
 
-/* line 42, ../sass/style.scss */
+/* line 47, ../sass/style.scss */
 .disparait {
   display: none;
 }
 
-/* line 50, ../sass/style.scss */
+/* line 55, ../sass/style.scss */
 fieldset ul li {
   margin-bottom: 0.5em;
 }
-/* line 53, ../sass/style.scss */
+/* line 58, ../sass/style.scss */
 fieldset ul li input:invalid {
   background-color: lightpink;
 }
-/* line 57, ../sass/style.scss */
+/* line 62, ../sass/style.scss */
 fieldset ul li input:valid {
   background-color: lightgreen;
 }
-/* line 62, ../sass/style.scss */
+/* line 67, ../sass/style.scss */
 fieldset ul li p {
   margin: 0.2em;
   font-size: .8em;

@@ -8,6 +8,7 @@
 @import "fontawesome/solid.scss";
 @import "fontawesome/regular.scss";
 @import "fontawesome/brands.scss";
+@import "_titre_section.scss";
 @import "_bouton.scss";
 @import "_header.scss";
 @import "_boutique.scss";
@@ -23,11 +24,15 @@ body{
     // display: grid;
     // grid-template-columns: 1fr;
     // grid-template-rows: minmax(100px, auto);
-    //overflow-x: hidden;
     max-width: 100%;
     width:100vw;
 
-    @include couleur(var(--c_sombre_moyen),var(--c_clair));
+    @include couleur(var(--c_clair),var(--c_sombre));
+}
+
+section{
+    position:absolute;
+    top:150px;
 }
 
 /* Classe */
