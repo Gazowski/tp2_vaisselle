@@ -7360,7 +7360,13 @@ readers do not read off random characters that represent icons */
 h2 {
   font-family: var(--f_titre);
   color: var(--c_theme);
-  padding: 2em 1rem;
+  padding: 2em 1rem 1em;
+}
+
+/* line 1, ../sass/_filtre.scss */
+.filtre {
+  text-align: right;
+  padding: .5em 1rem;
 }
 
 /* line 1, ../sass/_bouton.scss */
@@ -7622,14 +7628,14 @@ header h1 {
     width: calc(100% - .1em);
   }
 }
-/* line 16, ../sass/style.scss */
+/* line 17, ../sass/style.scss */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* line 22, ../sass/style.scss */
+/* line 23, ../sass/style.scss */
 body {
   font-family: var(--f_texte);
   max-width: 100%;
@@ -7638,37 +7644,37 @@ body {
   color: var(--c_sombre);
 }
 
-/* line 33, ../sass/style.scss */
+/* line 34, ../sass/style.scss */
 section {
   position: absolute;
   top: 150px;
 }
 
 /* Classe */
-/* line 42, ../sass/style.scss */
+/* line 43, ../sass/style.scss */
 .inventaire_nul {
   pointer-events: none;
   opacity: .5;
 }
 
-/* line 47, ../sass/style.scss */
+/* line 48, ../sass/style.scss */
 .disparait {
   display: none;
 }
 
-/* line 55, ../sass/style.scss */
+/* line 56, ../sass/style.scss */
 fieldset ul li {
   margin-bottom: 0.5em;
 }
-/* line 58, ../sass/style.scss */
+/* line 59, ../sass/style.scss */
 fieldset ul li input:invalid {
   background-color: lightpink;
 }
-/* line 62, ../sass/style.scss */
+/* line 63, ../sass/style.scss */
 fieldset ul li input:valid {
   background-color: lightgreen;
 }
-/* line 67, ../sass/style.scss */
+/* line 68, ../sass/style.scss */
 fieldset ul li p {
   margin: 0.2em;
   font-size: .8em;
