@@ -14,6 +14,7 @@
 @import "_header.scss";
 @import "_boutique.scss";
 @import "_panier.scss";
+@import "_formulaire.scss";
 
 *{
     box-sizing: border-box;
@@ -29,28 +30,6 @@ body{
     width:100vw;
 
     @include couleur(var(--c_clair),var(--c_sombre));
-}
-
-fieldset{
-    ul{
-        li{
-            margin-bottom: 0.5em;
-            input{
-                &:invalid{
-                    background-color: lightpink;
-                }
-                
-                &:valid{
-                    background-color: lightgreen;
-                }
-            }
-
-            p{
-                margin:0.2em;
-                font-size: .8em;
-            }
-        }
-    }
 }
 
 footer{

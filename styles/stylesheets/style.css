@@ -7787,15 +7787,108 @@ header h1 a:hover {
   .tuile-panier div .petit-ecran {
     display: none;
   }
+
+  /* line 85, ../sass/_panier.scss */
+  .prix-total {
+    grid-template-columns: 3fr 1fr 1fr;
+  }
 }
-/* line 18, ../sass/style.scss */
+/* line 1, ../sass/_formulaire.scss */
+.formulaire {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--c_sombre_transparent);
+  padding: 3em 0;
+  position: absolute;
+  left: 0;
+  top: -150px;
+  width: 100%;
+  z-index: 4;
+}
+/* line 11, ../sass/_formulaire.scss */
+.formulaire form {
+  background: var(--c_clair);
+  box-shadow: 0 0 30px var(--c_sombre);
+  padding: 2em;
+  width: 75%;
+}
+/* line 18, ../sass/_formulaire.scss */
+.formulaire legend {
+  color: var(--c_sombre_moyen);
+  font-family: var(--f_titre);
+  font-size: 1.5em;
+  font-weight: 800;
+  padding: .25em 1em;
+}
+/* line 26, ../sass/_formulaire.scss */
+.formulaire fieldset {
+  background-color: var(--c_clair);
+  color: var(--c_sombre_moyen);
+  border: 2px solid var(--c_sombre_moyen);
+  box-shadow: 0 5px 5px var(--c_sombre_moyen);
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 2em;
+  padding: .3em 2em;
+}
+/* line 34, ../sass/_formulaire.scss */
+.formulaire fieldset label {
+  background-color: var(--c_clair);
+  margin-left: 1.5em;
+  padding: .3em 1em;
+  position: relative;
+  z-index: 2;
+}
+/* line 43, ../sass/_formulaire.scss */
+.formulaire fieldset ul li {
+  margin-bottom: 0.5em;
+  list-style: none;
+}
+/* line 46, ../sass/_formulaire.scss */
+.formulaire fieldset ul li p {
+  margin-top: -0.5em;
+  font-size: .8em;
+}
+/* line 53, ../sass/_formulaire.scss */
+.formulaire fieldset input {
+  border: 2px solid var(--c_sombre_moyen);
+  transform: translateY(-0.5em);
+  padding: .75em;
+  width: 100%;
+}
+/* line 59, ../sass/_formulaire.scss */
+.formulaire fieldset input[type="radio"], .formulaire fieldset input[type="checkbox"] {
+  width: initial;
+}
+/* line 65, ../sass/_formulaire.scss */
+.formulaire fieldset fieldset {
+  font-size: 1em;
+}
+/* line 67, ../sass/_formulaire.scss */
+.formulaire fieldset fieldset legend {
+  font-family: var(--f_texte);
+  font-size: 1em;
+  font-weight: 600;
+}
+
+/* line 76, ../sass/_formulaire.scss */
+input {
+  background-color: var(--c_clair);
+  color: var(--c_sombre_moyen);
+  border: none;
+  background-color: var(--c_clair);
+}
+
+/* line 19, ../sass/style.scss */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* line 26, ../sass/style.scss */
+/* line 27, ../sass/style.scss */
 body {
   font-family: var(--f_texte);
   width: 100vw;
@@ -7803,25 +7896,7 @@ body {
   color: var(--c_sombre);
 }
 
-/* line 36, ../sass/style.scss */
-fieldset ul li {
-  margin-bottom: 0.5em;
-}
-/* line 39, ../sass/style.scss */
-fieldset ul li input:invalid {
-  background-color: lightpink;
-}
-/* line 43, ../sass/style.scss */
-fieldset ul li input:valid {
-  background-color: lightgreen;
-}
-/* line 48, ../sass/style.scss */
-fieldset ul li p {
-  margin: 0.2em;
-  font-size: .8em;
-}
-
-/* line 56, ../sass/style.scss */
+/* line 35, ../sass/style.scss */
 footer {
   background-color: var(--c_sombre_moyen);
   color: var(--c_clair);
@@ -7830,7 +7905,7 @@ footer {
 }
 
 /* Classe */
-/* line 66, ../sass/style.scss */
+/* line 45, ../sass/style.scss */
 .wrapper-page {
   /*  positionnement relatif par rapport au header   */
   position: relative;
@@ -7838,13 +7913,13 @@ footer {
   width: 100vw;
 }
 
-/* line 74, ../sass/style.scss */
+/* line 53, ../sass/style.scss */
 .inventaire_nul {
   pointer-events: none;
   opacity: .5;
 }
 
-/* line 79, ../sass/style.scss */
+/* line 58, ../sass/style.scss */
 .disparait {
   display: none;
 }
