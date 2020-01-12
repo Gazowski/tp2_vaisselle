@@ -9,8 +9,16 @@
 .tuile{
     @include couleur(var(--c_clair),var(--c_sombre));
     border:1px solid var(--c_sombre_moyen);
-    cursor:pointer ;
     display:grid;
+
+    .prix{
+        color:var(--c_theme);
+        padding:.2em 0;
+    }
+}
+
+.tuile-boutique{
+    cursor:pointer ;
     grid-template-columns: repeat(2 , 50%);
     img{
         width: calc(100%);
@@ -22,10 +30,6 @@
         grid-template-rows: repeat(3, auto);
         padding:.5em;
         //font-size: .8em;
-        .prix{
-            color:var(--c_theme);
-            padding:.2em 0;
-        }
     }
 }
 
