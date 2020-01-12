@@ -66,6 +66,7 @@ header{
         width: 60px;
         div{
             @include flexbox(flex,column,center,center); // centrage du texte
+            @include couleur(var(--c_theme),var(--c_clair));
             border-radius: 50%;    
             position: absolute;
             left: 62%; top: 21%;
@@ -75,7 +76,7 @@ header{
             height:20px;
             text-align: center;
             width:20px;
-            @include couleur(var(--c_theme),var(--c_clair));
+            z-index: 2;
     
             &.disparait{
                 display: none;
