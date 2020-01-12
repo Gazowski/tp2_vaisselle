@@ -31,36 +31,6 @@ body{
     @include couleur(var(--c_clair),var(--c_sombre));
 }
 
-.wrapper-page{
-    /*  positionnement relatif par rapport au header   */
-    position: relative;
-    top:150px;
-    width:100vw;
-}
-
-footer{
-    @include couleur(var(--c_sombre_moyen),var(--c_clair));
-    padding:5em;
-    text-align: center;
-}
-
-
-
-/* Classe */
-
-
-
-.inventaire_nul{
-    pointer-events: none;
-    opacity: .5;
-}
-
-.disparait{
-    display: none;
-}
-
-
-
 fieldset{
     ul{
         li{
@@ -82,3 +52,35 @@ fieldset{
         }
     }
 }
+
+footer{
+    @include couleur(var(--c_sombre_moyen),var(--c_clair));
+    padding:5em;
+    text-align: center;
+}
+
+
+
+/* Classe */
+
+.wrapper-page{
+    /*  positionnement relatif par rapport au header   */
+    position: relative;
+    top:150px;
+    width:100vw;
+}
+
+
+.inventaire_nul{
+    pointer-events: none;
+    opacity: .5;
+}
+
+.disparait{
+    display: none;
+}
+
+
+
+
+

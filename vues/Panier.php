@@ -18,6 +18,9 @@
             <div>
                 <h3><?= $produit["nom"] ?></h3>
                 <p><span data-item-inventaire = <?= $produit["inventaire"]?>><?= $produit["inventaire"]?></span> en stock</p>
+                <h3 class="prix petit-ecran"><?=  $produit["prix"]?>$</h3>
+            </div>
+            <div class="ecran-moyen">
                 <h3 class="prix"><?=  $produit["prix"]?>$</h3>
             </div>
             <div>

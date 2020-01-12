@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
 * Javascript TP2
 * feuille de style principale
@@ -13,10 +14,10 @@ body {
   --c_theme_clair: #88fb5b;
   --f_titre: 'Montserrat', sans-serif;
   --f_texte: 'Raleway', sans-serif;
-  --ecran_moyen: 576px;
-  --ecran_grand: 992px;
 }
 
+/* les variables ne peuvent pas être utilisées en tant que selecteur (ou tout ce qui est à l'extérieur des accolades) 
+    voir https://stackoverflow.com/questions/40722882/css-native-variables-not-working-in-media-queries/40723269    */
 /* mixin */
 /*!
  * Font Awesome Free 5.12.0 by @fontawesome - https://fontawesome.com
@@ -7645,12 +7646,12 @@ header h1 a:hover {
   }
 
   /* line 91, ../sass/_boutique.scss */
-  .tuile {
+  .tuile-boutique {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr .5fr;
   }
   /* line 94, ../sass/_boutique.scss */
-  .tuile div {
+  .tuile-boutique div {
     grid-template-rows: 4.5em 2.4em 1.5em;
   }
 
@@ -7674,11 +7675,11 @@ header h1 a:hover {
   }
 
   /* line 116, ../sass/_boutique.scss */
-  .tuile {
+  .tuile-boutique {
     grid-template-rows: 1fr .5fr;
   }
   /* line 119, ../sass/_boutique.scss */
-  .tuile img {
+  .tuile-boutique img {
     width: calc(100% - .2em);
   }
 
@@ -7712,9 +7713,10 @@ header h1 a:hover {
 /* line 19, ../sass/_panier.scss */
 .tuile-panier {
   display: grid;
-  grid-template-columns: repeat(3, calc(100% / 3));
+  grid-template-columns: repeat(4, calc(100% / 3));
+  grid-template-rows: minmax(auto, 125px);
 }
-/* line 22, ../sass/_panier.scss */
+/* line 23, ../sass/_panier.scss */
 .tuile-panier div {
   display: flex;
   flex-direction: column;
@@ -7722,15 +7724,20 @@ header h1 a:hover {
   align-items: flex-start;
   padding: .5em;
 }
-/* line 25, ../sass/_panier.scss */
+/* line 26, ../sass/_panier.scss */
 .tuile-panier div:last-of-type + div {
   align-items: center;
 }
 /* line 29, ../sass/_panier.scss */
-.tuile-panier img {
-  width: 100%;
+.tuile-panier div.ecran-moyen {
+  display: none;
 }
-/* line 32, ../sass/_panier.scss */
+/* line 33, ../sass/_panier.scss */
+.tuile-panier img {
+  max-width: 100%;
+  max-height: 100%;
+}
+/* line 37, ../sass/_panier.scss */
 .tuile-panier input {
   background: var(--c_clair);
   border: none;
@@ -7738,26 +7745,49 @@ header h1 a:hover {
   text-align: center;
   width: 3em;
 }
-/* line 38, ../sass/_panier.scss */
+/* line 43, ../sass/_panier.scss */
 .tuile-panier input::-webkit-inner-spin-button, .tuile-panier input::-webkit-outer-spin-button {
   opacity: 1;
 }
 
-/* line 46, ../sass/_panier.scss */
+/* line 51, ../sass/_panier.scss */
 .prix-total {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas: ". . total";
 }
-/* line 50, ../sass/_panier.scss */
+/* line 55, ../sass/_panier.scss */
 .prix-total div {
   grid-area: total;
 }
-/* line 53, ../sass/_panier.scss */
+/* line 58, ../sass/_panier.scss */
 .prix-total h3 {
   padding: 1em 0;
 }
 
+@media screen and (min-width: 576px) {
+  /* line 65, ../sass/_panier.scss */
+  .titre-col {
+    grid-template-columns: 3fr 1fr 1fr;
+  }
+  /* line 67, ../sass/_panier.scss */
+  .titre-col div:first-of-type + div {
+    visibility: visible;
+  }
+
+  /* line 72, ../sass/_panier.scss */
+  .tuile-panier {
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+  }
+  /* line 75, ../sass/_panier.scss */
+  .tuile-panier div.ecran-moyen {
+    display: flex;
+  }
+  /* line 78, ../sass/_panier.scss */
+  .tuile-panier div .petit-ecran {
+    display: none;
+  }
+}
 /* line 18, ../sass/style.scss */
 * {
   box-sizing: border-box;
@@ -7773,15 +7803,25 @@ body {
   color: var(--c_sombre);
 }
 
-/* line 34, ../sass/style.scss */
-.wrapper-page {
-  /*  positionnement relatif par rapport au header   */
-  position: relative;
-  top: 150px;
-  width: 100vw;
+/* line 36, ../sass/style.scss */
+fieldset ul li {
+  margin-bottom: 0.5em;
+}
+/* line 39, ../sass/style.scss */
+fieldset ul li input:invalid {
+  background-color: lightpink;
+}
+/* line 43, ../sass/style.scss */
+fieldset ul li input:valid {
+  background-color: lightgreen;
+}
+/* line 48, ../sass/style.scss */
+fieldset ul li p {
+  margin: 0.2em;
+  font-size: .8em;
 }
 
-/* line 41, ../sass/style.scss */
+/* line 56, ../sass/style.scss */
 footer {
   background-color: var(--c_sombre_moyen);
   color: var(--c_clair);
@@ -7790,31 +7830,21 @@ footer {
 }
 
 /* Classe */
-/* line 53, ../sass/style.scss */
+/* line 66, ../sass/style.scss */
+.wrapper-page {
+  /*  positionnement relatif par rapport au header   */
+  position: relative;
+  top: 150px;
+  width: 100vw;
+}
+
+/* line 74, ../sass/style.scss */
 .inventaire_nul {
   pointer-events: none;
   opacity: .5;
 }
 
-/* line 58, ../sass/style.scss */
+/* line 79, ../sass/style.scss */
 .disparait {
   display: none;
-}
-
-/* line 66, ../sass/style.scss */
-fieldset ul li {
-  margin-bottom: 0.5em;
-}
-/* line 69, ../sass/style.scss */
-fieldset ul li input:invalid {
-  background-color: lightpink;
-}
-/* line 73, ../sass/style.scss */
-fieldset ul li input:valid {
-  background-color: lightgreen;
-}
-/* line 78, ../sass/style.scss */
-fieldset ul li p {
-  margin: 0.2em;
-  font-size: .8em;
 }

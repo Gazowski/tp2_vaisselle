@@ -18,16 +18,21 @@
 
 .tuile-panier{
     display:grid;
-    grid-template-columns: repeat(3,calc(100% / 3));
+    grid-template-columns: repeat(4,calc(100% / 3));
+    grid-template-rows: minmax(auto,125px);
     div{
         @include flexbox(flex,column,center,flex-start);
         padding: .5em;
         &:last-of-type+div{
             align-items: center;
         }
+        &.ecran-moyen{
+            display:none;
+        }
     }
     img{
-        width:100%;
+        max-width:100%;
+        max-height: 100%;
     }
     input{
         background:var(--c_clair);
@@ -53,6 +58,28 @@
     h3{
        padding:1em 0;
 
+    }
+}
+
+@media screen and (min-width: $ecran_moyen){
+    .titre-col{
+        grid-template-columns: 3fr 1fr 1fr;
+        div:first-of-type+div{
+            visibility: visible;
+        }
+    }
+    
+    .tuile-panier{
+        grid-template-columns: 1fr 2fr 1fr 1fr;
+        div{
+            &.ecran-moyen{
+                display: flex;
+            }
+            .petit-ecran{
+                display:none;
+            }
+
+        }
     }
 }
 

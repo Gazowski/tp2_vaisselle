@@ -88,7 +88,7 @@
         }
     }
 
-    .tuile{
+    .tuile-boutique{
         grid-template-columns: 1fr;
         grid-template-rows: 1fr .5fr;
         div{
@@ -113,7 +113,7 @@
         grid-template-rows: repeat(2, auto);
     }
 
-    .tuile{
+    .tuile-boutique{
         grid-template-rows: 1fr .5fr;
         
         img{
@@ -123,13 +123,5 @@
 
     .cote_droit{
         grid-template-rows: calc((100vw / 6) + 9em);
-    }
-    
-    .conteneur_cube .cube .cote_droit{
-        // position:absolute;
-        // left:calc(100% - .5em);
-        // width:calc(100%);
-        // transform-origin:left;
-        //transform:translateY(-100%) rotatey(90deg);
     }
 }
