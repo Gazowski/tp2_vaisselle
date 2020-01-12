@@ -18,28 +18,32 @@ export class ListeProduits{
         this.init()
     }
     
-    init = () =>{
+    init(){
         this.obtenir_total_produits()
-        this.btn_suivant.addEventListener('click',()=>{
+        this.btn_suivant.addEventListener('click', () => {
             this.pagination += 1
             this.afficher_liste_produits()
         })
-        this.btn_precedent.addEventListener('click',()=>{
+        this.btn_precedent.addEventListener('click', () => {
             this.pagination -= 1
             this.afficher_liste_produits()
         })
-        this.champ_filtre.addEventListener('change',()=>{
+        this.champ_filtre.addEventListener('change', () => {
             this.afficher_liste_produits()
         })
         this.instancier_item()           
     }
     
-    afficher_liste_produits = () =>{
+    afficher_liste_produits(){
         this.afficher_produits()
         this.activer_boutons()
+        window.scroll({
+            top: 150,
+            behavior: 'smooth'
+          });
     }
 
-    instancier_item = () =>{
+    instancier_item(){
         // NOTE : items est déclaré ici car la liste est rechargé par les requetes ajax.
         // la liste des items doit être verifier a chaque rechargement de la liste
         let items = this.elt.querySelectorAll('[data-js-item]')
@@ -48,7 +52,7 @@ export class ListeProduits{
         }
     }
 
-    obtenir_total_produits = () =>{
+    obtenir_total_produits(){
         this.paramAjax = 
         {
             methode : "GET",
@@ -56,10 +60,11 @@ export class ListeProduits{
         }
         requeteAjax(this.paramAjax, (reponse_ajax) => {
             this.elt.dataset.totalProduit = reponse_ajax
+            this.activer_boutons()
         }) 
     }
     
-    afficher_produits = () =>{
+    afficher_produits(){
         let offsetPagination = this.pagination * this.produits_par_page,
             filtre = this.champ_filtre.value
         this.paramAjax = 
@@ -79,9 +84,10 @@ export class ListeProduits{
         this.wrapper_liste.innerHTML = items
     }
 
-    activer_boutons = () =>{
+    activer_boutons(){
         // calcul du nombre de page max (page 1 = 0)
         let pagination_max = Math.floor(this.elt.dataset.totalProduit/this.produits_par_page)
+        console.log(this.elt.dataset.totalProduit)
         this.btn_precedent.disabled = this.pagination > 0 ? false : true
         this.btn_suivant.disabled = this.pagination < pagination_max ? false : true       
     }
