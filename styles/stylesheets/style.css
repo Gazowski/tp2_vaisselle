@@ -7383,13 +7383,18 @@ button {
   transition: all .3s ease-out;
 }
 /* line 11, ../sass/_bouton.scss */
+button:disabled {
+  opacity: .5;
+  pointer-events: none;
+}
+/* line 15, ../sass/_bouton.scss */
 button:hover {
   background-color: var(--c_clair);
   color: var(--c_theme);
   border: solid 1px var(--c_theme);
 }
 
-/* line 17, ../sass/_bouton.scss */
+/* line 22, ../sass/_bouton.scss */
 .btn-icon {
   font-size: 1.3em;
   padding: .75em 3em;
@@ -7398,7 +7403,7 @@ button:hover {
   border: solid 1px var(--c_sombre_transparent);
 }
 
-/* line 25, ../sass/_bouton.scss */
+/* line 30, ../sass/_bouton.scss */
 .btn-navigation {
   display: flex;
   flex-direction: row;
@@ -7618,7 +7623,7 @@ header h1 {
   .liste_produits {
     width: 100%;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(4, auto);
   }
   /* line 82, ../sass/_boutique.scss */
   .liste_produits h3 {
@@ -7632,7 +7637,7 @@ header h1 {
   }
   /* line 90, ../sass/_boutique.scss */
   .tuile div {
-    grid-template-rows: repeat(3, 2.8em);
+    grid-template-rows: 4.5em 2.4em 1.5em;
   }
 
   /* line 95, ../sass/_boutique.scss */
@@ -7650,30 +7655,22 @@ header h1 {
 @media screen and (min-width: 992px) {
   /* line 107, ../sass/_boutique.scss */
   .liste_produits {
-    width: 100%;
-    grid-template-columns: repeat(6, calc((100% - 1em)/ 6));
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, auto);
   }
 
-  /* line 113, ../sass/_boutique.scss */
+  /* line 112, ../sass/_boutique.scss */
   .tuile {
     grid-template-rows: 1fr .5fr;
   }
-  /* line 116, ../sass/_boutique.scss */
+  /* line 115, ../sass/_boutique.scss */
   .tuile img {
     width: calc(100% - .2em);
   }
 
-  /* line 121, ../sass/_boutique.scss */
+  /* line 120, ../sass/_boutique.scss */
   .cote_droit {
     grid-template-rows: calc((100vw / 6) + 9em);
-  }
-  /* line 123, ../sass/_boutique.scss */
-  .cote_droit img {
-    transform: translateY(0%);
-    object-fit: cover;
-    width: initial;
-    height: 100%;
   }
 }
 /* line 17, ../sass/style.scss */

@@ -78,7 +78,7 @@
     .liste_produits{
         width:100%;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: repeat(4, 1fr);
+        grid-template-rows: repeat(4, auto);
         h3{
             font-size:1.25em;
         }
@@ -88,7 +88,7 @@
         grid-template-columns: 1fr;
         grid-template-rows: 1fr .5fr;
         div{
-            grid-template-rows: repeat(3, 2.8em);
+            grid-template-rows: 4.5em 2.4em 1.5em;
         }    
     }
 
@@ -105,9 +105,8 @@
 
 @media screen and (min-width: 992px){
     .liste_produits{
-        width:100%;
-        grid-template-columns: repeat(6,calc((100% - 1em)/ 6));
-        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(6,1fr);
+        grid-template-rows: repeat(2, auto);
     }
 
     .tuile{
@@ -120,12 +119,6 @@
 
     .cote_droit{
         grid-template-rows: calc((100vw / 6) + 9em);
-        img{
-            transform: translateY(0%);
-            object-fit: cover;
-            width: initial;
-            height: 100%;
-        }
     }
     
     .conteneur_cube .cube .cote_droit{

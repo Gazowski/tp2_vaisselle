@@ -8,10 +8,15 @@ button{
     font-weight: 600;
     padding: 0.8em;
     transition: all .3s ease-out;
+    &:disabled{
+        opacity:.5;
+        pointer-events: none;
+    }
     &:hover{
         @include couleur(var(--c_clair),var(--c_theme));
         border:solid 1px var(--c_theme);
     }
+    
 }
 
 .btn-icon{
