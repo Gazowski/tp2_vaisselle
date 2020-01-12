@@ -5,7 +5,7 @@
 				data-js-item
 				data-item-id = <?= $produit['id'] ?>
 				data-item-nom = <?= str_replace(" ","_",$produit["nom"]) ?>>
-				<article class="tuile face">
+				<article class="tuile tuile-boutique face">
 					<img src=<?= $produit['lienimage'] ?>
 						alt=<?= $produit['nom'] ?>>
 						<div>
