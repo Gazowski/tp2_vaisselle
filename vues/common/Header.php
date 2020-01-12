@@ -2,7 +2,7 @@
 nombre de produits sélectionnés s’il y en a au moins 1. -->
 
 <header>
-	<h1>Boutique de vaissellerie</h1>
+	<h1><a href="index.php?">Boutique de vaissellerie</a></h1>
 	<div class="panier"
 		data-js-panier>
 		<div>

@@ -16,11 +16,19 @@ header{
 
     h1{
         @include flexbox(flex,column,center,flex-start);
-        font-family: var(--f_titre);
-        font-weight: 900;
-        font-size : 2em;
-        grid-area: t_hd;
-        letter-spacing: -.04em;
+        a{
+            color:inherit;
+            font-family: var(--f_titre);
+            font-weight: 900;
+            font-size : 1em;
+            grid-area: t_hd;
+            letter-spacing: -.04em;
+            text-decoration: none;
+            transition: color 1s cubic-bezier(0, 0, 0.01, 0.75);
+            &:hover{
+                color:hsla(148, 25%, 75%, 1);
+            }
+        }
     }
     
     

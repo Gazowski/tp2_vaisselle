@@ -1,4 +1,4 @@
-<a href="index.php?">retour boutique</a>
+
 <div data-js-wrapper-liste>
     <?php foreach($data as $id => $produit){
         $montant_total_item = $produit["prix"] * $produit["quantite"] ?>
