@@ -1,4 +1,4 @@
-button{
+button, .bouton-submit{
     @include couleur(var(--c_theme),var(--c_clair));
     border: none;
     border-radius: 3px;
@@ -30,5 +30,26 @@ button{
 .btn-navigation{
     @include flexbox(flex,row,space-between,center);
     padding:3em 33vw;
+}
+
+.btn-close{
+    @include couleur(inherit,inherit);
+    background-color: inherit;
+    border: none;
+    color: inherit;
+    font-size: 1.75em;
+    padding: initial;
+    transition:.5s;
+    &:hover{
+        border: none;
+        color: var(--c_sombre_transparent);
+        transform: rotate(.5turn);
+    }
+}
+
+.bouton-submit{
+    font-size:initial;
+    padding:1em;
+    width:100%;
 }
 

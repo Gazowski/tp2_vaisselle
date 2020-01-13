@@ -12,6 +12,7 @@
         background:var(--c_clair);
         box-shadow: 0 0 30px var(--c_sombre);
         padding: 2em;
+        text-align: right;  // uniquement pour le bouton close
         width:75%;
     }
 
@@ -31,6 +32,7 @@
         font-weight: 600;
         margin-bottom: 2em;
         padding: .3em 2em;
+        text-align: initial; // rétablit l'alignemet a cause du text-align:right du form
         label{
             background-color: var(--c_clair);
             margin-left: 1.5em;
@@ -59,17 +61,36 @@
             &[type="radio"],
             &[type="checkbox"]{
                 width:initial;
+                &+label{
+                    position: relative;
+                    top: -.5em;
+                    margin-left: 0;
+                }
             }
         }
 
         fieldset{
             font-size: 1em;
+            padding-bottom: 1em;
             legend{
                 font-family: var(--f_texte);
                 font-size: 1em;
                 font-weight: 600;
-                            }
+            }
+            ul{
+                padding:1em 0;
+            }
+
+            i{
+                font-size: 1.75em;
+                position: relative;
+                top: .15em;
+            }
         }
+    }
+
+    .infolettre{
+        padding:1.5em 1em .5em;
     }
 }
 

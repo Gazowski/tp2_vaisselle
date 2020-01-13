@@ -7,9 +7,10 @@
     -->
 <article class = "formulaire">
     <form action="" 
-        method="POST"
-        data-js-formulaire-commande>
-        <fieldset>
+    method="POST"
+    data-js-formulaire-commande>
+    <button class="btn-close" data-js-retour-panier><i class="fas fa-times"></i></button>
+    <fieldset>
             <legend>Votre identité</legend>
             <ul>
                 <li>
@@ -92,7 +93,7 @@
                                     data-placeholder = "4000-0000-0000-0000"
                                     data-pattern = "4[0-9]{3}-[0-9]{4}-[0-9]{4}-[0-9]{4}"
                                     data-message-erreur="Ne correspond pas au type VISA !">
-                                <label for="visa">VISA</label>
+                                <label for="visa"><i class="fab fa-cc-visa"></i> Visa</label>
                             </li>
                             <li>
                                 <input id="mastercard" 
@@ -102,7 +103,7 @@
                                     data-placeholder = "5000-0000-0000-0000"
                                     data-pattern = "5[1-5][0-9]{2}-[0-9]{4}-[0-9]{4}-[0-9]{4}"
                                     data-message-erreur="Ne correspond pas au type MASTERCARD !">
-                                <label for="mastercard">Mastercard</label>
+                                <label for="mastercard"><i class="fab fa-cc-mastercard"></i> Mastercard</label>
                             </li>
                             <li>
                                 <input id="essai" 
@@ -112,7 +113,7 @@
                                     data-placeholder = "0000-0000-0000-0000"
                                     data-pattern = "[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}"
                                     data-message-erreur="Ne correspond pas au type ESSAI !">
-                                <label for="essai">essai (pattern permissif)</label>
+                                <label for="essai"><i class="far fa-credit-card"></i> (pattern permissif)</label>
                             </li>
                         </ul>
                         <label for="CB">n° carte de crédit*:</label>
@@ -161,18 +162,16 @@
                 </li>
             </ul>
         </fieldset>
-        <fieldset>
+        <fieldset class="infolettre">
             <input id="infolettre" 
                 type="checkbox" 
                 name="infolettre"
                 data-js-champ-infolettre>
             <label for="infolettre">S'inscrire à l'infolettre</label>
         </fieldset>
-        <fieldset>
-            <input type="submit"
-            value="Soumettre"
-            data-js-submit>
-            <button data-js-retour-panier>revenir au panier</button>
-        </fieldset>
+        <input type="submit"
+        class="bouton-submit"
+        value="Soumettre"
+        data-js-submit>
     </form>
 </article>
