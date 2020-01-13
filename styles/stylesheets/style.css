@@ -12,6 +12,7 @@ body {
   --c_clair: #e8ebf7;
   --c_theme: #017f3c;
   --c_theme_clair: #88fb5b;
+  --c_erreur: #ec0b43;
   --f_titre: 'Montserrat', sans-serif;
   --f_texte: 'Raleway', sans-serif;
 }
@@ -7860,7 +7861,7 @@ header h1 a:hover {
   padding: .3em 2em;
   text-align: initial;
 }
-/* line 36, ../sass/_formulaire.scss */
+/* line 38, ../sass/_formulaire.scss */
 .formulaire fieldset label {
   background-color: var(--c_clair);
   margin-left: 1.5em;
@@ -7868,60 +7869,74 @@ header h1 a:hover {
   position: relative;
   z-index: 2;
 }
-/* line 45, ../sass/_formulaire.scss */
+/* line 47, ../sass/_formulaire.scss */
 .formulaire fieldset ul li {
   margin-bottom: 0.5em;
   list-style: none;
 }
-/* line 48, ../sass/_formulaire.scss */
+/* line 50, ../sass/_formulaire.scss */
 .formulaire fieldset ul li p {
   margin-top: -0.5em;
   font-size: .8em;
 }
-/* line 55, ../sass/_formulaire.scss */
+/* line 57, ../sass/_formulaire.scss */
 .formulaire fieldset input {
   border: 2px solid var(--c_sombre_moyen);
   transform: translateY(-0.5em);
   padding: .75em;
   width: 100%;
 }
-/* line 61, ../sass/_formulaire.scss */
+/* line 63, ../sass/_formulaire.scss */
+.formulaire fieldset input:invalid {
+  border-color: var(--c_erreur);
+}
+/* line 68, ../sass/_formulaire.scss */
+.formulaire fieldset input::placeholder, .formulaire fieldset input + span {
+  color: var(--c_erreur);
+  font-weight: 800;
+}
+/* line 74, ../sass/_formulaire.scss */
+.formulaire fieldset input + span {
+  display: block;
+  padding-bottom: .5em;
+}
+/* line 79, ../sass/_formulaire.scss */
 .formulaire fieldset input[type="radio"], .formulaire fieldset input[type="checkbox"] {
   width: initial;
 }
-/* line 64, ../sass/_formulaire.scss */
+/* line 82, ../sass/_formulaire.scss */
 .formulaire fieldset input[type="radio"] + label, .formulaire fieldset input[type="checkbox"] + label {
   position: relative;
   top: -.5em;
   margin-left: 0;
 }
-/* line 72, ../sass/_formulaire.scss */
+/* line 90, ../sass/_formulaire.scss */
 .formulaire fieldset fieldset {
   font-size: 1em;
   padding-bottom: 1em;
 }
-/* line 75, ../sass/_formulaire.scss */
+/* line 93, ../sass/_formulaire.scss */
 .formulaire fieldset fieldset legend {
   font-family: var(--f_texte);
   font-size: 1em;
   font-weight: 600;
 }
-/* line 80, ../sass/_formulaire.scss */
+/* line 98, ../sass/_formulaire.scss */
 .formulaire fieldset fieldset ul {
   padding: 1em 0;
 }
-/* line 84, ../sass/_formulaire.scss */
+/* line 102, ../sass/_formulaire.scss */
 .formulaire fieldset fieldset i {
   font-size: 1.75em;
   position: relative;
   top: .15em;
 }
-/* line 92, ../sass/_formulaire.scss */
+/* line 110, ../sass/_formulaire.scss */
 .formulaire .infolettre {
   padding: 1.5em 1em .5em;
 }
 
-/* line 97, ../sass/_formulaire.scss */
+/* line 115, ../sass/_formulaire.scss */
 input {
   background-color: var(--c_clair);
   color: var(--c_sombre_moyen);

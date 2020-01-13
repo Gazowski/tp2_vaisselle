@@ -58,10 +58,11 @@ export class FormulaireCommande{
      * @param {*} champ 
      */
     est_rempli(champ){
-        let zoneInformation = champ.nextElementSibling
         if(champ.value.trim() == ""){
-            zoneInformation.innerHTML = "Remplir le champ !"
+            champ.placeholder = "remplir le champ !"
             this.formulaire_valide = false
+        } else {
+            champ.placeholder = ""
         }
     }
 
