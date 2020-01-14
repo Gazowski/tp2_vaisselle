@@ -1,27 +1,28 @@
 .formulaire{
     @include flexbox(flex,column,center,center);
-    background-color: var(--c_sombre_transparent);
     padding: 3em 0;
     position:absolute;
-    left:0; // a modifier pour 100% !!!
+    //left:150%;
+    transform:translateX(150%);
     top: -150px;
+    transition: transform 1.5s ease-out;
     width: 100%;
     z-index: 4;
 
     form{
         background:var(--c_clair);
-        box-shadow: 0 0 30px var(--c_sombre);
-        padding: 2em;
+        box-shadow: 0 0 30px var(--c_sombre), 0 0 300px var(--c_sombre);
+        padding: 2em 0;
         text-align: right;  // uniquement pour le bouton close
-        width:75%;
+        width:100%;
     }
 
     legend{
         color:var(--c_sombre_moyen);
         font-family: var(--f_titre);
-        font-size: 1.5em;
+        font-size: 1em;
         font-weight: 800;
-        padding:.25em 1em;
+        padding:.25em .5em;
     }
 
     fieldset{
@@ -31,7 +32,7 @@
         font-size: 1.2em;
         font-weight: 600;
         margin-bottom: 2em;
-        padding: .3em 2em;
+        padding: .3em .5em;
         text-align: initial; // rétablit l'alignemet a cause du text-align:right du form
 
         
@@ -119,5 +120,36 @@ input{
     
     &:valid{
         //background-color: lightgreen;
+    }
+}
+
+i{
+    margin-right: 1em;
+}
+
+.form-visible{
+    
+    transform:translateX(0%);
+}
+
+@media screen and (min-width: $ecran_moyen){
+    .formulaire{
+        form{
+            width:75%;
+            padding: 2em;
+        }
+
+        legend{
+            font-size: 1.5em;
+            padding:.25em 1em;
+        }
+
+        fieldset{
+            padding: .3em 2em;
+        }
+
+        i{
+            margin-right: initial;
+        }
     }
 }

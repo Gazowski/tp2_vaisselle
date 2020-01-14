@@ -5,10 +5,8 @@
         HTML5:
             un élément valide obtient la pseudo-classe :valid (ou :invalid si invalide)
     -->
-<article class = "formulaire">
-    <form action="" 
-    method="POST"
-    data-js-formulaire-commande>
+<article class = "formulaire" data-js-formulaire-commande>
+    <form action="" method="POST">
     <button class="btn-close" data-js-retour-panier><i class="fas fa-times"></i></button>
     <fieldset>
             <legend>Votre identité</legend>

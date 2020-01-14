@@ -28,9 +28,17 @@ export class FormulaireCommande{
             e.preventDefault()
             this.valider_formulaire()
             this.enregister_usager()
+            window.scroll({
+                top:0,
+                behavior:"smooth"
+            })
         })
         this.champs.courriel.addEventListener('blur', () => {
             this.est_dans_database()
+        })
+        this.btn_retour_panier.addEventListener('click', (e) => {
+            e.preventDefault()
+            this.elt.classList.remove('form-visible')
         })
     }
 
