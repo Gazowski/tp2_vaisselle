@@ -56,7 +56,8 @@ export class Panier{
     ajouter_evt_btn_passer_commade(){
         this.btn_passer_commande.addEventListener('click', () => {
             this.form_commande.elt.classList.add('form-visible')
-            window.scroll(-500,0)
+            //this.form_commande.elt.querySelector('legend').scrollIntoView()
+            window.scroll(0,0)
         })
     }
 
