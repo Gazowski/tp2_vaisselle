@@ -1,10 +1,4 @@
-<!-- formulaire HTML 5 
-    écriture du formulaire selon les normes de HTML5
-        - voir :  https://developer.mozilla.org/fr/docs/Web/Guide/HTML/Formulaires/Validation_donnees_formulaire 
 
-        HTML5:
-            un élément valide obtient la pseudo-classe :valid (ou :invalid si invalide)
-    -->
 <article class = "formulaire" data-js-formulaire-commande>
     <form action="" method="POST">
     <button class="btn-close" data-js-retour-panier><i class="fas fa-times"></i></button>
@@ -98,7 +92,7 @@
                                     name="type_de_carte" 
                                     type="radio"
                                     data-js-radio-cb = "mastercard"
-                                    data-placeholder = "5000-0000-0000-0000"
+                                    data-placeholder = "5500-0000-0000-0000"
                                     data-pattern = "5[1-5][0-9]{2}-[0-9]{4}-[0-9]{4}-[0-9]{4}"
                                     data-message-erreur="Ne correspond pas au type MASTERCARD !">
                                 <label for="mastercard"><i class="fab fa-cc-mastercard"></i> Mastercard</label>
