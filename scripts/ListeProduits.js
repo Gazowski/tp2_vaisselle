@@ -7,7 +7,6 @@ export class ListeProduits{
         this.header = header //objet header
         this.champ_filtre = elt.querySelector('[data-js-filtre]') 
         this.wrapper_liste = elt.querySelector('[data-js-wrapper-liste]')
-        this.btn_precedent = elt.querySelector('[data-js-btn-precedent]')
         this.btn_suivant = elt.querySelector('[data-js-btn-suivant]')
 
         this.pagination = 0
@@ -24,10 +23,6 @@ export class ListeProduits{
             this.pagination += 1
             this.afficher_liste_produits()
         })
-        this.btn_precedent.addEventListener('click', () => {
-            this.pagination -= 1
-            this.afficher_liste_produits()
-        })
         this.champ_filtre.addEventListener('change', () => {
             this.afficher_liste_produits()
         })
@@ -37,10 +32,6 @@ export class ListeProduits{
     afficher_liste_produits(){
         this.afficher_produits()
         this.activer_boutons()
-        window.scroll({
-            top: 150,
-            behavior: 'smooth'
-          });
     }
 
     instancier_item(){
@@ -81,14 +72,15 @@ export class ListeProduits{
     }
 
     afficher_liste = (items) =>{
-        this.wrapper_liste.innerHTML = items
+        let produits_suivants = this.wrapper_liste.cloneNode()
+        produits_suivants.innerHTML = items
+        produits_suivants = this.wrapper_liste.parentNode.insertBefore(produits_suivants,document.querySelector('.btn-navigation'))
+
     }
 
     activer_boutons(){
         // calcul du nombre de page max (page 1 = 0)
         let pagination_max = Math.floor(this.elt.dataset.totalProduit/this.produits_par_page)
-        console.log(this.elt.dataset.totalProduit)
-        this.btn_precedent.disabled = this.pagination > 0 ? false : true
         this.btn_suivant.disabled = this.pagination < pagination_max ? false : true       
     }
 
