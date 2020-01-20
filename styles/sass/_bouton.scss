@@ -39,6 +39,7 @@ button, .bouton, .bouton-submit{
     color: inherit;
     font-size: 1.75em;
     padding: initial;
+    transform-origin: center;
     transition:.5s;
     &:hover{
         border: none;
