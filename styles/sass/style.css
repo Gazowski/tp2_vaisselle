@@ -6009,6 +6009,8 @@ button:hover, .bouton:hover, .bouton-submit:hover {
   color: inherit;
   font-size: 1.75em;
   padding: initial;
+  -webkit-transform-origin: center;
+          transform-origin: center;
   -webkit-transition: .5s;
   transition: .5s;
 }
@@ -6675,8 +6677,8 @@ i {
 }
 
 .form-visible {
-  -webkit-transform: translateY(0%);
-          transform: translateY(0%);
+  -webkit-transform: translateY(5%);
+          transform: translateY(5%);
 }
 
 @media screen and (min-width: 576px) {
@@ -6746,7 +6748,7 @@ footer {
   /*  positionnement relatif par rapport au header   */
   position: relative;
   top: 150px;
-  width: 100vw;
+  width: 100%;
 }
 
 .inventaire_nul {
