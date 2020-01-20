@@ -1,8 +1,10 @@
 import { requeteAjax } from './ajax.js'
+import { FenetreSucces } from './FenetreSucces.js'
 
 export class FormulaireCommande{
     constructor(elt){
-        this.elt = elt        
+        this.elt = elt     
+        console.log(this.elt)   
         this.champs_formulaire = this.elt.querySelectorAll('input')
         this.champs_avec_regex = this.elt.querySelectorAll('[pattern]')
         this.champs_requis = this.elt.querySelectorAll('[required]')
@@ -11,14 +13,15 @@ export class FormulaireCommande{
         this.indice_regex = document.querySelector('[data-js-indice-regex]')
         this.btn_soumettre = this.elt.querySelector('[data-js-submit]')
         this.btn_retour_panier = this.elt.querySelector('[data-js-retour-panier]')
-
+        //console.log(this.fenetre_succes)
+        
         this.formulaire_valide = false
         this.usager_dans_database = false
         this.champs = {}
         
         this.init()
     }
-
+    
     init(){
         this.creer_variables_champ()
         this.verifier_champs_avec_regex()
@@ -41,7 +44,7 @@ export class FormulaireCommande{
             this.elt.classList.remove('form-visible')
         })
     }
-
+    
     creer_variables_champ = () => {
         for(let champ of this.champs_formulaire){
             this.champs[champ.name] = champ 
@@ -52,15 +55,19 @@ export class FormulaireCommande{
         this.formulaire_valide = true
         this.verifier_champs_requis()
         this.informer_erreur_saisie()
+        if(this.formulaire_valide){
+        //if(true){
+            this.afficher_succes()
+        }
     }
-
+    
     verifier_champs_requis = () => {
         for(let champ of this.champs_requis){
             this.est_rempli(champ)
             //this.afficher_message_personnalise(champ)
         }
     }
-
+    
     /**
      * 
      * @param {*} champ 
@@ -73,7 +80,7 @@ export class FormulaireCommande{
             champ.placeholder = ""
         }
     }
-
+    
     verifier_champs_avec_regex = () => {
         for(let champ of this.champs_avec_regex){
             champ.addEventListener('blur', () => {
@@ -91,7 +98,7 @@ export class FormulaireCommande{
         let liste_champs = (champ == '') ? this.champs_avec_regex : [champ]
         for(let chp of liste_champs){
             let zoneInformation = chp.nextElementSibling,
-                regex = RegExp(chp.pattern)
+            regex = RegExp(chp.pattern)
             if(chp.value.trim() == ""){ 
                 this.est_rempli(chp)
             }
@@ -100,8 +107,18 @@ export class FormulaireCommande{
                 this.formulaire_valide = false
             }
             else
-                zoneInformation.innerHTML = ""
+            zoneInformation.innerHTML = ""
         }
+    }
+    
+    afficher_succes(){
+        let paramAjax = {
+            methode : "GET",
+            action : "index.php?Ajax&action=afficherSucces"
+        }
+        requeteAjax(paramAjax, (reponse_ajax) => {
+            this.elt.innerHTML = reponse_ajax
+        })
     }
 
     ecouter_radbutton = () =>{
@@ -137,8 +154,7 @@ export class FormulaireCommande{
     }
 
     est_dans_database = () => {
-        let paramAjax = 
-        {
+        let paramAjax = {
             methode : "POST",
             json : true,
             action : "index.php?Ajax&action=verifierPresenceUsager",
@@ -151,8 +167,7 @@ export class FormulaireCommande{
 
     enregister_usager = () => {
         if(this.formulaire_valide && !this.usager_dans_database){
-            let info_usager = 
-            {
+            let info_usager = {
                 nom : this.champs.nom.value,
                 prenom : this.champs.prenom.value,
                 adresse : this.champs.adresse.value,
@@ -160,8 +175,7 @@ export class FormulaireCommande{
                 optin : (this.champs.infolettre.checked)? 1 : 0
             }
 
-            let paramAjax = 
-            {
+            let paramAjax = {
                 methode : "POST",
                 action : "index.php?Ajax&action=enregistrerUsager",
                 donnees_a_envoyer : info_usager
@@ -171,7 +185,6 @@ export class FormulaireCommande{
             })
         }
     }
-
 
 
     /* NOTE: la personnalisation des messages dans les 'bulles natives'

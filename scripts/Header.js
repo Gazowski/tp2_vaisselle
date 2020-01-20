@@ -74,8 +74,15 @@ export class Header{
 
     afficher_btn_commande() {
         if(sessionStorage.produitsPanier){
-            this.btn_commande.classList.remove('disparait')
+            if(this.btn_commande.matches('.disparait'))
+                this.btn_commande.classList.remove('disparait')
             this.div_panier.classList.add('panier_actif')
+        }
+        else{
+            if(!this.btn_commande.matches('.disparait'))
+                this.btn_commande.classList.add('disparait')
+            if(this.div_panier.matches('.panier_actif'))
+                this.div_panier.classList.remove('panier_actif')
         }
     }
 

@@ -30,13 +30,21 @@ header{
             }
         }
     }
+
+    svg{
+        .st0{fill:hsl(352, 50%, 73%);}
+        .st1{fill:hsl(355, 37%, 69%);}
+        .st2{fill:hsl(352, 31%, 58%);}
+        .st3{fill:hsl(0, 0%, 30%);}
+    }
     
     
-    // .panier_actif{
-        //     display: block;
-        //     background-color: lightgreen;
-        //     cursor:pointer ;
-        // }
+    .panier_actif{
+        .st0{fill:#EA3D53;}
+        .st1{fill:#D83945;}
+        .st2{fill:#B12B3D;}
+        .st3{fill:#333333;}
+        }
 }
 
 .header_fin{
@@ -55,10 +63,10 @@ header{
             justify-content: flex-start;
             height: 40px;
         }
-        img{
-            z-index: 0;
-            height: 40px;
-        }
+        // img{
+        //     z-index: 0;
+        //     //height: 40px;
+        // }
     }
 
 }
@@ -90,13 +98,15 @@ header{
                 display: none;
             }
         }
-        img{
-            height:50px;
-        }
+        // img{
+        //     height:50px;
+        // }
 
     }
 
 }
+
+
 
 @media screen and (min-width: 576px){
     header h1{

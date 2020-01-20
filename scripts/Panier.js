@@ -69,6 +69,7 @@ export class Panier{
                 this.preparer_liste_produits()
                 this.enregistrer_commande()
                 this.mettre_a_jour_inventaire()
+                sessionStorage.clear()
             }
         })
     }

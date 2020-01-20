@@ -92,6 +92,10 @@
 							echo 'error';
 						}
 					break;
+
+					case "afficherSucces":
+						$this->afficheVue('MessageReussite');
+                    break;
                 
                     default:
                         echo 'error';

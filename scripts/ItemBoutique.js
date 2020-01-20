@@ -37,7 +37,7 @@ export class ItemBoutique{
     }
 
     verifier_inventaire_item = () =>{
-        if(this.inventaire == "0"){
+        if(this.inventaire <= "0"){
             if(!this.elt.classList.contains('inventaire_nul'))
                 this.elt.classList.add('inventaire_nul')
         }

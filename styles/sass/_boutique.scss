@@ -8,7 +8,7 @@
 
 .tuile{
     @include couleur(var(--c_clair),var(--c_sombre));
-    border:1px solid var(--c_sombre_moyen);
+    //border:1px solid var(--c_sombre_moyen);
     display:grid;
 
     .prix{
@@ -26,9 +26,11 @@
     }
     div{
         display:grid;
+        background:white;
         grid-template-columns: 1fr;
         grid-template-rows: repeat(3, auto);
         padding:.5em;
+
         //font-size: .8em;
     }
 }
@@ -116,7 +118,7 @@
     .tuile-boutique{
         grid-template-rows: 1fr .5fr;
         
-        img{
+        div,img{
             width: calc(100% - .2em);
         }
     }

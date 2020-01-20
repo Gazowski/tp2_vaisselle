@@ -16,7 +16,7 @@
         <link href="https://fonts.googleapis.com/css?family=Oswald:600|Raleway:300&display=swap" rel="stylesheet">
         <!-- Feuilles de style -->
         <link rel="stylesheet" href="./styles/stylesheets/normalize.css">
-        <link rel="stylesheet" href="./styles/stylesheets/style.css">
+        <link rel="stylesheet" href="./styles/sass/style.css">
 
         <!-- integration du script -->
         <script type="module" src="./scripts/main.js"></script>

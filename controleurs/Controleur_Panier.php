@@ -29,7 +29,7 @@
                         $this->afficheVue("TitreSection",$titre);
                         $this->afficheVue("Panier",$data);
 						$this->afficheVue("FormulaireCommande");
-						$this->afficheVue("MessageReussite");
+						//$this->afficheVue("MessageReussite");
                     break;
 
                     default:

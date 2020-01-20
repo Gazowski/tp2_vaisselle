@@ -3,13 +3,13 @@
     padding: 3em 0;
     position:absolute;
     //left:150%;
-    transform:translateX(150%);
+    transform:translateY(-150%);
     top: -150px;
     transition: transform 1.5s ease-out;
     width: 100%;
     z-index: 4;
 
-    form{
+    .succes,form{
         background:var(--c_clair);
         box-shadow: 0 0 30px var(--c_sombre), 0 0 300px var(--c_sombre);
         padding: 2em 0;
@@ -129,7 +129,7 @@ i{
 
 .form-visible{
     
-    transform:translateX(0%);
+    transform:translateY(0%);
 }
 
 @media screen and (min-width: $ecran_moyen){

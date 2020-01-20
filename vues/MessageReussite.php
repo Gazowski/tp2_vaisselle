@@ -1,8 +1,8 @@
-<!-- 
 
- -->
-<section class="disparait">
-    Félicitations !
-    Votre commande est enregistrée !
-    <button>continuer votre visite</button>
-</section>
+<aside class="succes" data-js-succes>
+    <div>
+        <p>Félicitations !<br>
+        Votre commande est enregistrée !</p>
+        <a href="index.php" class="bouton">continuer votre visite</a>
+    </div>
+</aside>
