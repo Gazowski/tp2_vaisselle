@@ -1,6 +1,6 @@
 /**
- * 
- * @param {array} data : contient les différents éléments de la requête ajax 
+ * requeteAjax execue les call ajax
+ * @param {array} data : contient les éléments de la requête ajax 
  * @param {function} callback : fonction(s) à éxécuter si la requete ajax est exécutée. lors de l'appel la fonction est passé dans une fonction anomyme
  */
 
