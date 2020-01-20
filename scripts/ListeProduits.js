@@ -24,6 +24,10 @@ export class ListeProduits{
             this.afficher_liste_produits()
         })
         this.champ_filtre.addEventListener('change', () => {
+            this.pagination = 0
+            let listes = this.elt.querySelectorAll('[data-js-wrapper-liste]')
+            for(let liste of listes)
+                liste.innerHTML = ""
             this.afficher_liste_produits()
         })
         this.instancier_item()           
