@@ -1,7 +1,7 @@
 import { Header } from "./Header.js"
 import { ListeProduits } from "./ListeProduits.js"
 import { Panier } from "./Panier.js"
-import { FormulaireCommande } from "./FormulaireCommande.js";
+import { Formulaire } from "./Formulaire.js";
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (elHeader) header = new Header(elHeader)
     if (elListeProduits) liste_produits = new ListeProduits(elListeProduits,header)
-    if (elFormulaireCommande) formulaire_commande = new FormulaireCommande(elFormulaireCommande)
+    if (elFormulaireCommande) formulaire_commande = new Formulaire(elFormulaireCommande)
     if (elPanier) panier = new Panier(elPanier,header,formulaire_commande)
 
 });

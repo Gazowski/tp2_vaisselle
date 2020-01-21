@@ -1,7 +1,6 @@
 import { ItemPanier } from './ItemPanier'
 import { requeteAjax } from './ajax.js'
 
-
 export class Panier{
     constructor(elt,header,formulaireCommande){
         this.elt = elt
@@ -15,6 +14,7 @@ export class Panier{
 
         this.montant_total_panier = 0
         this.commande = {}
+        this.usager_dans_database = false
 
         this.init()
     }
@@ -25,6 +25,9 @@ export class Panier{
         this.ajouter_evt_choix_quantite()
         this.ajouter_evt_btn_passer_commade()
         this.passer_la_commande()
+        this.form_commande.champs.courriel.addEventListener('blur', () => {
+            this.est_dans_database()
+        })
     }
     
     instancier_items_panier() {
@@ -56,11 +59,9 @@ export class Panier{
     ajouter_evt_btn_passer_commade(){
         this.btn_passer_commande.addEventListener('click', () => {
             this.form_commande.elt.classList.add('form-visible')
-            //this.form_commande.elt.querySelector('legend').scrollIntoView()
             window.scroll(0,0)
         })
     }
-
     
     passer_la_commande() {
         this.form_commande.btn_soumettre.addEventListener('click', (e) => {
@@ -69,6 +70,9 @@ export class Panier{
                 this.preparer_liste_produits()
                 this.enregistrer_commande()
                 this.mettre_a_jour_inventaire()
+                this.afficher_succes()
+                this.enregister_usager()
+                this.afficher
                 sessionStorage.clear()
             }
         })
@@ -123,5 +127,48 @@ export class Panier{
         requeteAjax(paramAjax, (reponse_ajax) => {
 
         })
+    }
+
+    afficher_succes(){
+        let paramAjax = {
+            methode : "GET",
+            action : "index.php?Ajax&action=afficherSucces"
+        }
+        requeteAjax(paramAjax, (reponse_ajax) => {
+            this.form_commande.elt.innerHTML = reponse_ajax
+        })
+    }
+
+    est_dans_database = () => {
+        let paramAjax = {
+            methode : "POST",
+            json : true,
+            action : "index.php?Ajax&action=verifierPresenceUsager",
+            donnees_a_envoyer : this.form_commande.champs.courriel.value
+        }
+        requeteAjax(paramAjax, (reponse_ajax) => {
+            this.usager_dans_database = (reponse_ajax.trim() != '')? true : false
+        })
+    }
+
+    enregister_usager = () => {
+        if(this.form_commande.formulaire_valide && !this.usager_dans_database){
+            let info_usager = {
+                nom : this.form_commande.champs.nom.value,
+                prenom : this.form_commande.champs.prenom.value,
+                adresse : this.form_commande.champs.adresse.value,
+                courriel : this.form_commande.champs.courriel.value,
+                optin : (this.form_commande.champs.infolettre.checked)? 1 : 0
+            }
+
+            let paramAjax = {
+                methode : "POST",
+                action : "index.php?Ajax&action=enregistrerUsager",
+                donnees_a_envoyer : info_usager
+            }
+            requeteAjax(paramAjax, (reponse_ajax) => {
+                console.log(reponse_ajax)
+            })
+        }
     }
 }

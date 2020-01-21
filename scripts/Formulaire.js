@@ -1,10 +1,6 @@
-import { requeteAjax } from './ajax.js'
-import { FenetreSucces } from './FenetreSucces.js'
-
-export class FormulaireCommande{
+export class Formulaire{
     constructor(elt){
         this.elt = elt     
-        console.log(this.elt)   
         this.champs_formulaire = this.elt.querySelectorAll('input')
         this.champs_avec_regex = this.elt.querySelectorAll('[pattern]')
         this.champs_requis = this.elt.querySelectorAll('[required]')
@@ -12,11 +8,9 @@ export class FormulaireCommande{
         this.champs_radio_button = this.elt.querySelectorAll('[data-js-radio-cb]')
         this.indice_regex = document.querySelector('[data-js-indice-regex]')
         this.btn_soumettre = this.elt.querySelector('[data-js-submit]')
-        this.btn_retour_panier = this.elt.querySelector('[data-js-retour-panier]')
-        //console.log(this.fenetre_succes)
+        this.btn_fermer_formulaire = this.elt.querySelector('[data-js-close-form]')
         
         this.formulaire_valide = false
-        this.usager_dans_database = false
         this.champs = {}
         
         this.init()
@@ -30,16 +24,12 @@ export class FormulaireCommande{
         this.btn_soumettre.addEventListener('click', (e) => {
             e.preventDefault()
             this.valider_formulaire()
-            this.enregister_usager()
             window.scroll({
                 top:0,
                 behavior:"smooth"
             })
         })
-        this.champs.courriel.addEventListener('blur', () => {
-            this.est_dans_database()
-        })
-        this.btn_retour_panier.addEventListener('click', (e) => {
+        this.btn_fermer_formulaire.addEventListener('click', (e) => {
             e.preventDefault()
             this.elt.classList.remove('form-visible')
         })
@@ -55,16 +45,11 @@ export class FormulaireCommande{
         this.formulaire_valide = true
         this.verifier_champs_requis()
         this.informer_erreur_saisie()
-        if(this.formulaire_valide){
-        //if(true){
-            this.afficher_succes()
-        }
     }
     
     verifier_champs_requis = () => {
         for(let champ of this.champs_requis){
             this.est_rempli(champ)
-            //this.afficher_message_personnalise(champ)
         }
     }
     
@@ -85,7 +70,6 @@ export class FormulaireCommande{
         for(let champ of this.champs_avec_regex){
             champ.addEventListener('blur', () => {
                 this.informer_erreur_saisie(champ)
-                //this.afficher_message_personnalise(champ)
             })
         }    
     }
@@ -111,16 +95,6 @@ export class FormulaireCommande{
         }
     }
     
-    afficher_succes(){
-        let paramAjax = {
-            methode : "GET",
-            action : "index.php?Ajax&action=afficherSucces"
-        }
-        requeteAjax(paramAjax, (reponse_ajax) => {
-            this.elt.innerHTML = reponse_ajax
-        })
-    }
-
     ecouter_radbutton = () =>{
         this.radio_button_cocher = false
         for(let bouton of this.champs_radio_button){
@@ -153,55 +127,4 @@ export class FormulaireCommande{
 
     }
 
-    est_dans_database = () => {
-        let paramAjax = {
-            methode : "POST",
-            json : true,
-            action : "index.php?Ajax&action=verifierPresenceUsager",
-            donnees_a_envoyer : this.champs.courriel.value
-        }
-        requeteAjax(paramAjax, (reponse_ajax) => {
-            this.usager_dans_database = (reponse_ajax.trim() != '')? true : false
-        })
-    }
-
-    enregister_usager = () => {
-        if(this.formulaire_valide && !this.usager_dans_database){
-            let info_usager = {
-                nom : this.champs.nom.value,
-                prenom : this.champs.prenom.value,
-                adresse : this.champs.adresse.value,
-                courriel : this.champs.courriel.value,
-                optin : (this.champs.infolettre.checked)? 1 : 0
-            }
-
-            let paramAjax = {
-                methode : "POST",
-                action : "index.php?Ajax&action=enregistrerUsager",
-                donnees_a_envoyer : info_usager
-            }
-            requeteAjax(paramAjax, (reponse_ajax) => {
-                console.log(reponse_ajax)
-            })
-        }
-    }
-
-
-    /* NOTE: la personnalisation des messages dans les 'bulles natives'
-            avec element.setCustomValidity modifie le comportement de la validation des champs'
-            la pseudo-class :valid ne sera obtenu seulement au prochain appui sur submit,
-            ce qui perturbe la coloration des champs valide.
-    */
-    afficher_message_personnalise = (champ) =>{
-        if(champ.value.trim() == "")
-            champ.setCustomValidity("Remplir le champ !")
-        else if(champ.validity.patternMismatch)
-            champ.setCustomValidity(champ.dataset.messageErreur)
-        else
-            champ.setCustomValidity("")
-    }
-    
-
 }
-
-/* Voir le fichier formValidation.js (exemple cours 18) */
