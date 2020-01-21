@@ -8,6 +8,7 @@ export class ListeProduits{
         this.champ_filtre = elt.querySelector('[data-js-filtre]') 
         this.wrapper_liste = elt.querySelector('[data-js-wrapper-liste]')
         this.btn_suivant = elt.querySelector('[data-js-btn-suivant]')
+        this.items = this.elt.querySelectorAll('[data-js-item]')
 
         this.pagination = 0
         this.produits_par_page = 12
@@ -30,7 +31,7 @@ export class ListeProduits{
                 liste.innerHTML = ""
             this.afficher_liste_produits()
         })
-        this.instancier_item()           
+        this.instancier_item(this.items)           
     }
     
     afficher_liste_produits(){
@@ -38,10 +39,7 @@ export class ListeProduits{
         this.activer_boutons()
     }
 
-    instancier_item(){
-        // NOTE : items est déclaré ici car la liste est rechargé par les requetes ajax.
-        // la liste des items doit être verifier a chaque rechargement de la liste
-        let items = this.elt.querySelectorAll('[data-js-item]')
+    instancier_item(items){
         for(let item of items){
             new ItemBoutique(item,this.header)
         }
@@ -68,18 +66,18 @@ export class ListeProduits{
             action : `index.php?Ajax&action=afficheListeSuivante&offsetPagination=${offsetPagination}&filtre=${filtre}`
         }
         requeteAjax(this.paramAjax, (reponse_ajax) =>{ 
-            this.afficher_liste(reponse_ajax) 
-            this.instancier_item() 
+            let items = this.afficher_liste(reponse_ajax) 
+            this.instancier_item(items) 
         }) 
         // NOTE : pour effectuer une fonction quand la requete ajax est terminée
         // la fonction est passée en paramêtre par l'intermédiare d'une fonction anonyme
     }
 
     afficher_liste = (items) =>{
-        let produits_suivants = this.wrapper_liste.cloneNode()
+        let produits_suivants = document.createElement('div')
         produits_suivants.innerHTML = items
         produits_suivants = this.wrapper_liste.parentNode.insertBefore(produits_suivants,document.querySelector('.btn-navigation'))
-
+        return produits_suivants.querySelectorAll('[data-js-item]')
     }
 
     activer_boutons(){
