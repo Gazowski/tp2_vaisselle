@@ -1,7 +1,7 @@
 
 <article class = "formulaire" data-js-formulaire-commande>
     <form action="" method="POST">
-    <button class="btn-close" data-js-retour-panier><i class="fas fa-times"></i></button>
+    <button class="btn-close" data-js-close-form><i class="fas fa-times"></i></button>
     <fieldset>
             <legend>Votre identité</legend>
             <ul>
