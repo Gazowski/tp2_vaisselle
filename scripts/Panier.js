@@ -15,6 +15,7 @@ export class Panier{
         this.montant_total_panier = 0
         this.commande = {}
         this.usager_dans_database = false
+        this.timeoutID
 
         this.init()
     }
@@ -116,7 +117,7 @@ export class Panier{
         }
     }
 
-    decrementer_inventaire_item = (item,quantite) => {
+    decrementer_inventaire_item(item,quantite){
         let paramAjax = 
         {
             methode : "POST",
@@ -136,10 +137,19 @@ export class Panier{
         }
         requeteAjax(paramAjax, (reponse_ajax) => {
             this.form_commande.elt.innerHTML = reponse_ajax
+            this.timeoutID = window.setTimeout(this.retour_boutique,5000)
         })
     }
 
-    est_dans_database = () => {
+    retour_boutique(){
+        window.location = 'index.php'
+    }
+
+    temporiser(fonction,temp){
+
+    }
+
+    est_dans_database(){
         let paramAjax = {
             methode : "POST",
             json : true,
@@ -151,7 +161,7 @@ export class Panier{
         })
     }
 
-    enregister_usager = () => {
+    enregister_usager(){
         if(this.form_commande.formulaire_valide && !this.usager_dans_database){
             let info_usager = {
                 nom : this.form_commande.champs.nom.value,
