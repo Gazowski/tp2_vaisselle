@@ -28,7 +28,7 @@ button, .bouton, .bouton-submit{
 }
 
 .btn-navigation{
-    @include flexbox(flex,row,space-between,center);
+    @include flexbox(flex,row,center,center);
     padding:3em 33vw;
 }
 
