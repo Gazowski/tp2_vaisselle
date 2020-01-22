@@ -13,7 +13,7 @@
                 data-item-prix = <?= $produit["prix"] ?>>
             <div>
                 <img src=<?= $produit['lienimage'] ?>
-                        alt=<?= $produit['nom'] ?>>
+                        alt='<?= $produit['nom'] ?>'>
             </div>
             <div>
                 <h3><?= $produit["nom"] ?></h3>
