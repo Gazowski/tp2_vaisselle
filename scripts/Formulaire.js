@@ -59,6 +59,7 @@ export class Formulaire{
      */
     est_rempli(champ){
         if(champ.value.trim() == ""){
+            champ.value = ""
             champ.placeholder = "remplir le champ !"
             this.formulaire_valide = false
         } else {
