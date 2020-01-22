@@ -6275,8 +6275,8 @@ header .panier_actif .st3 {
 .cote_droit {
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;
-  -ms-grid-rows: 50vw;
-      grid-template-rows: 50vw;
+  -ms-grid-rows: calc(50vw - .5em);
+      grid-template-rows: calc(50vw - .5em);
   overflow: hidden;
 }
 
@@ -6358,8 +6358,8 @@ header .panier_actif .st3 {
         grid-template-rows: 4.5em 2.4em 1.5em;
   }
   .cote_droit {
-    -ms-grid-rows: calc((100vw / 3) + 9.3em);
-        grid-template-rows: calc((100vw / 3) + 9.3em);
+    -ms-grid-rows: calc((100vw / 3) + 9em);
+        grid-template-rows: calc((100vw / 3) + 9em);
   }
   .cote_droit img {
     -webkit-transform: translateY(0%);
