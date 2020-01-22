@@ -7,18 +7,18 @@
 				data-item-nom = <?= str_replace(" ","_",$produit["nom"]) ?>>
 				<article class="tuile tuile-boutique face">
 					<img src=<?= $produit['lienimage'] ?>
-						alt=<?= $produit['nom'] ?>>
+						alt='<?= $produit['nom'] ?>'>
 						<div>
 							<h3><?= $produit["nom"] ?></h3>
 							<h3 class="prix">prix : <?= $produit["prix"] . "$"?> </h3>
 							<p><span data-item-inventaire=<?= $produit['inventaire'] ?>></span> en stock</p>
 						</div>
 				</article>
-				<article class="tuile cote_droit" >
+				<div class="tuile cote_droit" >
 					<img src=<?= $produit['lienimage'] ?>
-						alt=<?= $produit['nom'] ?>>
+						alt='<?= $produit['nom'] ?>'>
 					<button class="btn-icon"><i class="fas fa-cart-plus"></i></button>
-				</article>
+				</div>
 			</div>
 		</div>
 	<?php } ?>
