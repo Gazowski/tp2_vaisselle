@@ -37,7 +37,7 @@
 
 .cote_droit{
     grid-template-columns: 1fr;
-    grid-template-rows: 50vw;
+    grid-template-rows: calc(50vw - .5em);
     overflow: hidden;
     img{
         object-fit: cover;
@@ -99,7 +99,7 @@
     }
 
     .cote_droit{
-        grid-template-rows: calc((100vw / 3) + 9.3em);
+        grid-template-rows: calc((100vw / 3) + 9em);
         img{
             transform: translateY(0%);
             object-fit: cover;
