@@ -8,9 +8,6 @@ nombre de produits sélectionnés s’il y en a au moins 1. -->
 		<div>
 			<div class="disparait"
 				data-js-compteur-panier></div>
-			<!-- <img src="./assets/images/svg/panier.svg"
-				alt="logo panier"
-				data-js-icone-panier /> -->
 			<svg version="1.1" id="Layer_1" 
 				xmlns="http://www.w3.org/2000/svg" 
 				xmlns:xlink="http://www.w3.org/1999/xlink" 
